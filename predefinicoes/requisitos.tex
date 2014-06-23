@@ -40,10 +40,12 @@
 \newcounter{indiceNaoFuncional}
 %
 %
-%% New job (that is, file)
-\newwrite\ans
-\immediate\openout\ans=tabRequisitos.aux
-%
+% Requisitos Funcionais
+\newcommand{\StartReqFunc}{%
+    % New job (that is, file)
+    \newwrite\reqFunc%
+    \immediate\openout\reqFunc=tabRequisitosFunc.aux%
+}
 %
 %% Usamos unexpanded... mas eu não sei porque. No meu
 %% computador não funciona se removo o unexpanded. Acho
@@ -52,19 +54,50 @@
 %% de `\\` é diferente no texto e em um ambiente tabular;
 %% sua expansão tem que ser postergada para o momento em
 %% que a tabela está sendo impressa (`PrintVolunteers`).
-\newcommand{\AppendRequisito}[2]{%
-    \immediate\write\ans{#1 & \expandafter#2 \unexpanded{\\}}%
+\newcommand{\AppendRequisitoFunc}[2]{%
+    \immediate\write\reqFunc{#1 & \expandafter#2 \unexpanded{\\}}%
 }
 %
-\newcommand{\PrintRequisitos}{%
+\newcommand{\PrintRequisitosFunc}{%
 	\begin{tabular}{cl}%
 	\hline
 	\textbf{Identificação} & \textbf{Requisito} \\%
 	\hline%
-	\immediate\closeout\ans\input{tabRequisitos2.aux}%
+	\immediate\closeout\reqFunc\input{tabRequisitosFunc2.aux}%
 	\hline%
 	\end{tabular}%
 }
+%
+%
+%
+% Requisitos Não Funcionais
+\newcommand{\StartReqNFunc}{%
+    % New job (that is, file)
+    \newwrite\reqNFunc%
+    \immediate\openout\reqNFunc=tabRequisitosNFunc.aux%
+}
+%
+%% Usamos unexpanded... mas eu não sei porque. No meu
+%% computador não funciona se removo o unexpanded. Acho
+%% que deve ter algo haver com o `\\` dentro da expressão.
+%% (Aliás, isso é muito provável, já que o significado
+%% de `\\` é diferente no texto e em um ambiente tabular;
+%% sua expansão tem que ser postergada para o momento em
+%% que a tabela está sendo impressa (`PrintVolunteers`).
+\newcommand{\AppendRequisitoNFunc}[2]{%
+    \immediate\write\reqNFunc{#1 & \expandafter#2 \unexpanded{\\}}%
+}
+%
+\newcommand{\PrintRequisitosNFunc}{%
+	\begin{tabular}{cl}%
+	\hline
+	\textbf{Identificação} & \textbf{Requisito} \\%
+	\hline%
+	\immediate\closeout\reqNFunc\input{tabRequisitosNFunc2.aux}%
+	\hline%
+	\end{tabular}%
+}
+%
 %
 %
 %%%%%
@@ -93,10 +126,12 @@
         \stepcounter{indiceFuncional}%
         \ReqLabel{RF\theindiceFuncional}%
         \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RF\theindiceFuncional \hypertarget{\CmdReqLabel}{}} & (X) Funcional & ( ) Não Funcional \\}
+        \AppendRequisitoFunc{\CmdReqLabel}{\CmdReqNome}
     }{%
         \stepcounter{indiceNaoFuncional}%
-        \ReqLabel{RNF\theindiceFuncional}%
-        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RN\theindiceNaoFuncional} & ( ) Funcional & (X) Não Funcional \\}
+        \ReqLabel{RNF\theindiceNaoFuncional}%
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RNF\theindiceNaoFuncional} & ( ) Funcional & (X) Não Funcional \\}
+        \AppendRequisitoNFunc{\CmdReqLabel}{\CmdReqNome}
     }
 }
 \newcommand{\ReqLabel}[1]{\renewcommand{\CmdReqLabel}{#1}}%
@@ -203,6 +238,5 @@
              \hline%
         \end{tabular}
      \end{table}
-    \AppendRequisito{\CmdReqLabel}{\CmdReqNome}
 }% FIM DO COMMAND CriaRequisito
 %
