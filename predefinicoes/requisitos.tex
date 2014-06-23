@@ -53,7 +53,7 @@
 %% sua expansão tem que ser postergada para o momento em
 %% que a tabela está sendo impressa (`PrintVolunteers`).
 \newcommand{\AppendRequisito}[2]{%
-    \immediate\write\ans{#1 & #2 \unexpanded{\\}}%
+    \immediate\write\ans{#1 & \expandafter#2 \unexpanded{\\}}%
 }
 %
 \newcommand{\PrintRequisitos}{%
@@ -61,7 +61,7 @@
 	\hline
 	\textbf{Identificação} & \textbf{Requisito} \\%
 	\hline%
-	\immediate\closeout\ans\input{tabRequisitos.aux}%
+	\immediate\closeout\ans\input{tabRequisitos2.aux}%
 	\hline%
 	\end{tabular}%
 }
