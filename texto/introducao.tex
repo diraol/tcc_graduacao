@@ -1,0 +1,118 @@
+%Introdução - Bruno Fernandes
+%$Rev$ - $Author$
+%$Id$ - $Date$
+% Rev5 - 09/12/13
+
+\newpage
+\chapter{Introdução}
+\label{chp: Introdução}
+
+\lettrine{A}{mobilidade urbana} é hoje um dos mais latentes problemas das grandes cidades de todo o mundo. Em 2010, considerando 439 áreas urbanas nos Estados Unidos, os congestionamentos fizeram com que os motoristas gastassem 4,8 bilhões de horas e comprassem 7.2 bilhões de litros de combustível além do necessário, a um custo de \$101 bilhões de dólares~\cite{Eisele2011}. Já em 2011, esses índices subiram para 5,5 bilhões de horas, 11 bilhões de litros de combustível e \$121 bilhões de dólares~\cite{Schrank2012}. Assim, percebe-se que não só identificam-se altos custos sociais, ambientais e econômicos, como também estes custos são crescentes.
+
+A realidade brasileira não é muito diferente. De 2004 a 2007 o tempo de congestionamento de 4 das maiores cidades brasileiras (São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre) cresceu a uma taxa anual média de 16\%~\cite{SOUSAPRRESENDE2009}. Se considerarmos ainda as políticas públicas de incentivo ao mercado automobilístico, mais especificamente a redução do \gls{ipi} para automóveis\footnote{\url{http://g1.globo.com/carros/noticia/2014/01/ipi-para-carros-sobe-partir-desta-quarta-e-deve-impactar-nos-precos.html} - último acesso em 19/06/2014} implementadas de maio de 2012 a dezembro de 2013, pode-se esperar que o crescimento do índice de congestionamento tenha sido até maior.
+
+Para além dos congestionamentos, existem ainda outras externalidades comuns na área do transporte, como a poluição e os acidentes de trânsito\footnote{\url{http://repositorio.ipea.gov.br/bitstream/11058/2448/1/td_0586.pdf}}. Se elas têm suas medidas de desempenhos já consagradas e já se estuda sobre as deseconomias que as causam, a externalidade relativa à insatisfação do usuário do transporte público é terreno ainda pouco explorado na área de desenvolvimento de software. Sobram evidências de que há questionamentos quanto à qualidade do serviço prestado~\cite{Urbana-PE2010,Rodrigues,Rodrigues2006,Cellos2012}. “O reajuste das tarifas e a má qualidade do transporte público foram o estopim das manifestações de junho, que tomaram as ruas de várias capitais do país” afirma artigo publicado pelo IPEA\footnote{\url{http://www.ipea.gov.br/desafios/index.php?option=com_content&view=article&id=2972:catid=28&Itemid=23}} a respeito das manifestações que tomaram o país em 2013. Bastante polêmicas e controversas, mesmo assim ainda podendo ser entendidas sob esse prima, estão diversas queimas de ônibus como forma de protesto contra a má-qualidade do sistema. Estudo da ANTP\footnote{\url{http://www.antp.org.br/_5dotSystem/download/dcmDocument/2013/01/10/057A84C9-76D1-4BEC-9837-7E0B0AEAF5CE.pdf} } aponta como uma das recomendações para se combater as deseconomias do transporte público haver financiamentos de estudos e projetos para melhor caracterizar “condições atuais de transporte e trânsito para subsidiar projetos de melhoria”. Aqui este projeto encontra sua motivação e respaldo. Hoje, graças à emergência de recursos tecnológicos de comunicações que utilizam conceitos como redes, geolocalização, comunicação multidirecional e outros, pode-se definir processos que unam com facilidade os extremos das cadeias de transporte e, assim, permitir um melhor planejamento e correções de rumo mesmo durante a execução do planejamento do sistema de transporte, melhorando a sua eficiência tanto para o poder público, quanto para usuários e prestadores de serviço.
+	
+%\section{Contexto do Trabalho}\label{sec:contexto}
+%\lipsum[3-4]
+%\section{Motivação}\label{sec:motivação}
+
+\section{Justificativa do projeto}\label{sec:justificativa}
+	Atualmente já existem diversos aplicativos que trabalham, majoritariamente, trabalhando informações fornecidas pela SPTrans e oferecendo-as aos usuários. Isso se traduz em serviços de escolha de linha de ônibus, determinação de rotas e verificação de localização de ônibus com retorno também de quanto tempo é estimado para chegar num ponto específico. Não foi encontrado aplicativo que integrasse esse tipo de informação à coleta de avaliação dos usuários sobre elementos-chaves do sistema que não são automaticamente mensuráveis. Assim, além de oferecer a informação da SPTrans tratada, também será captada a opinião do usuário no momento do uso gerando informação de feed-back útil tanto para usuários e SPTrans como fiscalizadores, como para as operadoras terem melhor controle da qualidade de sua operação.
+
+%\include{./texto/introducao/objetivos}
+
+\section{Objetivos}\label{sec:objetivos}
+
+\subsection{Geral}\label{subsec:objGerais}
+O objetivo geral do projeto é desenvolver um software que corrobore para a melhoria da mobilidade nas cidades pelo incremento da qualidade e da eficiência do sistema público de transporte urbano, mais especificamente rodoviário (ônibus). Será desenvolvido um produto considerando as condições de contorno da Região Metropolitana de São Paulo, que é o maior conglomerado urbano do Brasil com aproximadamente 20 milhões de habitantes. 
+
+\subsection{Específicos}\label{subsec:objEspec}
+São objetivos específicos do projeto: gerar dados e informações de valor para os atores envolvidos no sistema, a saber, operadores dos sistemas de transporte público, usuários e SPTrans; possibilitar a troca de informações triangular entre os três atores do sistema; corroborar para a eficiência do sistema pois com mais informação haverá mais controle de operação; promover transparência já que as informações geradas serão em sua maioria dados públicos sujeitos à Lei 12.527/2011; e estimular a conscientização para o usuário acerca do funcionamento do sistema público de transporte por ônibus.
+	
+\section{Escopo e critério de sucesso}\label{sec:Escopo}
+	Ao final deste projeto o software contará com uma série de módulos, a saber:
+	\begin{itemize}%[\itshape a\upshape)]
+		\item módulo de avaliação do sistema de transporte;
+		\item módulo de “gamificação” que terá as funções de oferecer um jogo que atraia e incentive a participação dos usuários e também sirva para um propósito pedagógico de conscientizar os usuários sobre a gestão de um sistema de transporte;
+		\item módulo de “gps social”, que levantará informações de demanda do sistema de transporte e as fornecerá aos usuários em tempo real por meio de um mapa; e
+		\item módulo de informações do sistema, que irá coletar as informações oferecidas pelo prestador de serviços (ex.: SPTrans) e disponibilizar à população – informações como tempo de espera de um ônibus, linhas que passam por um determinado ponto.
+	\end{itemize}.
+
+\section{Não-escopo}\label{sec:NãoEscopo}
+	Não está no escopo de implementação deste projeto um ou mais módulos que permitam a integração do sistema com prestadores de serviço não ligados ao sistema de transporte, apesar de a arquitetura do sistema ser modelada para aceitar tais recursos num momento futuro.
+
+%\section{Stakeholders}\label{sec:stakeholders}
+%	Na matriz abaixo encontram-se os \emph{stakeholders} do projeto e seus respectivos poder e influência no projeto:
+%
+%	\bigskip
+%	\begin{table}[H]
+%	\centering
+%	\caption{Stakeholders, relacionamento, interesse e poder}
+%    \begin{tabular}{lccc}
+%      \toprule
+%      \headerCell{Parte interessada} &
+%      \begin{minipage}{0.2\textwidth}
+%        \espacoVert
+%        \headerCell{Relacionamento com o Projeto}
+%        \espacoVert
+%      \end{minipage} &
+%      \headerCell{Interesse (A/B)} &
+%      \headerCell{Poder (A/B)}\\
+%        
+%      \midrule
+%         
+%			\textbf{Diego Rabatone Oliveira} &
+%			Respons\'avel &
+%			A &
+%			A\\
+%			
+%			\textbf{Reginaldo Arakaki} &
+%			Orientador &
+%			A &
+%			A\\
+%
+%			\textbf{Haydée Svab} &
+%			Co-orientadora &
+%			A &
+%			A\\
+%
+%			\textbf{Prefeitura de São Paulo} &
+%			Interessada &
+%			B &
+%			B\\
+%			
+%			\textbf{SPTrans} &
+%			Interessada &
+%			B &
+%			B\\
+%
+%			\bottomrule
+%	\end{tabular}
+%	\end{table}
+
+%\bigskip
+
+\section{Restrições}\label{sec:restrições}
+Todo desenvolvimento será realizado utilizando licenças livres e possiveis integrações com softwares terceiros devem levar este fato em consideração, ou seja, será preciso que haja compatibilidade de licenças.
+
+%
+%
+%\section{Organização do trabalho}\label{sec:organização}
+%
+%	O presente projeto foi organizado nas etapas destacadas abaixo, iniciando-se com o desenvolvimento do \textit{hardware} e seguindo com o desenvolvimento do \textit{firmware} e do \textit{software}:
+%	
+%	\begin{itemize}
+%		\item Concepção e validação do novo \textit{hardware}, implementado com novos microcontroladores e novos recursos;
+%		\item Desenvolvimento de \textit{firmware} para controle de posição da VB, com testes em bancada;
+%		\item Desenvolvimento de \textit{firmware} para controle dos instantes de acionamento da injeção e ignição, com testes em bancada;
+%		\item Desenvolvimento de \textit{firmware} para aquisição de dados dos sensores;
+%		\item Desenvolvimento de \textit{software} de monitoramento, que recebe e exibe na tela todas as informações de sensores e variáveis de erro do sistema, bem como tempos de atuação e a rotação calculada;
+%		\item Aperfeiçoamento de \textit{firmware} para leitura de sensores e cálculo da variável final associada ao valor de tensão lido, tomando como referência para este cálculo a curva característica do sensor;
+%		\item Aperfeiçoamento de \textit{software} de monitoramento, com implementação do pedal simulado para controle do motor diretamente do computador;
+%		\item Aperfeiçoamento de \textit{firmware} para cálculos mais precisos dos sinais de atuação (injeção e ignição);
+%		\item Aperfeiçoamento de \textit{firmware} para cálculo do tempo de injeção com base na massa de ar estimada;
+%		\item Desenvolvimento de \textit{firmware} para controle de relés;
+%		\item Desenvolvimento de \textit{firmware} para controle de rotação, com testes em bancada;
+%		\item Testes finais no veículo, aplicado em dinamômetro inercial a fim de avaliar o desempenho do motor em condições de carga.
+%	\end{itemize}

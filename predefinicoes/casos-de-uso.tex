@@ -1,0 +1,123 @@
+%Contador de numeração dos casos de uso
+\newcounter{numcasodeuso}
+%Sequencia de Eventos (Reiniciado a cada caso de uso)
+\newcounter{indiceseqeventosCdU}
+%Casos de Extensão (Reiniciado a cada caso de uso)
+\newcounter{indiceextensaoCdU}
+%Casos de Inclusão (Reiniciado a cada caso de uso)
+\newcounter{indiceinclusaoCdU}
+
+%Comando que cria um caso de uso e é usado internamente no ambiente
+\newcommand{\criarcasodeuso}{%
+    %\clearpage
+    %\null \\
+    %\hrule\ \\
+    \hspace{-\parskip}\hspace{-\parindent}\textbf{Caso de uso UC\thenumcasodeuso :} \hypertarget{UC\thenumcasodeuso}{} \cmdNomeCasodeuso\\
+    \null \\
+    \textbf{Descrição:} \cmdDescCasodeuso\\
+    \null \\
+    \textbf{Evento iniciador:} \cmdEventoIniCasodeuso\\
+    \null \\
+    \textbf{Atores:} \cmdAtoresCasodeuso\\
+    \null \\
+    \textbf{Pré-condição:} \cmdPrecondCasodeuso\\
+    \null \\
+    \textbf{Sequência de eventos:} \cmdSeqEventosCasodeuso\\
+    \null \\
+    \textbf{Pós-condição:} \cmdPoscondCasodeuso\\
+    \null \\
+    \textbf{Extensão:} \cmdExtensaoCasodeuso\\
+    \null \\
+    \textbf{Inclusão:} \cmdInclusaoCasodeuso\\
+    \null \\
+    \textbf{Requisito:} \cmdRequisitoCasodeuso
+    %\ \\ \hrule
+    \clearpage
+}
+
+%Criação do ambiente Caso de Uso
+\newenvironment{casodeuso}{%Zerando contadores
+    \setcounter{indiceseqeventosCdU}{0}%
+    \setcounter{indiceextensaoCdU}{0}%
+    \setcounter{indiceinclusaoCdU}{0}%
+    \stepcounter{numcasodeuso}%
+}{\criarcasodeuso}
+
+%Comandos internos
+\newcommand{\cmdNomeCasodeuso}{}
+%\newcommand{\cmdLabelCasodeuso}{}
+\newcommand{\cmdDescCasodeuso}{}
+\newcommand{\cmdEventoIniCasodeuso}{}
+\newcommand{\cmdAtoresCasodeuso}{}
+\newcommand{\cmdPrecondCasodeuso}{Nenhuma}
+\newcommand{\cmdSeqEventosCasodeuso}{Nenhum}
+\newcommand{\cmdPoscondCasodeuso}{Nenhuma}
+\newcommand{\cmdExtensaoCasodeuso}{Nenhum}
+\newcommand{\cmdInclusaoCasodeuso}{Nenhum}
+\newcommand{\cmdRequisitoCasodeuso}{}
+%%
+%Comandos User Friendly de Casos de Uso
+%
+%Nome do Caso de Uso
+\newcommand{\nomeCdU}[1]{\renewcommand{\cmdNomeCasodeuso}{#1}}
+%Label
+%\newcommand{\labelCdU}[1]{\renewcommand{\cmdLabelCasodeusp}{\label{#1}}}
+%Descrição do Caso de Uso
+\newcommand{\descricaoCdU}[1]{\renewcommand{\cmdDescCasodeuso}{#1}}
+%Evento iniciador do caso de uso
+\newcommand{\eventoiniciadorCdU}[1]{\renewcommand{\cmdEventoIniCasodeuso}{#1}}
+%Atores do caso de uso
+\newcommand{\atoresCdU}[1]{\renewcommand{\cmdAtoresCasodeuso}{#1}}
+%Pré-condição do caso de uso
+\newcommand{\precondicaoCdU}[1]{\renewcommand{\cmdPrecondCasodeuso}{#1}}
+%Contagem de eventos
+\newcommand{\contaeventoCdU}{%
+    \stepcounter{indiceseqeventosCdU}
+    \theindiceseqeventosCdU
+}
+%Sequencia de Eventos
+\newcommand{\eventosCdU}[1]{
+    \ifdefstring{\cmdSeqEventosCasodeuso}{Nenhum}{%
+        \expandafter\renewcommand\expandafter\cmdSeqEventosCasodeuso\expandafter{%
+            \\\null \hspace{.65cm}\contaeventoCdU. #1%
+        }
+    }{%
+        \expandafter\renewcommand\expandafter\cmdSeqEventosCasodeuso\expandafter{%
+            \cmdSeqEventosCasodeuso\\\null \hspace{.65cm}\contaeventoCdU. #1%
+        }
+    }
+}
+%Pós-condições
+\newcommand{\poscondicaoCdU}[1]{\renewcommand{\cmdPoscondCasodeuso}{#1}}
+%Contador de extensões do caso de uso
+\newcommand{\contaextensaoCdU}{%
+    \stepcounter{indiceextensaoCdU}
+    \theindiceextensaoCdU
+}
+%Casos de uso de extensão
+\newcommand{\extensaoCdU}[1]{
+    \ifdefstring{\cmdExtensaoCasodeuso}{Nenhum}{%
+        \expandafter\renewcommand\expandafter\cmdExtensaoCasodeuso\expandafter{\\\null \hspace{.65cm}\contaextensaoCdU. #1}
+    }{%
+        \expandafter\renewcommand\expandafter\cmdExtensaoCasodeuso\expandafter{%
+            \cmdExtensaoCasodeuso\\\null \hspace{.65cm}\contaextensaoCdU. #1%
+        }
+    }
+}
+%Contador de casos de inclusão
+\newcommand{\containclusaoCdU}{%
+    \stepcounter{indiceinclusaoCdU}
+    \theindiceinclusaoCdU
+}
+%Casos de uso de inclusão
+\newcommand{\inclusaoCdU}[1]{
+    \ifdefstring{\cmdInclusaoCasodeuso}{Nenhum}{%
+        \expandafter\renewcommand\expandafter\cmdInclusaoCasodeuso\expandafter{\\\null \hspace{.65cm}\containclusaoCdU. #1}
+    }{%
+        \expandafter\renewcommand\expandafter\cmdInclusaoCasodeuso\expandafter{%
+            \cmdInclusaoCasodeuso\\\null \hspace{.65cm}\containclusaoCdU. #1%
+        }
+    }
+}
+%Requisitos do caso de uso
+\newcommand{\requisitoCdU}[1]{\renewcommand{\cmdRequisitoCasodeuso}{\hyperlink{#1}{#1}}}

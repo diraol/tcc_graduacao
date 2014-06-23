@@ -1,0 +1,38 @@
+%%\printacronyms
+%%Print the glossary
+%\section*{Lista de Acrônimos}
+\newacronym{its}{ITS}{Intelligent Transport Systems}
+\newacronym{mtv}{MTV}{Model View Template}
+\newacronym{ipi}{IPI}{Imposto sobre produtos industrializados}
+\newacronym{rest}{REST}{Representational State Transfer}
+\newacronym{mvt_acr}{MVT}{Model View Template}
+\newacronym{sgbd}{SGBD}{Sistema de Gerenciamento de Base de Dados}
+\newacronym{tdd}{TDD}{\textit{Test Driven Development} (Desenvolvimento guiado por testes)}
+%\section*{Glossário}
+\newglossaryentry{mvt}
+    {
+        name=\gls{mvt_acr},
+        description={Model View Template, \textit{Design Pattern} utilizada no framework \gls{django}.}
+    }
+\newglossaryentry{django}
+    {
+        name=Django,
+        description={Django é um framework para desenvolvimento rápido para web, escrito em Python, que utiliza o padrão \gls{mvt_acr}.}
+    }
+\hyphenation{Django}
+\newglossaryentry{mobfirst}
+    {
+        name={Mobile First},
+        description={Conceito que propõe uma nova forma de se abordar o desenvolvimento de aplicações, em especial web, no qual desenvolve-se a interface primeiramente para dispositivos móveis e, posteriormente, adapta-a para outros dispositivos (tablets, notebooks, desktops, etc).}
+    }
+
+
+
+\renewcommand*{\glsseeformat}[3][\seename]{\textit{#1}
+\glsseelist{#2}}
+% ---
+
+
+% ----
+% Início do documento
+% ----

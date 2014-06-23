@@ -1,0 +1,72 @@
+\subsection{Análise SWOT}
+\newcommand{\swotAA}{Ajuda\\ \small (atingir os objetivos)\par}
+\newcommand{\swotAB}{Atrapalha\\ \small (atingir os objetivos)\par}
+\newcommand{\swotBA}{Origem interna\\ \small (atributos do produto\slash ~da companhia)\par}
+\newcommand{\swotBB}{Origem externa\\ \small (atributos do ambiente\slash ~mercado)\par}
+\begin{figure}[H]
+	\caption{Diagrama SWOT do projeto}\label{fig:swotproj}
+	\begin{center}
+	\begin{tikzpicture}[
+	    any/.style={draw,minimum width=6.5cm,minimum height=6.5cm,%
+	                 text width=6.3cm,align=center,outer sep=0pt},
+	    header/.style={any,minimum height=1.3cm,fill=\headerColor,font=\headerFontStyle},
+	    leftcol/.style={header,rotate=90}
+	]
+	
+	\matrix (SWOT) [matrix of nodes,nodes={any,anchor=center},%
+	                column sep=-\pgflinewidth,%
+	                row sep=-\pgflinewidth,%
+	                row 1/.style={nodes=header},%
+	                column 1/.style={nodes=leftcol},
+	                inner sep=0pt]
+	{
+	          & {\swotAA} & {\swotAB} \\
+		{\swotBA} &
+		\begin{minipage}{1\textwidth}
+			\begin{center}
+				Forças:\\
+				\espacoVert
+				\begin{itemize}
+					\item Rede de contatos (SPTrans, Prefeitura, Depto. de Transporte da Poli, \ldots)
+					\item Projeto já iniciado em 2013 e apresentado à SPTrans (Segundo lugar na Hackathona do ônibus)
+				\end{itemize}
+				\espacoVert
+			\end{center}
+		\end{minipage} & 
+		\begin{minipage}{1\textwidth}
+			\begin{center}
+			  Fraquezas:\\
+				\espacoVert
+				\begin{itemize}
+				  \item Dedicação não exclusiva
+				  \item Conhecimento limitado com BigData
+				\end{itemize}
+				\espacoVert
+			\end{center}
+		\end{minipage} \\
+	  {\swotBB} &
+	  \begin{minipage}{1\textwidth}
+			\begin{center}
+			  Oportunidades:\\
+				\espacoVert
+				\begin{itemize}
+				  \item Investimentos da SPTrans e Prefeitura no tema
+				  \item Laboratório de Mobilidade SPTrans
+				\end{itemize}
+				\espacoVert
+			\end{center}
+		\end{minipage} &
+	  \begin{minipage}{1\textwidth}
+			\begin{center}
+			  Ameaças:\\
+				\espacoVert
+				\begin{itemize}
+				  \item Muitos aplicativos sobre Ônibus já existentes
+				\end{itemize}
+				\espacoVert
+			\end{center}
+		\end{minipage} \\
+	};
+	\end{tikzpicture}
+	\end{center}
+\end{figure}

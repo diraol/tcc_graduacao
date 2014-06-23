@@ -1,0 +1,268 @@
+\section{Requisitos Funcionais}\label{sec: RF}
+%Requisitos Funcionais, n\~ao funcionais, regras de neg\'ocio e restri\c{c}\~oes encontram-se no anexo \ref{Anexo Requisitos}
+%%\temporario{Descreve os requisitos no n\'{\i}vel que permita desenvolver o software que satisfa\c{c}a os requisitos do produto e os testes que mostrem o atendimento destes requisitos. O conte\'udo das se\c{c}\~oes podem ser desenvolvidos como documentos independentes.\\
+%%Neste documento, esta se\c{c}\~ao est\'a organizada para atender \'as necessidades da An\'alise Orientada a Objetos.}
+
+%%02
+%\vfill
+%\begin{Requisito}
+%    \ReqTipo{funcional}%Tipo
+%    \ReqNome{Remover Material}%Nome
+%%%    \ReqLabel{ReqRemMat}%Label
+%    \ReqDescr{O sistema recebe a mensagem do usu\'ario solicitando a remo\c{c}\~ao de determinado(s) item(ns) do banco de dados do sistema.}%Desc.
+%    \ReqPrioridade{media}%Prioridade
+%    \ReqStatus{proposto}%Status
+%    \ReqEstabilidade{media}%Estabilidade
+%    \ReqOrigem{cliente}%Origem
+%    \ReqRationale{Esta funcionalidade permite a remo\c{c}\~ao de determinado(s) item(ns) do banco de dados pelo usu\'ario. É utilizada em caso de descontinuidade de um produto, quando a loja para de comercializar algum produto, entre outros.}%Rationale
+%    \ReqAssoc{Banco de dados estruturado}%Assoc
+%\end{Requisito}
+
+%%01
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Cadastrar usu\'ario}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usu\'ario realiza seu cadastro na plataforma.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Permite realizar um ``tracking'' do hist\'orico dos usu\'arios para oferecer informa\c{c}\~oes mais precisas, al\'em de permitir que o usu\'ario utilize o ``game'', que demanda um ac\'umulo de participa\c{c}\~ao na plataforma.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+%%02
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Realizar login}%Nome
+    %\ReqLabel{login}%Label
+    \ReqDescr{O usu\'ario deve fazer login para ter acesso ao sistema, impedindo que pessoas n\~ao autorizadas tenham acesso a certas fun\c{c}\~oes do sistema.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{usuario}%Origem
+    \ReqRationale{M\'etodo que previne que pessoas n\~ao autorizadas tenham acesso \'as funcionalidades do sistema, em especial as que alteram o banco de dados.}%Rationale
+    \ReqAssoc{Realizar login social}%Assoc
+\end{Requisito}
+
+%%03
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Realizar login social}%Nome
+    %\ReqLabel{loginsocial}%Label
+    \ReqDescr{Usu\'ario utiliza seu login de redes sociais para se conectar \`a plataforma}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{usuario}%Origem
+    \ReqRationale{Para aumentar a facilidade de acesso \`a plataforma \'e fundamental permitir que os usu\'arios acessem o sistema utilizando sistemas de autentica\c{c}\~ao cruzada com redes sociais, principalmente \textit{Facebook}, \textit{Twitter} e \textit{Google}.}%Rationale
+    \ReqAssoc{Realizar Login}%Assoc
+\end{Requisito}
+
+%%04
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Realizar logout}%Nome
+    %\ReqLabel{loginsocial}%Label
+    \ReqDescr{O usu\'ario deve fazer logout ao terminar de utilizar o sistema, impedindo que pessoas
+n\~ao autorizadas tenham acesso a certas fun\c{c}\~oes do sistema.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{usuario}%Origem
+    \ReqRationale{M\'etodo que previne que pessoas n\~ao autorizadas tenham acesso \'as funcionalidades
+do sistema, em especial as que alteram o banco de dados.}%Rationale
+    \ReqAssoc{Realizar Login}%Assoc
+\end{Requisito}
+
+%%05
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Listar linhas de \^onibus mais prov\'aveis}%Nome
+    %\ReqLabel{loginsocial}%Label
+    \ReqDescr{O sistema deve listar as linhas de \^onibus mais prov\'aveis \`a escolha do usu\'ario, de acordo com sua localiza\c{c}\~ao.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{usuario}%Origem
+    \ReqRationale{M\'etodo que reduz o tempo necess\'ario para que o usu\'ario escolha o \^onibus, tanto para que possa realizar uma avalia\c{c}\~ao quanto para que possa obter informa\c{c}\~oes sobre a linha.}%Rationale
+    \ReqAssoc{Coletar posicionamento do usu\'ario}%Assoc
+\end{Requisito}
+
+%%06
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Selecionar linha de \^onibus}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usu\'ario seleciona a linha de \^onibus que deseja avaliar.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{O usu\'ario precisa conseguir selecionar a linha de \^onibus para poder avali\'a-la.}%Rationale
+    \ReqAssoc{Listas linhas de \^onibus mais prov\'aveis.}%Assoc
+\end{Requisito}
+
+%%07
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Coletar posicionamento do usu\'ario}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O ``sistema'' deve coletar a informa\c{c}\~ao de geolocaliza\c{c}\~ao do usu\'ario, usando GPS e outros m\'etodos como Triangula\c{c}\~ao via 3G [usar API de geolocaliza\c{c}\~ao do HTML5].}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Para que o sistema possa exibir a lista de poss\'{\i}veis linhas de \^onibus que o usu\'ario deve estar, incluindo o sentido da linha, \'e fundamental conhecer a localiza\c{c}\~ao do usu\'ario e seu sentido de deslocamento.}%Rationale
+    \ReqAssoc{Listas linhas de \^onibus mais prov\'aveis.}%Assoc
+\end{Requisito}
+
+%%08
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Realizar avalia\c{c}\~ao global}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usu\'ario avalia globalmente o servi\c{c}o de transporte p\'ublico com uma nota numa escala cont\'{\i}nua, utilizando um \textit{slider}.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{É importante uma avalia\c{c}\~ao global, simples e direta, para o caso do usu\'ario n\~ao querer preencher todas as avalia\c{c}\~oes espec\'{\i}ficas. Al\'em disso, o uso da escala cont\'{\i}nua \'e importante pois far\'a com que a avalia\c{c}\~ao seja uma vari\'avel quantitativa, o que permitir\'a exprimir estat\'{\i}sticas simples como m\'edia e desvio padr\~ao.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+%%09
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Realizar avalia\c{c}\~oes espec\'{\i}ficas}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usu\'ario avalia cada um dos crit\'erios espec\'{\i}ficos definidos como uma nota numa escala cont\'{\i}nua para cada um, utilizando um \textit{slider}.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Os crit\'erios escolhidos ser\~ao de car\'ater subjetivo, crit\'erios estes que n\~ao seriam mensur\'aveis utilizando-se tecnologias de automa\c{c}\~ao. Al\'em disso, o uso da escala cont\'{\i}nua \'e importante pois far\'a com que a avalia\c{c}\~ao seja uma vari\'avel quantitativa, o que permitir\'a exprimir estat\'{\i}sticas simples como m\'edia e desvio padr\~ao.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+%%10
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Adicionar reclama\c{c}\~ao}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Para cada "nota" negativa que o usu\'ario d\'a ser\'a mostrado a ele uma caixa de texto para preenchimento de uma reclama\c{c}\~ao [opcional].}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Ser\'a permitido ao usu\'ario adicionar uma descri\c{c}\~ao do motivo pelo qual ele deu uma nota negativa para aquele determinado crit\'erio, permitindo assim identificar motivos de avalia\c{c}\~oes negativas para cada crit\'erio, o que ajuda na melhoria do servi\c{c}o prestado.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+%%11
+\vfill
+\begin{Requisito}
+    \ReqTipo{funcional}%Tipo
+    \ReqNome{Enviar reclama\c{c}\~ao}%Nome
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Cada reclama\c{c}\~ao escrita dever\'a estar associada a um endere\c{c}o \'unico a ser enviado, via twitter, \`a \sptrans.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{É fundamental que o processo de avalia\c{c}\~ao e \textit{accountability} seja o mais p\'ublicos e transparentes poss\'{\i}veis. Dessa forma, conforme apresentado anteriormente \`a \sptrans, as reclama\c{c}\~oes ser\~ao postadas publicamente, com a utiliza\c{c}\~ao de algumas \textit{hashtags} espec\'{\i}ficas pr\'e-definidas para serem respondidas pelo \'org\~ao p\'ublicamente.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\clearpage
+\subsection{Tabela Resumo dos Requisitos}\label{subsec:tabResReq}
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos funcionais}
+        \label{tab:reqFunc}
+%        \PrintRequisitos
+%        \begin{tabular}{|c|l|}
+%            \hline
+%            \textbf{Identifica\c{c}\~ao} & \textbf{Requisito}\\
+%            \hline
+%            \hyperlink{RF1}{RF1} & Cadastrar usu\'ario\\
+%            \hline
+%            \hyperlink{RF2}{RF2} & Realizar login\\
+%            \hline
+%            \hyperlink{RF3}{RF3} & Realizar login social\\
+%            \hline
+%            \hyperlink{RF4}{RF4} & Realizar logout\\
+%            \hline
+%         \end{tabular}
+    \end{table}
+%
+%    \begin{table}[H]
+%        \centering
+%        \caption{Requisitos funcionais do m\'odulo de avalia\c{c}\~ao}
+%        \label{tab:reqFuncAva}
+%        \begin{tabular}{|c|l|}
+%            \hline
+%            \textbf{Identifica\c{c}\~ao} & \textbf{Requisito} \\
+%            \hline
+%            \hyperlink{RF5}{RF5} & Listar linhas de \^onibus mais prov\'aveis\\
+%            \hline
+%            \hyperlink{RF6}{RF6} & Selecionar linha de \^onibus\\
+%            \hline
+%            \hyperlink{RF7}{RF7} & Coletar posicionamento do usu\'ario\\
+%            \hline
+%            \hyperlink{RF8}{RF8} & Realizar avalia\c{c}\~ao global\\
+%            \hline
+%            \hyperlink{RF9}{RF9} & Realizar avalia\c{c}\~oes espec\'{\i}ficas\\
+%            \hline
+%            \hyperlink{RF10}{RF10} & Adicionar reclama\c{c}\~ao\\
+%            \hline
+%            \hyperlink{RF11}{RF11} & Enviar reclama\c{c}\~ao\\
+%            \hline
+%         \end{tabular}
+%    \end{table}
+%
+%    \begin{table}[H]
+%        \centering
+%        \caption{Requisitos funcionais do m\'odulo de informa\c{c}\~oes}
+%        \label{tab:reqFuncInfo}
+%        \begin{tabular}{|c|l|}
+%            \hline
+%            \textbf{Identifica\c{c}\~ao} & \textbf{Requisito} \\
+%            \hline
+%            \hyperlink{RF1}{RF1} & Cadastrar Usu\'ario \\
+%            \hline
+%            \hyperlink{RF2}{RF2} & Executar Login Social\\
+%            \hline
+%            \hyperlink{RF3}{RF3} & Nome 3\\
+%            \hline
+%         \end{tabular}
+%    \end{table}
+%
+%    \begin{table}[H]
+%        \centering
+%        \caption{Requisitos funcionais do m\'odulo de game}
+%        \label{tab:reqFuncGame}
+%        \begin{tabular}{|c|l|}
+%            \hline
+%            \textbf{Identifica\c{c}\~ao} & \textbf{Requisito} \\
+%            \hline
+%            \hyperlink{RF4}{RF4} & Nome 4\\
+%            \hline
+%            \hyperlink{RF5}{RF5} & Nome 5\\
+%            \hline
+%            \hyperlink{RF6}{RF6} & Nome 6\\
+%            \hline
+%         \end{tabular}
+%    \end{table}
+%

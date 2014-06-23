@@ -1,0 +1,208 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                REQUISITOS                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%              USO                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{Requisito}
+%    \ReqTipo{<ARGUMENTO 1>}
+%    \ReqNome{<ARGUMENTO 2>}
+%    \ReqLabel{<LABEL>}
+%    \ReqDescr{<ARGUMENTO 3>}
+%    \ReqPrioridade{<ARGUMENTO 4>}
+%    \ReqStatus{<ARGUMENTO 5>}
+%    \ReqEstabilidade{<ARGUMENTO 6>}
+%    \ReqOrigem{<ARGUMENTO 7>}
+%    \ReqRationale{<ARGUMENTO 8>}
+%    \ReqAssoc{<ARGUMENTO 9>}
+%\end{Requisito}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     DESCRIÇÃO DOS ARGUMENTOS      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% *** Nenhum argumento pode conter caracteres especiais, como o 'underscore' ***
+% <LABEL>: Label a ser usada para referencias internas do documento
+% <ARGUMENTO 1>: TIPO: ´Funcional´ (funcional) ou ´Nao Funcional´ (nao funcional)
+% <ARGUMENTO 2>: Nome do requisito
+% <ARGUMENTO 3>: Descrição do Requisito
+% <ARGUMENTO 4>: Prioridade [alta, media, baixa]
+% <ARGUMENTO 5>: Status [proposto, aprovado, incorporado, validado]
+% <ARGUMENTO 6>: Estabilidade [alta, media, baixa]
+% <ARGUMENTO 7>: Origem [usuario, interna, externa]
+% <ARGUMENTO 8>: Rationale - texto extenso
+% <ARGUMENTO 9>: Requisitos Associados - por enquanto tem que listar na mão
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% CONTADORES DOS REQUISITOS
+\newcounter{indiceFuncional}
+\newcounter{indiceNaoFuncional}
+%
+%
+%% New job (that is, file)
+\newwrite\ans
+\immediate\openout\ans=tabRequisitos.aux
+%
+%
+%% Usamos unexpanded... mas eu não sei porque. No meu
+%% computador não funciona se removo o unexpanded. Acho
+%% que deve ter algo haver com o `\\` dentro da expressão.
+%% (Aliás, isso é muito provável, já que o significado
+%% de `\\` é diferente no texto e em um ambiente tabular;
+%% sua expansão tem que ser postergada para o momento em
+%% que a tabela está sendo impressa (`PrintVolunteers`).
+\newcommand{\AppendRequisito}[2]{%
+    \immediate\write\ans{#1 & #2 \unexpanded{\\}}%
+}
+%
+\newcommand{\PrintRequisitos}{%
+	\begin{tabular}{cl}%
+	\hline
+	\textbf{Identificação} & \textbf{Requisito} \\%
+	\hline%
+	\immediate\closeout\ans\input{tabRequisitos.aux}%
+	\hline%
+	\end{tabular}%
+}
+%
+%
+%%%%%
+\newenvironment{Requisito}{}{%
+    \CriaRequisito%
+}
+%
+%
+% FUNÇÕES INTERNAS
+\newcommand{\CmdReqTipo}{}%
+\newcommand{\CmdReqLabel}{}%
+\newcommand{\CmdReqNome}{}%
+\newcommand{\CmdReqDescr}{}%
+\newcommand{\CmdReqPrioridade}{}%
+\newcommand{\CmdReqStatus}{}%
+\newcommand{\CmdReqEstabilidade}{}%
+\newcommand{\CmdReqOrigem}{}%
+\newcommand{\CmdReqRationale}{}%
+\newcommand{\CmdReqAssoc}{}%
+%
+%
+%
+%FUNÇÕES USER FRIENDLY
+\newcommand{\ReqTipo}[1]{%
+    \ifstrequal{#1}{funcional}{%
+        \stepcounter{indiceFuncional}%
+        \ReqLabel{RF\theindiceFuncional}%
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RF\theindiceFuncional \hypertarget{\CmdReqLabel}{}} & (X) Funcional & ( ) Não Funcional \\}
+    }{%
+        \stepcounter{indiceNaoFuncional}%
+        \ReqLabel{RNF\theindiceFuncional}%
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RN\theindiceNaoFuncional} & ( ) Funcional & (X) Não Funcional \\}
+    }
+}
+\newcommand{\ReqLabel}[1]{\renewcommand{\CmdReqLabel}{#1}}%
+\newcommand{\ReqNome}[1]{\renewcommand{\CmdReqNome}{#1}}%
+\newcommand{\ReqDescr}[1]{\renewcommand{\CmdReqDescr}{#1}}%
+\newcommand{\ReqPrioridade}[1]{%
+    \ifstrequal{#1}{alta}{%
+        \renewcommand{\CmdReqPrioridade}{(X) Alta & ( ) Média & ( ) Baixa & \\}
+    }{%
+        \ifstrequal{#1}{media}{%
+            \renewcommand{\CmdReqPrioridade}{( ) Alta & (X) Média & ( ) Baixa & \\}
+        }{%
+            \renewcommand{\CmdReqPrioridade}{( ) Alta & ( ) Média & (X) Baixa & \\}
+        }
+    }
+}
+\newcommand{\ReqStatus}[1]{
+    \ifstrequal{#1}{proposto}{%
+        \renewcommand{\CmdReqStatus}{(X) Proposto & ( ) Aprovado & ( ) Incorporado & ( ) Válido \\}
+    }{
+        \ifstrequal{#1}{aprovado}{%
+            \renewcommand{\CmdReqStatus}{( ) Proposto & (X) Aprovado & ( ) Incorporado & ( ) Válido \\}
+        }{
+            \ifstrequal{#1}{incorporado}{%
+                \renewcommand{\CmdReqStatus}{( ) Proposto & ( ) Aprovado & (X) Incorporado & ( ) Válido \\}
+            }{
+                \renewcommand{\CmdReqStatus}{( ) Proposto & ( ) Aprovado & ( ) Incorporado & (X) Válido \\}
+            }%
+        }%
+    }
+}%
+\newcommand{\ReqEstabilidade}[1]{
+    \ifstrequal{#1}{alta}{%
+        \renewcommand{\CmdReqEstabilidade}{(X) Alta & ( ) Média & ( ) Baixa & \\}
+    }{%
+        \ifstrequal{#1}{media}{%
+            \renewcommand{\CmdReqEstabilidade}{( ) Alta & (X) Média & ( ) Baixa & \\}
+        }{%
+            \renewcommand{\CmdReqEstabilidade}{( ) Alta & ( ) Média & (X) Baixa & \\}
+        }
+    }
+}
+\newcommand{\ReqOrigem}[1]{
+    \ifstrequal{#1}{usuario}{%
+        \renewcommand{\CmdReqOrigem}{(X) Usuário & ( ) Interna & ( ) Externa & \\}%
+    }{%
+        \ifstrequal{#1}{interna}{%
+            \renewcommand{\CmdReqOrigem}{( ) Usuário & (X) Interna & ( ) Externa & \\}%
+        }{
+            \renewcommand{\CmdReqOrigem}{( ) Usuário & ( ) Interna & (X) Externa & \\}%
+        }%
+    }%
+}
+\newcommand{\ReqRationale}[1]{\renewcommand{\CmdReqRationale}{#1}}%
+\newcommand{\ReqAssoc}[1]{\renewcommand{\CmdReqAssoc}{#1}}%
+%
+%
+%Função Requisito - utilizada indiretamente pelo ambiente Requisito
+\newcommand{\CriaRequisito}{
+    \begin{table}[!h]
+        \begin{tabular}{|lllll|}%
+            \hline%
+                \CmdReqTipo%
+            \hline%
+                \multicolumn{5}{|l|}{%
+                    \begin{minipage}{1\textwidth}%
+                        \espacoVert%
+                        \textbf{Requisito:} \CmdReqNome%#2%
+                        \espacoVert%
+                    \end{minipage}%
+                } \\%
+            \hline%
+                \multicolumn{5}{|l|}{%
+                    \begin{minipage}{1\textwidth}%
+                        \espacoVert%
+                        \textbf{Descrição:} \CmdReqDescr%#3%
+                        \espacoVert%
+                    \end{minipage}%
+                } \\%
+            \hline%
+                \textbf{Prioridade:} & \CmdReqPrioridade%
+            \hline%
+                \textbf{Status:} & \CmdReqStatus%
+            \hline%
+                \textbf{Estabilidade:} & \CmdReqEstabilidade%
+            \hline%
+                \textbf{Origem:} & \CmdReqOrigem%
+            \hline%
+                \multicolumn{5}{|l|}{%
+                    \begin{minipage}{1\textwidth}%
+                        \espacoVert%
+                        \textbf{Rationale:} \CmdReqRationale%#8%
+                        \espacoVert%
+                    \end{minipage}%
+                } \\%
+            \hline%
+                \multicolumn{5}{|l|}{%
+                    \begin{minipage}{1\textwidth}%
+                        \espacoVert%
+                        \textbf{Requisitos Associados:} \CmdReqAssoc%#9%
+                        \espacoVert%
+                     \end{minipage}%
+                 } \\%
+             \hline%
+        \end{tabular}
+     \end{table}
+    \AppendRequisito{\CmdReqLabel}{\CmdReqNome}
+}% FIM DO COMMAND CriaRequisito
+%
