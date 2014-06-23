@@ -1,0 +1,26 @@
+*.aux *.log
+default/pacotes-configuracoes.aux
+default/aparencia-pdf-final.aux
+default/pacotes.aux
+informacoes-gerais.aux
+monografia.aux
+monografia.bbl
+monografia.bib
+monografia.blg
+monografia.glo
+monografia.idx
+monografia.lof
+monografia.log
+monografia.lot
+monografia.pdf
+monografia.toc
+monografia.xdy
+predefinicoes/diagramas.aux
+predefinicoes/requisitos.aux
+predefinicoes/casos-de-uso.aux
+predefinicoes/gerais.aux
+predefinicoes/cores.aux
+tabRequisitos.aux
+texto/especificacoes/avaliacoes.aux
+texto/especificacoes/casos-de-uso.aux
+texto/especificacoes/requisitos-nao-funcionais.aux
