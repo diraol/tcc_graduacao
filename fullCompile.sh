@@ -1,11 +1,17 @@
 #!/bin/bash
 function makeTable() {
-  if [ ! -f tabRequisitos.aux ]
+  # requisitos funcionais
+  if [ ! -f tabRequisitosFunc.aux ]
   then
-    echo "RF2 & Realizar login \\\\" > tabRequisitos.aux
-    #echo "RF3 & Realizar login social \\" >> tabRequisitos.aux
+    echo "RF2 & Realizar login \\\\" > tabRequisitosFunc.aux
   fi
-  cat tabRequisitos.aux | sed -e 's@^\([a-zA-Z0-9]*\)@\\hyperlink{\1}{\1}@' > tabRequisitos2.aux
+  cat tabRequisitosFunc.aux | sed -e 's@^\([a-zA-Z0-9]*\)@\\hyperlink{\1}{\1}@' > tabRequisitosFunc2.aux
+  # requisitos não funcionais
+  if [ ! -f tabRequisitosNFunc.aux ]
+  then
+    echo "RF2 & Realizar login \\\\" > tabRequisitosNFunc.aux
+  fi
+  cat tabRequisitosNFunc.aux | sed -e 's@^\([a-zA-Z0-9]*\)@\\hyperlink{\1}{\1}@' > tabRequisitosNFunc2.aux
 }
 
 makeTable
