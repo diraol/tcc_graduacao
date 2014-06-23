@@ -1,10 +1,11 @@
 \section{Requisitos Funcionais}\label{sec: RF}
 Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que devem ser satisfeitos. Estes requisitos devem ainda ser indicados no pr\'oprio código fonte do projeto, assim como nos testes que verifiquem o requisito.
 
+\StartReqFunc
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Cadastrar usu\noexpand\'ario}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{O usu\'ario realiza seu cadastro na plataforma.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -17,8 +18,8 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Realizar login}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{login}%Label
     \ReqDescr{O usu\'ario deve fazer login para ter acesso ao sistema, impedindo que pessoas n\~ao autorizadas tenham acesso a certas fun\c{c}\~oes do sistema.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -31,8 +32,8 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Realizar login social}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{loginsocial}%Label
     \ReqDescr{Usu\'ario utiliza seu login de redes sociais para se conectar \`a plataforma}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -45,8 +46,8 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Realizar logout}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{loginsocial}%Label
     \ReqDescr{O usu\'ario deve fazer logout ao terminar de utilizar o sistema, impedindo que pessoas
 n\~ao autorizadas tenham acesso a certas fun\c{c}\~oes do sistema.}%Desc.
@@ -61,8 +62,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Listar linhas de \noexpand\^onibus mais prov\noexpand\'aveis}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{loginsocial}%Label
     \ReqDescr{O sistema deve listar as linhas de \^onibus mais prov\'aveis \`a escolha do usu\'ario, de acordo com sua localiza\c{c}\~ao.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -75,8 +76,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Selecionar linha de \noexpand\^onibus}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{O usu\'ario seleciona a linha de \^onibus que deseja avaliar.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -89,8 +90,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Coletar posicionamento do usu\noexpand\'ario}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{O ``sistema'' deve coletar a informa\c{c}\~ao de geolocaliza\c{c}\~ao do usu\'ario, usando GPS e outros m\'etodos como Triangula\c{c}\~ao via 3G [usar API de geolocaliza\c{c}\~ao do HTML5].}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -103,8 +104,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~ao global}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{O usu\'ario avalia globalmente o servi\c{c}o de transporte p\'ublico com uma nota numa escala cont\'{\i}nua, utilizando um \textit{slider}.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -117,8 +118,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~oes espec\noexpand\'\noexpand{\noexpand\i}ficas}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{O usu\'ario avalia cada um dos crit\'erios espec\'{\i}ficos definidos como uma nota numa escala cont\'{\i}nua para cada um, utilizando um \textit{slider}.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -131,8 +132,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Adicionar reclama\noexpand\c{c}\noexpand\~ao}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{Para cada "nota" negativa que o usu\'ario d\'a ser\'a mostrado a ele uma caixa de texto para preenchimento de uma reclama\c{c}\~ao [opcional].}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -145,8 +146,8 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqTipo{funcional}%Tipo
     \ReqNome{Enviar reclama\noexpand\c{c}\noexpand\~ao}%Nome
+    \ReqTipo{funcional}%Tipo
     %\ReqLabel{cadUsu}%Label
     \ReqDescr{Cada reclama\c{c}\~ao escrita dever\'a estar associada a um endere\c{c}o \'unico a ser enviado, via twitter, \`a \sptrans.}%Desc.
     \ReqPrioridade{alta}%Prioridade
@@ -158,10 +159,10 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 \end{Requisito}
 
 \clearpage
-\subsection{Tabela Resumo dos Requisitos}\label{subsec:tabResReq}
+\subsection{Tabela Resumo dos Requisitos}\label{subsec:tabResReqF}
    \begin{table}[H]
         \centering
         \caption{Requisitos funcionais}
         \label{tab:reqFunc}
-        \PrintRequisitos
+        \PrintRequisitosFunc
     \end{table}
