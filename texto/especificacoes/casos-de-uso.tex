@@ -34,6 +34,40 @@
 %%%%%%%%%%%%%%%%%%%MODELO A SER USADO%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%MODELO A SER USADO%%%%%%%%%%%%%%%%
+%\begin{casodeuso}
+%\nomeCdU{} %Nome do Caso de Uso
+%\descricaoCdU{} %Descrição
+%\eventoiniciadorCdU{} %Evento iniciador
+%\atoresCdU{} %Atores
+%%Lista de pré-condições
+%\precondicaoCdU{} %Pré-condição 1
+%\precondicaoCdU{} %Pré-condição 2
+%\precondicaoCdU{} %Pré-condição 3
+%%Lista de eventos do caso de uso
+%\eventosCdU{} %primeiro evento
+%\eventosCdU{} %segundo evento
+%\eventosCdU{} %terceiro evento
+%Lista de pós-condições
+%\poscondicaoCdU{} %Pós-condição 1
+%\poscondicaoCdU{} %Pós-condição 2
+%\poscondicaoCdU{} %Pós-condição 3
+%%Lista de casos de uso de extensão
+%\extensaoCdU{} %Caso de extensão 1
+%\extensaoCdU{} %Caso de extensão 2
+%\extensaoCdU{} %Caso de extensão 3
+%%Lista de casos de uso de inclusão
+%\inclusaoCdU{} %Caso de inclusão 1
+%\inclusaoCdU{} %Caso de inclusão 2
+%\inclusaoCdU{} %Caso de inclusão 3
+%%Lista de requisitos relacionados/atendidos
+%\requisitoCdU{} %Requisitos relacionados/atendidos
+%\requisitoCdU{} %Requisitos relacionados/atendidos
+%\requisitoCdU{} %Requisitos relacionados/atendidos
+%\end{casodeuso}
+%%%%%%%%%%%%%%%%%%%MODELO A SER USADO%%%%%%%%%%%%%%%%
+
+
 \begin{table}[H]
 	\caption {Casos de Uso}
 	\label{tab:casosDeUso}
@@ -43,19 +77,32 @@
      	\headerCell{Nº} & \headerCell{Caso de Uso} & \headerCell{Descrição} \\
 
 	    \midrule
-	    
-	    1  & Cadastro 								& Cadastro do usuário no sistema \\
-	 	2  & Login 	  								& Login do usuário no sistema \\
-	    3  & Seleção do ônibus	para avaliação		& Usuário seleciona o ônibus em que está \\
-	    4  & Avaliação Global						& \begin{minipage}{0.5\textwidth}\espacoVert Usuário faz a avaliação global do sistema de transporte \espacoVert \end{minipage}\\
-	    5  & Avaliação específica					& Usuário realiza uma avaliação específica \\
-	    6  & Gerar reclamação						& \begin{minipage}{0.5\textwidth}\espacoVert Após avaliação negativa usuário insere o texto para uma reclamação \espacoVert \end{minipage} \\
-	    7  & Recompensa por avaliação 				& \begin{minipage}{0.5\textwidth}\espacoVert Usuário recebe recompensa por ter avaliado o sistema \espacoVert \end{minipage} \\
-	    8  & Buscar ônibus							& \begin{minipage}{0.5\textwidth}\espacoVert Usuário busca por informações de uma determinada linha de ônibus \espacoVert \end{minipage} \\
-	    9  & Tempo de trajeto						& Usuário busca por tempo estimado de trajeto \\
-	    10 & Comprar ônibus virtual				& Usuário compra um ônibus virtual para sua frota \\
-		11 & Ganhar \textit{Badges}					& Usuário recebe um \textit{badge} por ter atingido uma meta \\
-	        
+			
+			1 & Cadastrar usuário                                           & Cadastro do usuário no sistema \\
+			2 & Realizar login                                              & Login do usuário no sistema \\
+			4 & Realizar logout                                             & Logout do usuário do sistema \\
+			5 & Recuperar senha                                             & Recuperação de Senha \\
+			6 & \begin{minipage}{0.3\textwidth}\espacoVert Listar linhas de ônibus mais prováveis \espacoVert \end{minipage}                     & \begin{minipage}{0.5\textwidth}\espacoVert Sistema mostra uma lista dos ônibus mais provávels para que o usuário selecione um\espacoVert\end{minipage} \\
+			7 & Selecionar linha de ônibus                                  & Usuário seleciona o ônibus em que está \\
+			8 & Realizar avaliação global                                   & \begin{minipage}{0.5\textwidth}\espacoVert Usuário faz a avaliação global do sistema de transporte \espacoVert \end{minipage}\\
+			9 & Realizar avaliações específicas                             & Usuário realiza uma avaliação específica \\
+			10 & Adicionar reclamação                                       & \begin{minipage}{0.5\textwidth}\espacoVert Após avaliação negativa usuário insere o texto para uma reclamação \espacoVert \end{minipage} \\
+			11 & Enviar reclamação                                          & Usuário envia a reclamação digitada \\
+			12 & \begin{minipage}{0.3\textwidth}\espacoVert Configurar recompensas (moedas) por avaliação realizada  \espacoVert \end{minipage} & \begin{minipage}{0.5\textwidth}\espacoVert Administrador configura quantas moedas de cada tipo serão dadas por tipo de avaliação \espacoVert \end{minipage} \\
+			13 & Verificar saldo de “moedas”                                & \begin{minipage}{0.5\textwidth}\espacoVert Usuário verifica seu saldo pessoal de moedas \espacoVert \end{minipage} \\
+			14 & Verificar sua frota pessoal                                & \begin{minipage}{0.5\textwidth}\espacoVert Usuário verifica sua frota pessoal, quantos ônibus possui de cada tipo \espacoVert \end{minipage} \\
+			15 & \begin{minipage}{0.3\textwidth}\espacoVert Verificar o rendimento de cada ônibus \espacoVert \end{minipage}                     & \begin{minipage}{0.5\textwidth}\espacoVert Usuário verifica, para cada ônibus, quanto ele está rendendo \espacoVert \end{minipage} \\
+			16 & \begin{minipage}{0.3\textwidth}\espacoVert Verificar o custo de cada tipo de ônibus \espacoVert \end{minipage}                  & \begin{minipage}{0.5\textwidth}\espacoVert Usuário verifica o preço de cada tipo de ônibus \espacoVert \end{minipage} \\
+			17 & Comprar ônibus                                             & Usuário compra um ônibus virtual para sua frota \\
+			18 & Definir custo dos ônibus                                   & \begin{minipage}{0.5\textwidth}\espacoVert Administrador define quanto custa cada ônibus \espacoVert \end{minipage} \\
+			
+
 	    \bottomrule
     \end{tabular}
 \end{table}
+                                                                
+
+%	    7  & Recompensa por avaliação 				& \begin{minipage}{0.5\textwidth}\espacoVert Usuário recebe recompensa por ter avaliado o sistema \espacoVert \end{minipage} \\
+%	    8  & Buscar ônibus							& \begin{minipage}{0.5\textwidth}\espacoVert Usuário busca por informações de uma determinada linha de ônibus \espacoVert \end{minipage} \\
+%	    9  & Tempo de trajeto						& Usuário busca por tempo estimado de trajeto \\
+%		11 & Ganhar \textit{Badges}					& Usuário recebe um \textit{badge} por ter atingido uma meta \\

@@ -9,6 +9,24 @@ Para o \textit{frontend} do projeto será utilizado \textbf{HTML5}, \textbf{CSS3
 Com relação à base de dados, até o presente momento o \gls{sgbd} será o \textbf{PostgreSQL} com a extensão \textbf{PostGis} para informações georreferenciadas.
 
 \include{./texto/especificacoes/requisitos}
-\include{./texto/especificacoes/requisitos-nao-funcionais}
-\include{./texto/especificacoes/casos-de-uso}
+\input{./texto/especificacoes/requisitos-nao-funcionais}
+\input{./texto/especificacoes/casos-de-uso}
+\section{Tabelas Resumo de Requisitos e Casos de Uso}
+\subsection{Tabela de Requisitos Funcionais}\label{subsec:tabResReqF}
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos funcionais}
+        \label{tab:reqFunc}
+        \PrintRequisitosFunc
+    \end{table}
+    
+
+\subsection{Tabela de Requisitos Não Funcionais}\label{subsec:tabResReqNF}
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos não funcionais}
+        \label{tab:reqNFunc}
+        \PrintRequisitosNFunc
+    \end{table}
+
 \include{./texto/especificacoes/avaliacoes}
