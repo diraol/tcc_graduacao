@@ -62,6 +62,20 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
+    \ReqNome{Recuperar senha}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{loginsocial}%Label
+    \ReqDescr{O usuário com senha no sistema pode redefinir sua senha acessando um endereço enviado por email para o email de cadastro. A senha não poderá ser enviada por email.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{usuario}%Origem
+    \ReqRationale{Apesar de o padrão previsto ser que os usuários acessem o sistema utilizando login de redes sociais, ao menos os administradores possuirão logins "locais". Dessa forma, é importante haver a possibilidade de redefinir a senha caso a mesma seja esquecida.}%Rationale
+    \ReqAssoc{Realizar Login}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
     \ReqNome{Listar linhas de \noexpand\^onibus mais prov\noexpand\'aveis}%Nome
     \ReqTipo{funcional}%Tipo
     %\ReqLabel{loginsocial}%Label
@@ -158,6 +172,104 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
 
+\vfill
+\begin{Requisito}
+    \ReqNome{Configurar recompensas (moedas) por avalia\noexpand\c{c}\noexpand\~ao realizada}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Os administradores do sistema devem poder configurar quantas moedas ser\~ao dadas aos usu\'arios ap\'os estes realizarem avalia\c{c}\~oes do Servi\c{c}o de \^onibus. O administrador deve poder definir a recomepnsa ``por pergunta'' ou ``por conjunto de perguntas''.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{A modifica\c{c}\~ao do valor da recompensa por avali\c{c}\~ao deve estar dispon\'{\i}vel apenas para administradores do sistema, e deve ser de f\'acil realiza\c{c}\~ao.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Verificar saldo de ``moedas''}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usuário irá verificar o saldo que possui de cada tipo moeda.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{O usuário precisa conseguir avaliar seu saldo de moedas.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Verificar sua frota pessoal}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usuário irá verificar quantos ônibus de cada tipo ele possui. Devem ser mostradas a idade de cada carro e seu rendimento médio}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{O usuário precisa conhecer sua frota pessoal.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Verificar o rendimento de cada \noexpand\^onibus}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{O usuário deve conseguir verificar o rendimento (em moedas) de cada ônibus de sua frota, por período de tempo.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{É importante o usuário avaliar cada carro de sua frota, considerando idade e rendimento, para saber se ele irá se desfazer (vender), fazer algum tipo de manutenção/melhoria ou comprar novos veículos.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Verificar o custo de cada tipo de \noexpand\^onibus}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Os administradores do sistema devem poder configurar quantas moedas ser\~ao dadas aos usu\'arios ap\'os estes realizarem avalia\c{c}\~oes do Servi\c{c}o de \^onibus. O administrador deve poder definir a recomepnsa ``por pergunta'' ou ``por conjunto de perguntas''.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{A modifica\c{c}\~ao do valor da recompensa por avali\c{c}\~ao deve estar dispon\'{\i}vel apenas para administradores do sistema, e deve ser de f\'acil realiza\c{c}\~ao.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Comprar \noexpand\^onibus}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Permitir que o usuário compre novos ônibus para sua frota com suas moedas acumuladas.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{O usuário deve ter controle de sua frota.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Definir custo dos \noexpand\^onibus}%Nome
+    \ReqTipo{funcional}%Tipo
+    %\ReqLabel{cadUsu}%Label
+    \ReqDescr{Permitir aos administradores do site definir o preço de cada ônibus.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Os custos podem ser ajustados para permitir maior ou menor facilidade aos usuáiros adquirirem determinados tipos de ônibus.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
 \clearpage
 \subsection{Tabela Resumo dos Requisitos}\label{subsec:tabResReqF}
    \begin{table}[H]
@@ -166,3 +278,4 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
         \label{tab:reqFunc}
         \PrintRequisitosFunc
     \end{table}
+    

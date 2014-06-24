@@ -1,15 +1,6 @@
 \section{Requisitos Não Funcionais}\label{sec: RNF}
-%\begin{description}
-%    \item[\textbf{NF1}] O sistema deverá exigir autenticação para acesso do usuário 
-%    \item[\textbf{NF2}] O sistema deverá garantir que apenas usuários administradores realizem cadastro e exclusão de usuários do sistema. 
-%    \item[\textbf{NF3}] O sistema deverá garantir que apenas usuários administradores realizem o controle de entradas e saídas de produtos. 
-%    \item[\textbf{NF4}] As ações de uma compra deverão ser registradas em um log de ações 
-%    \item[\textbf{NF5}] Ao realizar uma compra o sistema deverá atualizar o banco de dados da parte de vendas e de estoque. 
-%    \item[\textbf{NF6}] O sistema deverá reconhecer a diferença de uma produto descartado e outro comprado de forma que o primeiro trará apenas prejuízo para o saldo no controle de entrada e saídas. 
-%\end{description}
 
-
-%%01
+\StartReqNFunc
 %\vfill
 %\begin{Requisito}
 %    \ReqTipo{nao funcional}%Tipo
@@ -23,3 +14,152 @@
 %    \ReqRationale{Necessário para garantir que os dados do negócio do cliente estejam seguros no sistema}%Rationale
 %    \ReqAssoc{Funcionalidades do sistema estruturadas}%Assoc
 %\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Autentica\noexpand\c{c}\noexpand\~ao Obrigat\noexpand\'oria}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Para qualquer funcionalidade do sistema, este deve verificar se o usuário está autenticado.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Até este momento todos os serviços do projeto requerem autenticação dos usuários.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Garantir acesso apenas a pessoas autorizadas}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Para qualquer funcionalidade do sistema, este deve verificar se o usuário possui privilégios para acessar esta função.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Necessário para garantir que nenhum dado ou função seja acessada indevidamente, além de garantir que toda ação dos usuários seja corretamente registrada.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Senhas criptografadas na base}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Senhas gravadas no banco de dados devem estar criptografadas, nunca em texto plano.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Gravar senhas no banco de dados em texto plano é uma falha grave de segurança em qualquer sistema.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Qualidade da senha}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Todas as senhas definidas no sistema devem ter ao menos 6 dígitos, contendo ao menos um número, uma letra e um caracter não alfanumérico (.-\_\@\#! e outros).}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{É fundamental que as senhas tenham um nível mínimo de segurança para impedir ataques de "força bruta".}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Qualidade das senhas administrativas}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Todas as senhas administrativas definidas no sistema devem ter ao menos 10 dígitos, contendo ao menos dois números, duas letras e dois caracteres não alfanuméricos (.-\_\@\#! e outros).}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{É fundamental que as senhas tenham um nível mínimo de segurança para impedir ataques de "força bruta", em especial as com acesso privilegiado.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Realizar o log das a\noexpand\c{c}\noexpand\~oes dos usu\noexpand\'arios}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Realizar o log (``tracking'') de todas as ações de todos os usuários, registrando-as na base de dados.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Essas informações servirão para posterior análise e melhoria de usabilidade da aplicação.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Realizar registro do timing das a\noexpand\c{c}\noexpand\~oes dos usu\noexpand\'arios}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Registrar no log o quanto tempo cada usuário demorou para realizar cada ação, ou quanto dele ele ficou em cada página da aplicação.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Essas informações servirão para posterior análise e melhoria de usabilidade da aplicação.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{N\noexpand\'umero m\noexpand\'aximo de avalia\noexpand\c{c}\noexpand\~oes espec\noexpand\'ificas}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{Apresentar no máximo 5 avaliações específicas aos usuários.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Mais do que 5 questões faz com que o questionário fique muito extenso e demorado para ser respondido num dispositivo móvel, dentro de um ônibus em movimento, reduzindo o número de respostas.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Reclama\noexpand\c{c}\noexpand\~oes ap\noexpand\'os salvar avalia\noexpand\c{c}\noexpand\~oes}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{As telas de reclamação devem aparecer após o usuário salvar suas avaliações.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{As avaliações, realizadas com ``\textit{slidebar}'' são muito rápidas. Por isso, permitir que os usuários realizem todas essas avaliações antes de abrir as caixas de "reclamação" para que eles digitem as reclamações é fundamental.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Reclama\noexpand\c{c}\noexpand\~oes ap\noexpand\'os salvar avalia\noexpand\c{c}\noexpand\~oes}%Nome
+    \ReqTipo{nao funcional}%Tipo
+%%%    \ReqLabel{Req}%Label
+    \ReqDescr{As telas de reclamação devem aparecer após o usuário salvar suas avaliações.}%Desc
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aceito}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{As avaliações, realizadas com ``\textit{slidebar}'' são muito rápidas. Por isso, permitir que os usuários realizem todas essas avaliações antes de abrir as caixas de "reclamação" para que eles digitem as reclamações é fundamental.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
+\clearpage
+\subsection{Tabela Resumo dos Requisitos Não Funcionais}\label{subsec:tabResReqNF}
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos não funcionais}
+        \label{tab:reqNFunc}
+        \PrintRequisitosNFunc
+    \end{table}
