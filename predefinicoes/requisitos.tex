@@ -38,6 +38,7 @@
 % CONTADORES DOS REQUISITOS
 \newcounter{indiceFuncional}
 \newcounter{indiceNaoFuncional}
+\newcounter{clearPageCounter}
 %
 %
 % Requisitos Funcionais
@@ -45,6 +46,7 @@
     % New job (that is, file)
     \newwrite\reqFunc%
     \immediate\openout\reqFunc=tabRequisitosFunc.aux%
+    \setcounter{clearPageCounter}{0}%
 }
 %
 %% Usamos unexpanded... mas eu não sei porque. No meu
@@ -54,17 +56,17 @@
 %% de `\\` é diferente no texto e em um ambiente tabular;
 %% sua expansão tem que ser postergada para o momento em
 %% que a tabela está sendo impressa (`PrintVolunteers`).
-\newcommand{\AppendRequisitoFunc}[2]{%
-    \immediate\write\reqFunc{#1 & \expandafter#2 \unexpanded{\\}}%
+\newcommand{\AppendRequisitoFunc}[3]{%
+    \immediate\write\reqFunc{###1##rf-#2## & \expandafter#3 \unexpanded{\\}}%
 }
 %
 \newcommand{\PrintRequisitosFunc}{%
 	\begin{tabular}{cl}%
-	\hline
-	\textbf{Identificação} & \textbf{Requisito} \\%
-	\hline%
+	\toprule
+	    \headerCell{Identificação} & \headerCell{Requisito} \\%
+	\midrule%
 	\immediate\closeout\reqFunc\input{tabRequisitosFunc2.aux}%
-	\hline%
+	\bottomrule%
 	\end{tabular}%
 }
 %
@@ -75,6 +77,7 @@
     % New job (that is, file)
     \newwrite\reqNFunc%
     \immediate\openout\reqNFunc=tabRequisitosNFunc.aux%
+    \setcounter{clearPageCounter}{0}%
 }
 %
 %% Usamos unexpanded... mas eu não sei porque. No meu
@@ -84,17 +87,17 @@
 %% de `\\` é diferente no texto e em um ambiente tabular;
 %% sua expansão tem que ser postergada para o momento em
 %% que a tabela está sendo impressa (`PrintVolunteers`).
-\newcommand{\AppendRequisitoNFunc}[2]{%
-    \immediate\write\reqNFunc{#1 & \expandafter#2 \unexpanded{\\}}%
+\newcommand{\AppendRequisitoNFunc}[3]{%
+    \immediate\write\reqNFunc{###1##rnf-#2##  & \expandafter#3 \unexpanded{\\}}%
 }
 %
 \newcommand{\PrintRequisitosNFunc}{%
 	\begin{tabular}{cl}%
-	\hline
-	\textbf{Identificação} & \textbf{Requisito} \\%
-	\hline%
+	\toprule
+	    \headerCell{Identificação} & \headerCell{Requisito} \\%
+	\midrule%
 	\immediate\closeout\reqNFunc\input{tabRequisitosNFunc2.aux}%
-	\hline%
+	\bottomrule%
 	\end{tabular}%
 }
 %
@@ -124,14 +127,14 @@
 \newcommand{\ReqTipo}[1]{%
     \ifstrequal{#1}{funcional}{%
         \stepcounter{indiceFuncional}%
-        \ReqLabel{RF\theindiceFuncional}%
-        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RF\theindiceFuncional \hypertarget{\CmdReqLabel}{}} & (X) Funcional & ( ) Não Funcional \\}
-        \AppendRequisitoFunc{\CmdReqLabel}{\CmdReqNome}
+        %\ReqLabel{RF\theindiceFuncional}%
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RF\theindiceFuncional~ (\hypertarget{rf-\CmdReqLabel}{rf-\CmdReqLabel})} & (X) Funcional & ( ) Não Funcional \\}
+        \AppendRequisitoFunc{RF\theindiceFuncional}{\CmdReqLabel}{\CmdReqNome}
     }{%
         \stepcounter{indiceNaoFuncional}%
         \ReqLabel{RNF\theindiceNaoFuncional}%
-        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RNF\theindiceNaoFuncional} & ( ) Funcional & (X) Não Funcional \\}
-        \AppendRequisitoNFunc{\CmdReqLabel}{\CmdReqNome}
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RNF\theindiceNaoFuncional~ (\hypertarget{rnf-\CmdReqLabel}{rnf-\CmdReqLabel})} & ( ) Funcional & (X) Não Funcional \\}
+        \AppendRequisitoNFunc{RNF\theindiceNaoFuncional}{\CmdReqLabel}{\CmdReqNome}
     }
 }
 \newcommand{\ReqLabel}[1]{\renewcommand{\CmdReqLabel}{#1}}%
@@ -237,6 +240,11 @@
                  } \\%
              \hline%
         \end{tabular}
-     \end{table}
+     \end{table}     
+    \stepcounter{clearPageCounter}
+    \ifnum\value{clearPageCounter} = 3%
+        \clearpage%
+        \setcounter{clearPageCounter}{0}%
+    \fi
 }% FIM DO COMMAND CriaRequisito
 %

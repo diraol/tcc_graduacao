@@ -5,13 +5,13 @@ function makeTable() {
   then
     echo "RF2 & Realizar login \\\\" > tabRequisitosFunc.aux
   fi
-  cat tabRequisitosFunc.aux | sed -e 's@^\([a-zA-Z0-9]*\)@\\hyperlink{\1}{\1}@' > tabRequisitosFunc2.aux
+  cat tabRequisitosFunc.aux | sed -e 's@^##\(.*\)##\(.*\)##@\\hyperlink{\2}{\1}@' > tabRequisitosFunc2.aux
   # requisitos não funcionais
   if [ ! -f tabRequisitosNFunc.aux ]
   then
     echo "RF2 & Realizar login \\\\" > tabRequisitosNFunc.aux
   fi
-  cat tabRequisitosNFunc.aux | sed -e 's@^\([a-zA-Z0-9]*\)@\\hyperlink{\1}{\1}@' > tabRequisitosNFunc2.aux
+  cat tabRequisitosNFunc.aux | sed -e 's@^##\(.*\)##\(.*\)##@\\hyperlink{\2}{\1}@' > tabRequisitosNFunc2.aux
 }
 
 makeTable
