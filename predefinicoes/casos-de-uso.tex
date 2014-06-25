@@ -12,7 +12,7 @@
     %\clearpage
     %\null \\
     %\hrule\ \\
-    \hspace{-\parskip}\hspace{-\parindent}\textbf{Caso de uso UC\thenumcasodeuso :} \hypertarget{UC\thenumcasodeuso}{} \cmdNomeCasodeuso\\
+    \hspace{-\parskip}\hspace{-\parindent}\textbf{Caso de uso UC\thenumcasodeuso (\hypertarget{UC\thenumcasodeuso}{uc-\cmdLabelCasodeuso}):}  \cmdNomeCasodeuso\\
     \null \\
     \textbf{Descrição:} \cmdDescCasodeuso\\
     \null \\
@@ -45,7 +45,7 @@
 
 %Comandos internos
 \newcommand{\cmdNomeCasodeuso}{}
-%\newcommand{\cmdLabelCasodeuso}{}
+\newcommand{\cmdLabelCasodeuso}{}
 \newcommand{\cmdDescCasodeuso}{}
 \newcommand{\cmdEventoIniCasodeuso}{}
 \newcommand{\cmdAtoresCasodeuso}{}
@@ -61,7 +61,7 @@
 %Nome do Caso de Uso
 \newcommand{\nomeCdU}[1]{\renewcommand{\cmdNomeCasodeuso}{#1}}
 %Label
-%\newcommand{\labelCdU}[1]{\renewcommand{\cmdLabelCasodeusp}{\label{#1}}}
+\newcommand{\labelCdU}[1]{\renewcommand{\cmdLabelCasodeuso}{#1}}
 %Descrição do Caso de Uso
 \newcommand{\descricaoCdU}[1]{\renewcommand{\cmdDescCasodeuso}{#1}}
 %Evento iniciador do caso de uso

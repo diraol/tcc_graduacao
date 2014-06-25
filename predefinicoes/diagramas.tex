@@ -9,25 +9,27 @@
 %%%%%%
 % USO
 %Diagramas e imagens com página em formato retrato
-%\diagramaRetrato{nome_imagem}{valor_escala}{texto_caption}{texto_label}
-\newcommand{\diagramaRetrato}[4]{
+%\diagramaRetrato{nome_imagem}{valor_escala}{texto_caption}{texto_label}{autoria}
+\newcommand{\diagramaRetrato}[5]{
     \begin{figure}[H]%
         \centering%
-        \includegraphics[scale=#2]{./imagens/#1}%
-        \caption{\it #3}%
+        \caption{#3}%
         \label{fig:#4}%
+        \includegraphics[scale=#2]{./imagens/#1}%
+        \legend{Fonte: #5}%
     \end{figure}%
 }
 
 %Diagramas e imagens com página em formato paisagem
-%\diagramaRetrato{nome_imagem}{valor_escala}{texto_caption}{texto_label}
-\newcommand{\diagramaPaisagem}[4]{
+%\diagramaRetrato{nome_imagem}{valor_escala}{texto_caption}{texto_label}{autoria}
+\newcommand{\diagramaPaisagem}[5]{
     \begin{landscape}
     \begin{figure}[H]%
         \centering%
-        \includegraphics[scale=#2]{./imagens/#1}%
-        \caption{\it #3}%
+        \caption{#3}%
         \label{fig:#4}%
+        \includegraphics[scale=#2]{./imagens/#1}%
+        \legend{Fonte: #5}%
     \end{figure}%
     \end{landscape}
 }
