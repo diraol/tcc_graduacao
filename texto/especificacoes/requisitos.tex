@@ -76,20 +76,6 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqNome{Listar linhas de \noexpand\^onibus mais prov\noexpand\'aveis}%Nome
-    \ReqLabel{lista-linhas}%Label
-    \ReqTipo{funcional}%Tipo
-    \ReqDescr{O sistema deve listar as linhas de \^onibus mais prov\'aveis \`a escolha do usu\'ario, de acordo com sua localiza\c{c}\~ao.}%Desc.
-    \ReqPrioridade{alta}%Prioridade
-    \ReqStatus{aprovado}%Status
-    \ReqEstabilidade{alta}%Estabilidade
-    \ReqOrigem{usuario}%Origem
-    \ReqRationale{M\'etodo que reduz o tempo necess\'ario para que o usu\'ario escolha o \^onibus, tanto para que possa realizar uma avalia\c{c}\~ao quanto para que possa obter informa\c{c}\~oes sobre a linha.}%Rationale
-    \ReqAssoc{Coletar posicionamento do usu\'ario}%Assoc
-\end{Requisito}
-
-\vfill
-\begin{Requisito}
     \ReqNome{Selecionar linha de \noexpand\^onibus}%Nome
     \ReqLabel{sel-linha}%Label
     \ReqTipo{funcional}%Tipo
@@ -99,7 +85,7 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqEstabilidade{alta}%Estabilidade
     \ReqOrigem{interna}%Origem
     \ReqRationale{O usu\'ario precisa conseguir selecionar a linha de \^onibus para poder avali\'a-la.}%Rationale
-    \ReqAssoc{Listas linhas de \^onibus mais prov\'aveis.}%Assoc
+    \ReqAssoc{}%Assoc
 \end{Requisito}
 
 \vfill
@@ -112,10 +98,23 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
     \ReqOrigem{interna}%Origem
-    \ReqRationale{Para que o sistema possa exibir a lista de poss\'{\i}veis linhas de \^onibus que o usu\'ario deve estar, incluindo o sentido da linha, \'e fundamental conhecer a localiza\c{c}\~ao do usu\'ario e seu sentido de deslocamento.}%Rationale
-    \ReqAssoc{Listas linhas de \^onibus mais prov\'aveis.}%Assoc
+    \ReqRationale{Para ter o registro de localização dos usuários, tanto para mostrar o mapa em tempo real de demanda nos pontos quanto para ter um histórico da demanda em cada ponto, por dia e horário, para futuras análises e relatórios do sistema.}%Rationale
+    \ReqAssoc{}%Assoc
 \end{Requisito}
 
+\vfill
+\begin{Requisito}
+    \ReqNome{Mostrar usu\noexpand\'arios conectados no mapa}%Nome
+    \ReqLabel{mapa-demanda}%Label
+    \ReqTipo{funcional}%Tipo
+    \ReqDescr{Apresentar um mapa, centralizado na localidade do usuário, mostrando os pontos de ônibus da região e a quantidade de usuários aguardando em cada ponto.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{Permite que o usuário tenha uma noção da demanda instantânea do sistema e possa tomar uma decisão mais consciente de quando ir para o ponto de ônibus.}%Rationale
+    \ReqAssoc{Coletar posicionamento do usu\noexpand\'ario}%Assoc
+\end{Requisito}
 \vfill
 \begin{Requisito}
     \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~ao global}%Nome
@@ -174,7 +173,7 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqNome{Configurar recompensas (moedas) por avalia\noexpand\c{c}\noexpand\~ao realizada}%Nome
+    \ReqNome{Configurar recompensas por avalia\noexpand\c{c}\noexpand\~ao realizada}%Nome
     \ReqLabel{config-recomp}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Os administradores do sistema devem poder configurar quantas moedas ser\~ao dadas aos usu\'arios ap\'os estes realizarem avalia\c{c}\~oes do Servi\c{c}o de \^onibus. O administrador deve poder definir a recomepnsa ``por pergunta'' ou ``por conjunto de perguntas''.}%Desc.
