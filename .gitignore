@@ -1,5 +1,7 @@
 *.aux
+*.bak
 *.log
+*-eps-converted-to.pdf
 monografia.aux
 monografia.bbl
 monografia.bib
