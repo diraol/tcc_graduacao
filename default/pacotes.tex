@@ -10,42 +10,48 @@
 \usepackage[usenames,dvipsnames]{color}         % Controle das cores
 \usepackage[usenames,dvipsnames,table]{xcolor}  % Para colorir textos
 \usepackage{graphicx}                           % Inclusão de gráficos
-% ---
-
+\usepackage[activate={true,nocompatibility},final,babel=true,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 % ---
 % Pacotes adicionais
 % ---
-\usepackage{lipsum}                             % para geração de dummy text
+%\usepackage{lipsum}                            % para geração de dummy text
 %\usepackage[brazil, english]{babel}            % Gera tudo em Portugues-BR
-%\usepackage{epsf}                              % Read EPS figures
-\usepackage{amsthm,amsfonts,amsmath}            % Simbolos matematicos
-\usepackage{multirow}                           % Tabelas com span de multiplas linhas
 %\usepackage{verbatim}                          % Suporte a comentarios extensos
-\usepackage{listings}                           % Inclusao de listagens de computador
 %\usepackage{acronym}                           % Suporte a acronimos
-\usepackage{enumerate}                         % Enumerate em alg. romandos
-\usepackage{longtable}
+%\usepackage{paralist}                          % provê o inparaenum environment -> Causa erros no ITEMIZE
+%\usepackage[shortlabels]{enumitem}
+%\usepackage{lipsum}
+\usepackage{amsthm,amsfonts,amsmath}            % Simbolos matematicos
+\usepackage{array}                              % usado para centralizar células de tabelas
+\usepackage{capa-epusp-abntex2}                 % Customizacao da capa e folha de rosto para poli-usp
+\usepackage{enumerate}                          % Enumerate em alg. romandos
+\usepackage{enumitem}
+\usepackage{epsf}                               % Read EPS figures
+\usepackage{epstopdf}
+\usepackage{float}                              % Usado para posicionar imagens
+\usepackage[noredefwarn,acronym,toc,subentrycounter,seeautonumberlist]{glossaries}
 \usepackage{lettrine}
+\usepackage{listings}                           % Inclusao de listagens de computador
+\usepackage{longtable}
+\usepackage{multirow}                           % Tabelas com span de multiplas linhas
+\usepackage{pdflscape}                          % usado para landscape de página
+\usepackage[final]{pdfpages}                    % Para fazer o include de arquivos PDF
 \usepackage{pgfgantt}                           % para geração de gráfico de gantt
 \usepackage{rotating}
-\usepackage{tikz}                               % para desenhar
-\usepackage{pdflscape}                          % usado para landscape de página
-\usepackage{float}                              % Usado para posicionar imagens
-\usepackage{enumitem}
-%\usepackage[shortlabels]{enumitem}
 \usepackage{spverbatim}
-\usepackage{capa-epusp-abntex2}                 % Customizacao da capa e folha de rosto para poli-usp
-\usepackage{pdfpages}                           % para importar pdfs para dentro do documento
+\usepackage{tikz}                               % para desenhar
+\PassOptionsToPackage{hyphens}{url}             %\usepackage[hyphens]{url} % pacote para adicionar URLs no texto
+\usepackage{hyperref}
 \usepackage{xifthen}                            % provê o ifthen com o isempty
-%\usepackage{paralist}                           % provê o inparaenum environment -> Causa erros no ITEMIZE
-\usepackage{lipsum}
-%\usepackage[subentrycounter,seeautonumberlist,nonumberlist=true]{glossaries}
-\usepackage[xindy={language=portuguese},subentrycounter,seeautonumberlist,nonumberlist=true]{glossaries}
-%\usepackage[acronym,toc]{glossaries}         % Load the package with the acronym option infos: http://bay.uchicago.edu/CTAN/macros/latex/contrib/glossaries/glossaries-user.html#acronymoptions
-\usepackage{breakurl}
-\usepackage[activate={true,nocompatibility},final,babel=true,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage{xparse}                             % For dualentry glossary + acronym personalized command
+%\usepackage{underscore}                         % Para adicionar underscores nas urls
+% Dúvidas se precisa
+\usepackage{adjustbox}
+%\usepackage{booktabs}
+\usepackage{varwidth}
+
 % ---
 % Pacotes de citações
 % ---
-%\usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
+\usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
 \usepackage[alf,abnt-url-package=url]{abntex2cite}  % Citações padrão ABNT

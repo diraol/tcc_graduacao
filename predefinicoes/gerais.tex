@@ -28,5 +28,13 @@
 \hyphenation{SPTrans}
 \newcommand{\gpssocial}{\textit{GPS Social}}
 \newcommand{\bigdata}{\textit{Big Data}}
-\newcommand{\trilhasp}{\textbf{\#TrilhaSP}}
+\newcommand{\trilhasp}{\textbf{\href{http://trilhasp.datapublika.com}{\#TrilhaSP}}}
 \hyphenation{TrilhaSP}
+
+%Needs xparse package
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+  \newacronym[see={[Glossary: ]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
