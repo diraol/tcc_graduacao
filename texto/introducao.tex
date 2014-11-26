@@ -12,30 +12,41 @@ Sobram evidências de que há questionamentos quanto à qualidade do serviço pr
 Aqui este projeto encontra sua motivação e respaldo. Hoje, graças à emergência de recursos tecnológicos de comunicações que utilizam conceitos como redes, geolocalização, comunicação multidirecional e outros, pode-se definir processos que unam com facilidade os extremos das cadeias de transporte e, assim, permitir um melhor planejamento e correções de rumo mesmo durante a execução do planejamento do sistema de transporte, melhorando a sua eficiência tanto para o poder público, quanto para usuários e prestadores de serviço.
 
 \section{Justificativa do projeto}\label{sec:justificativa}
-	Atualmente existem diversos aplicativos que trabalham, majoritariamente, disponibilizando informações fornecidas pela SPTrans, por meio de sua \gls{api} para desenvolvedores\footnote{\url{http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx}}, aos usuários. 
+Atualmente existem diversos aplicativos que trabalham, majoritariamente, disponibilizando informações fornecidas pela SPTrans, por meio de sua \gls{api} para desenvolvedores\footnote{\url{http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx}}, aos usuários. 
 Isso se traduz em serviços de escolha de linha de ônibus, determinação de rotas e verificação de localização de ônibus e respectivo tempo estimado de chegada, e em alguns casos tempo estimado para se chegar ao destino escolhido.
 
 Entretanto, não foram encontrados aplicativo que permitissem a coleta de avaliação dos usuários sobre elementos-chaves do sistema que não são automaticamente mensuráveis. Assim, o \trilhasp~se propõe a suprir essa demanda captando a opinião do usuário no momento do uso do transporte, permitindo a geração de informações de \textit{feedback} úteis tanto para usuários quanto para a SPTrans, equanto fiscalizadora do sistema, e para as concessionárias do sistema de transporte, permitindo um melhor controle da qualidade da operação.
 
-Foi uma opção do projeto, neste primeiro momento, não inserir as funcionalidades já encontradas em praticamente todos os outros aplicativos e descritas no primeiro parágrafo deste item. Essas funcionalidades podem vir a ser adicionadas futuramente tornando o aplicativo mais completo, assim como são possíveis diversas evoluções, que serão exploradas na seção \ref{sec:futuro}.
-
 \section{Objetivos}\label{sec:objetivos}
 \subsection{Geral}\label{subsec:objGerais}
-O objetivo geral do projeto é desenvolver um software que corrobore para a melhoria da mobilidade nas cidades pelo incremento da qualidade e da eficiência do sistema público de transporte urbano, mais especificamente rodoviário (ônibus). Será desenvolvido um produto considerando as condições de contorno da Região Metropolitana de São Paulo, que é o maior conglomerado urbano do Brasil com aproximadamente 20 milhões de habitantes. 
+O objetivo geral do projeto é desenvolver uma aplicação que corrobore para a melhoria da mobilidade nas cidades pelo incremento da qualidade e da eficiência do sistema público de transporte urbano, mais especificamente o sistema de ônibus. Será desenvolvido um produto considerando as condições de contorno da Região Metropolitana de São Paulo, que é o maior conglomerado urbano do Brasil com aproximadamente 20 milhões de habitantes.
 
+\clearpage
 \subsection{Específicos}\label{subsec:objEspec}
-São objetivos específicos do projeto: gerar dados e informações de valor para os atores envolvidos no sistema, a saber, operadores dos sistemas de transporte público, usuários e SPTrans; possibilitar a troca de informações triangular entre os três atores do sistema; corroborar para a eficiência do sistema pois com mais informação haverá mais controle de operação; promover transparência já que as informações geradas serão em sua maioria dados públicos sujeitos à Lei 12.527/2011; e estimular a conscientização para o usuário acerca do funcionamento do sistema público de transporte por ônibus.
+São objetivos específicos do projeto:
+\begin{itemize}
+\item gerar dados de avaliações específicas e qualitativas do serviço que permitam: \begin{itemize}
+\item melhorar a qualidade do serviço prestado;
+\item impactar na remuneração das empresas concessionárias do serviço de ônibus.
+\end{itemize}
+\item gerar informações que possam auxiliar os usuários a tomar melhores decisões sobre quando utilizar o sistema de ônibus;
+\item coletar dados que permitam uma análise mais acurada de demanda com localização e horário;
+\item estimular a educação e a conscientização dos usuários acerca do funcionamento do sistema público de transporte por ônibus.
+\end{itemize}
 	
 \section{Escopo e critério de sucesso}\label{sec:Escopo}
 	Ao final deste projeto o software contará com três módulos, a saber:
 	\begin{itemize}%[\itshape a\upshape)]
-		\item módulo de avaliação do sistema de transporte;
-		\item módulo de “gamificação” que terá as funções de oferecer um jogo que atraia e incentive a participação dos usuários e também sirva para um propósito pedagógico de conscientizar os usuários sobre a gestão de um sistema de transporte; e
-		\item módulo de ``gps social'', que levantará informações de demanda do sistema de transporte e as fornecerá aos usuários em tempo real por meio de um mapa;
+		\item \textbf{módulo avaliação}, para avaliar o sistema de transporte;
+		\item \textbf{módulo ``game''}, que terá as funções de oferecer um jogo que atraia e incentive a participação dos usuários e também sirva para um propósito pedagógico de conscientizar os usuários sobre a gestão de um sistema de transporte; e
+		\item \textbf{módulo ``gps social''}, que levantará informações de demanda do sistema de transporte e as fornecerá aos usuários em tempo real por meio de um mapa;
 	\end{itemize}
+Será montada uma infraestrutura de backend, com uma \gls{api} \gls{rest}, e um \textit{app mobile}, desenvolvido com tecnologia híbrida e que será empacotado para a plataforma Android.
+
+Espera-se que tanto \textit{backend} quanto \textit{frontend} estejam implementados e integrados e que os três módulos estejam funcionais. Para o módulo de game não são esperadas animações, simulações elaboradas ou mesmo interação entre diversos usuários no nível da mecânica do jogo.
 
 \section{Não-escopo}\label{sec:NãoEscopo}
-	Não está no escopo de implementação deste projeto um ou mais módulos que permitam a integração do sistema com prestadores de serviço não ligados ao sistema de transporte. Um exemplo seria a integração com comércios próximos aos pontos de ônibus que poderiam oferecer descontos e ``promoções relâmpago'' para usuários de acordo com suas ``pontuações'' no game do aplicativo, enviando notificações das promoções aos celulares dos usuários próximos ao comércio.
+Foi uma opção do projeto, neste primeiro momento, não inserir as funcionalidades já encontradas em praticamente todos os outros aplicativos e descritas no primeiro parágrafo deste item. Essas funcionalidades podem vir a ser adicionadas futuramente tornando o aplicativo mais completo, assim como são possíveis diversas evoluções, que serão exploradas na seção \ref{sec:futuro}.
 
 %\section{Stakeholders}\label{sec:stakeholders}
 %	Na matriz abaixo encontram-se os \emph{stakeholders} do projeto e seus respectivos poder e influência no projeto:
@@ -89,4 +100,4 @@ São objetivos específicos do projeto: gerar dados e informações de valor par
 %\bigskip
 
 \section{Restrições}\label{sec:restrições}
-Todo desenvolvimento será realizado utilizando licenças livres e possiveis integrações com softwares terceiros devem levar este fato em consideração, ou seja, será preciso que haja compatibilidade de licenças.
+Todo desenvolvimento será realizado utilizando licenças e tecnologias livres e possiveis integrações com softwares terceiros devem levar este fato em consideração, ou seja, será preciso que haja compatibilidade de licenças.
