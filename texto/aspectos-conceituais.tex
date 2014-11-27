@@ -51,5 +51,27 @@ Os principais aspectos conceituais abordados neste projeto são:
             \textit{The hybrid approach combines native development with web technology. Using this approach, developers write significant portions of their application in cross-platform web technologies, while maintaining direct access to native APIs when required.}\\
         \textit{The native portion of the application uses the operating system APIs to create an embedded HTML rendering engine that serves as a bridge between the browser and the device APIs. This bridge enables the hybrid app to take full advantage of all the features that modern devices have to offer.}
         \end{citacao}
-        Este conceito será o utilizado para o desenvolvimento do aplicativo mobile do projeto. As funcionalidades nativas que serã utilizadas serão a de geolocalização (gps), o acesso à câmera do dispositivo e manter a aplicação rodando em \textit{background}.
+        Este conceito será o utilizado para o desenvolvimento do aplicativo mobile do projeto. As funcionalidades nativas que serã utilizadas serão a de geolocalização (gps), o acesso à câmera do dispositivo e manter a aplicação rodando em \textit{background}.%
+\clearpage
+    \item[\gls{mvt}] \hfill \\
+        É uma \textit{design pattern} utilizada pelo \textit{framework} \gls{django}. Segundo \citeonline{djangobook}, o \textit{framework} segue boa parte do que é prposto pelo padrão \gls{mvc} proposto por \citeonline{gamma95}, de maneira que ele poderia considerar-se que ele segue o mesmo.\\
+        O padrão \gls{mvc}, no \gls{django}, é implementado da seguinte maneira:
+        \begin{itemize}
+	        \item[M](``\textit{Model}''): camada responsável pelo acesso aos dados, é gerenciada pelo módulo de base de dados do \gls{django}
+	        \item[V](``\textit{View}''): camada responsável pela seleção de quais dados serão apresentados e como eles serão apresentados, é gerenciada pelos módulos \textit{views} e \textit{template}.
+	        \item[C](``\textit{Controller}''): camada que delega a uma \textit{view} dependendo da entrada do usuário, é gerenciada pelo framework seguindo as regras expostas no \textit{URLConf} do projeto (regras de endereçamento das urls) e chamando a função python apropriada para aquela URL.
+        \end{itemize}
+        Como a camada ``C'' é gerenciada pelo próprio framework e a maior parte das ações ocorrem nos módulos ``\textit{model}'', ``\textit{view}'' e ``\textit{template}'', definiu-se que o \gls{django} seria referenciado como um \textit{framework} \gls{mvt}, no qual:
+        \begin{itemize}
+	        \item[M](``\textit{Model}''): acamada de acesso aos dados. Esta camada contém tudo sobre os dados do projeto, como:
+            \begin{enumerate*}[label=\itshape\alph*\upshape)]
+                \item Como acessar os dados;
+                \item Como validar os dados;
+                \item Qual o comportamento do dado; e
+                \item o relacionamento entre os dados.
+            \end{enumerate*}
+	        \item[T](``\textit{Template}''): a camada de apresentação. Esta camada contém decisões relativas à apresentação como, por exemplo, a maneira na qual algo deve ser mostrado em uma página web ou outro tipo de documento;
+            \item[V](``\textit{View}''): a camada de lógica de negócio. Ela contém toda lógica de acesso à camada de dados e direciona para o template adequado. Pode-se pensá-la como a ponte entre a camada de dados e a de templates.
+        \end{itemize}        
+
 \end{description}
