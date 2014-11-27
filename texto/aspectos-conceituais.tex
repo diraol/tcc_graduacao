@@ -1,29 +1,47 @@
 \chapter{Aspectos Conceituais}\label{chp:aspectosConceituais}
-
-Os aspectos conceituais a serem tratados neste projeto são:
+Os principais aspectos conceituais abordados neste projeto são:
 \begin{description}
+    \item[\gls{api}] \cite{apifoldoc} \hfill \\
+        \gls{api} é um conjunto de rotinas e padrões estabelecidos por um software para a utilização das suas funcionalidades por aplicativos que não pretendem envolver-se em detalhes da implementação do software, mas apenas usar seus serviços.\\
+        Este conceito será aplicado no \textit{backend} do projeto como interface de comunicação do \textit{app mobile} com o \textit{backend} e também como forma de disponibilizar os dados coletados pelo projeto para, por exemplo, expor relatórios à SPTrans, ou disponibilizar os dados publicamente para que seja possível produzir relatórios e análises e análises independentes.%
+%
 	\item[\gls{rest}] \cite{Fielding2000} \hfill \\
 	    \gls{rest} é um estilo arquitetural de software que consiste numa série planejada de restrições apliacadas a componentes, conectores e elementos de dados em sistemas de hipermedia distribuídos. \\
-	    Este conceito será aplicado, inicialmente, na aquisição dos dados da \sptrans.
-	\item[Big Data] \hfill \\
-	    Como a aplicação irá lidar com uma quantidade de usuários simultâneos da ordem de centenas de milhares, será necessária uma infraestrutura de base de dados que possa lidar com essa quantidade de informações. Além disso, dos conceitos envoltos no tema \bigdata~serão necessárias realizar rápidas e intensivas consultas a esta base.
-	\item[Gamificação] \cite{vieira2012exploratory,Mastrocola2012} \hfill \\
-	    Serão utilizados conceitos de gamificação para tentar aumentar o engajamento do usuário na plataforma e ainda adicionar um caráter educativo.
-	\item[GPS Social]\cite{Miller2013,Gal-Tzur2014a,Filippi2013,Gal-Tzur2014,Nunes2014} \hfill \\
-	    O conceito de \gpssocial~ganhou projeção com o conhecido aplicativo de GPS \textbf{Waze}. Sua principal ideia é que as informações de geolocalização de todos os usuários da plataforma estão disponíveis instantâneamente aos outros usuários de forma que a origem das informações oferecidas pela plataforma não são advindas de coletas feitas pela própria plataforma, mas sim pelos usuários da mesma, de uma maneira \textit{distribuída}. \\
-	    Este conceito será utilizado para a realização de estimativas de lotação dos ônibus e dos pontos de ônibus, ajudando os usuários na tomada de decisão sobre quando e aonde tomar um ônibus.
-	\item[Percepção do usuário/consumidor]\cite{Lai1995,Almeida2011,Almeida2007,andrade2008constructos} \hfill \\
-	    Como um dos pontos fundamentais propostos para a aplicação é permitir ao usuário avaliar o serviço de transporte, em especial baseado em critérios mais subjetivos e não facilmente mensuráveis por meio de instrumentação eletrônica, será necessário estudar qual a melhor forma de se realizar tal avaliação.
-%	\item[\gls{its}]\cite{silva2000sistemas,williams2008intelligent} \hfill \\
-%	\item[Medidas de Desempenho no Transporte]\cite{Cellos2012}
-\end{description}
-
-%No que tange à \textbf{API Rest}, será realizada uma rápida revisão bibliográfica com a finalidade de definir as melhores técnicas referentes tanto à utilização de API REST servidas por terceiros (no caso a SPTrans) quanto à implementação de uma API própria para servir, principalmente à SPTrans, os dados de avaliação inseridos pelos usuários. Com relação à \textbf{Big Data}, a revisão bibliográfica será feita no sentido de entender como capturar e armazenar os dados gerados pelos usuários, além de buscar os melhores softwares livres para esta implementação. Relativo à \textbf{Gamificação}, a revisão versará sobre o uso de gamificação ligada à área de Transporte Público. Sobre \textbf{GPS Social}, a revisão versará sobre o uso de tecnologias sociais e de massa na geração de informações e influência nos sistemas públicos de transporte. Com relação à \textbf{Percepção do usuário/consumidor}, a revisão será feita no sentido de buscar a melhor forma de permitir que usuários que avaliem serviços, levantando questões sobre como formular as perguntas ou sobre a utilização de escala \textit{Likert} ou escala contínua para as respostas. Este último item se conecta diretamente a \textbf{Medidas de desempenho no transporte}, que tem por finalidade entender quais são os principais critérios a serem avaliados num sistema de transporte. Por fim, as leituras sobre \textbf{ITS} objetivam entender como integrar todas as informações coletadas de maneira dinânima e em tempo real com o próprio sistema de transporte, além de levantar quais tecnologias já existem atualmente.
+	    Este conceito será aplicado na implementação da \gls{api} do projeto.%
 %
-%\include{./texto/aspectos-conceituais/api-rest}
-%\include{./texto/aspectos-conceituais/big-data}
-%\include{./texto/aspectos-conceituais/gamificacao}
-%\include{./texto/aspectos-conceituais/gps-social}
-%\include{./texto/aspectos-conceituais/percepcao-usuario-consumidor}
-%\include{./texto/aspectos-conceituais/transporte-its}
-%\include{./texto/aspectos-conceituais/transporte-medidas-de-desempenho}
+	\item[BigData] \hfill \\
+	    Como a aplicação irá lidar com uma quantidade de usuários simultâneos da ordem de centenas de milhares, caso ganhe escala, será necessária uma infraestrutura que possa lidar com essa quantidade de informações, tanto do ponto de vista de armazenamento como do ponto de vista de transações.\\
+	    Neste sentido, o maior desafio neste projeto deverá ser na aquisição da localização dos usuários, registro da mesma e, principalmente, na disponibilização dessa informação atualizada aos usuários no \textbf{módulo ``gps social''}.%
+%
+	\item[Gamificação] \hfill \\
+	    Segundo \apudonline{zichermann2010game}{Mastrocola2012}:
+	    \begin{citacao}
+	    \textit{Gamification} é fundamentalmente reescrever as regras de jogos para \textit{design} de produtos e marketing. Da rede social de geo localização \textit{FourSquare} até o \textit{social game Farmville}, e da Nike até a Marinha americana, elementos de \textit{games} como pontos, troféus, níveis, recompensas e rankings estão sendo usados em número cada vez maior.
+	    \end{citacao}
+	    Este conceito será aplicado na tentativa de criação de um game que integre-se ao módulo de avaliação para incentivar os usuários a avaliarem o sistema de trânsito e também com o objetivo de educar os usuários quanto às necessidades e custos na manutenção de uma frota de transporte.%
+%
+	\item[GPS Social] \hfill \\
+	    O sentido de GPS Social aqui utilizado diz respeito á simultânea coleta e disponibilização de grande volume de dados de geolocalização, advindos de uma grande base de usuários, de forma que os dados sejam utilizados ``em tempo real'' pelos usuários influenciando seus comportamentos de deslocamento. A primeira, senão a única, aplicação que foi encontrada e que faz uso intensivo desse conceito é o aplicativo \textbf{Waze}\footnote{\textit{Waze is the world's largest community-based traffic and navigation app. Join other drivers in your area who share real-time traffic and road info, saving everyone time and gas money on their daily commute.} - \url{http://waze.com}}, que recentemente começou a adotar o termo ``community-based traffic and navigation app''.\\
+	    Um ponto importante a ser destacado neste estilo de aplicação é que, diferente do conceito tradicional das redes sociais, nestes aplicativos os dados de geolocalização disponibilizados não dependem de relacionamentos entre os usuários, mas unicamente da localização dos mesmos. \\
+	    Uma outra leitura possível para o termo, mas que não se encaixa na aplicação proposta neste trabalho, é mais ligada ao conceito tradicional de rede social e serve para conectar usuários que estão numa mesma localidade. Exemplos de aplicativos que seguem este conceito são:
+	    \begin{itemize}
+	    \item Tinder\footnote{\textit{``Tinder is the fun way to connect with new and interesting people around you. Swipe right to like or left to pass. If someone likes you back, it’s a match! Chat with a match or snap a photo to share a Moment with all of your matches at once. Moment is a new way to express yourself and share with friends.''}\url{https://play.google.com/store/apps/details?id=com.tinder&hl=pt_BR}}
+	    \item Swipe\footnote{\textit{``Chat instantly with people near you right from the palm of your hand. Unlock special rewards just for using the app. Play the newest version and increase your opportunity for more real-time interactions with real people!''}\url{https://play.google.com/store/apps/details?id=com.chirpme.swipe&hl=pt_BR}}
+	    \item Brenda\footnote{\textit{``Brenda is the most popular dating app for lesbian, bi or curious women. It's fast, easy to use, no hassle and user friendly. Most features are completely free, including unlimited chat''}\url{https://play.google.com/store/apps/details?id=com.benderapp.brenda&hl=pt_BR}}
+	    \item Grindr\footnote{\textit{``Grindr is a simple app that uses your mobile device’s location-based services to show you the guys closest to you who are also on Grindr. How much of your info they see is entirely your call.''}\url{https://play.google.com/store/apps/details?id=com.grindrapp.android&hl=pt_BR}}
+	    \end{itemize}
+	    Este conceito será utilizado para a realização de estimativas de lotação dos pontos de ônibus e também pode ser utilizado futuramente para estimar a quantidade de usuários dentro do ônibus.%
+%
+\clearpage
+	\item[Percepção do usuário/consumidor]\cite{Lai1995,Almeida2011,Almeida2007,andrade2008constructos} \hfill \\
+	    Como um dos pontos fundamentais propostos para a aplicação é permitir ao usuário avaliar o serviço de transporte, em especial baseado em critérios qualitativos que não são facilmente mensuráveis por instrumentação eletrônica. Definiu-se então que será realizada uma avaliação geral e 5 avaliações específicas, consideradas critérios importantes na tomada de decisão de um usuário de ônibus, e estas são:
+	    \begin{itemize}
+	    \item Lotação
+	    \item Conforto Térmico
+	    \item Higiene/Limpeza
+	    \item Atendimento do Motorista
+	    \item Atendimento do Cobrador
+	    \end{itemize}
+	    Optou-se por cinco questões específicas por ser um número não muito grande que não desincentivaria o usuário a responder. As cinco questões serão colocadas numa única página, de maneira que o usuário já tenha conhecimento de início a quantidade de respostas que terá que dar.\\
+	    Além disso, as avaliações serão realizadas numa escala contínua. Dessa forma será possível extrair um resultado que permitirá a elaboração de estatísticas descritivas para além de simples frequências. Caso tivesse-se optado por utilizar uma escala Likert de 5 pontos seria possível apenas realizar análises das frequências das respostas, permitindo assim análises menos elaboradas e dificultando a geração de índices e indicadores.\cite{favero2009}
+\end{description}
