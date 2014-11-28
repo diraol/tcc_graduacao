@@ -63,14 +63,14 @@ Os principais aspectos conceituais abordados neste projeto são:
         \end{itemize}
         Como a camada ``C'' é gerenciada pelo próprio framework e a maior parte das ações ocorrem nos módulos ``\textit{model}'', ``\textit{view}'' e ``\textit{template}'', definiu-se que o \gls{django} seria referenciado como um \textit{framework} \gls{mvt}, no qual:
         \begin{itemize}
-	        \item[M](``\textit{Model}''): acamada de acesso aos dados. Esta camada contém tudo sobre os dados do projeto, como:
+	        \item[M](``\textit{Model}''): camada de acesso aos dados. Esta camada contém tudo sobre os dados do projeto, como:
             \begin{enumerate*}[label=\itshape\alph*\upshape)]
                 \item Como acessar os dados;
                 \item Como validar os dados;
                 \item Qual o comportamento do dado; e
                 \item o relacionamento entre os dados.
             \end{enumerate*}
-	        \item[T](``\textit{Template}''): a camada de apresentação. Esta camada contém decisões relativas à apresentação como, por exemplo, a maneira na qual algo deve ser mostrado em uma página web ou outro tipo de documento;
-            \item[V](``\textit{View}''): a camada de lógica de negócio. Ela contém toda lógica de acesso à camada de dados e direciona para o template adequado. Pode-se pensá-la como a ponte entre a camada de dados e a de templates.
+	        \item[T](``\textit{Template}''): camada de apresentação. Esta camada contém decisões relativas à apresentação como, por exemplo, a maneira na qual algo deve ser mostrado em uma página web ou outro tipo de documento;
+            \item[V](``\textit{View}''): camada de lógica de negócio. Ela contém toda lógica de acesso à camada de dados e direciona para o template adequado. Pode-se pensá-la como a ponte entre a camada de dados e a de templates.
         \end{itemize}
 \end{description}
