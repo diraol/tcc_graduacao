@@ -21,17 +21,17 @@
     \end{figure}%
 }
 
-
 %Diagramas e imagens com página em formato paisagem
 %\diagramaRetrato{nome_imagem}{valor_escala}{texto_caption}{texto_label}{autoria}
-\newcommand{\diagramaPaisagem}[5]{
+\newcommand{\diagramaPaisagem}[6]{
     \begin{landscape}
-    \begin{figure}[H]%
-        \centering%
-        \caption{#3}%
-        \label{fig:#4}%
-        \includegraphics[scale=#2]{./imagens/#1}%
-        \legend{Fonte: #5}%
-    \end{figure}%
+	    \begin{figure}[H]%
+	        \caption{#3\label{fig:#4}}%
+	        \begin{center}
+	            \includegraphics[scale=#2]{./imagens/#1}%
+	        \end{center}%
+	        \fonte{#5}%
+	        \ifthenelse{\isempty{#6}}{}{\nota{#6}}%
+	    \end{figure}%
     \end{landscape}
 }
