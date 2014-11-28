@@ -1,7 +1,7 @@
 \chapter{Especificação}\label{chp:Especificação}
 O projeto foi desenvolvido para dispositivos móveis utilizando \textit{tecnologia de desenvolvimento híbrida}, visando facilitar o desenvolvimento e o deploy em diversas plataformas móveis. Neste capítulo descreveremos a especificação técnica do \textit{backend} e do aplicativo mobile do projeto.
 
-\section{\textit{Backend}}\label{sec:spec-backend}
+\section{Aplicações do \textit{Backend}}\label{sec:spec-backend}
 Como solução de \textit{backend} foi utilizado o \textit{framework} \gls{django}, que utiliza a linguagem de programação \textbf{Python} e é organizado segundo a \textit{design pattern} \gls{mvt}, conforme pode ser visto nas Figuras \ref{fig:arqMVT} e \ref{fig:arqDjango}.%
 %
 \diagramaRetrato{arquitetura-app-django.png}{0.8}{Arquitetura MVT de um APP do framework Django}{arqMVT}{Jeff Croft em {\footnotesize\url{http://www.flickr.com/photos/jcroft/432038560/sizes/o/in/photostream/}}}{}%
@@ -22,16 +22,21 @@ Como o aplicativo lida com dados georreferenciados, para \gls{sgbd} foi escolhid
 
 O framework \gls{django} por si só não é um webserver - ele apenas possui um microserver para fins de teste e desenvolvimento; então faz-se necessário utilizar um webserver. No presente projeto optou-se pelo \gls{nginx}, o servidor web que tem crescido no ritmo mais acelerado dos que possuem pelo menos 1\% do mercado. Seu ritmo anual médio de crescimento de 2010 a 2014 43\%, e hoje ele já ocupa a segunda colocação como servidor mais utilizado na internet com 22,6\% do mercado, atrás apenas do Apache, que tem 59\% do mercado mas que tem perdido, em média, 3,71\% de \textit{market share} ao ano, conforme pode ser observado na Figura \ref{fig:nginxmarkershare}.
 
-\diagramaRetrato{market_share_webservers.png}{0.4}{\textit{Market Share} de servidores web}{nginxmarkershare}{W3Techs - Web Technology Surveys\url{http://w3techs.com/technologies/history_overview/web_server/ms/y}}{}
+\diagramaRetrato{market_share_webservers.png}{0.55}{\textit{Market Share} de servidores web}{nginxmarkershare}{W3Techs - Web Technology Surveys {\footnotesize\url{http://w3techs.com/technologies/history_overview/web_server/ms/y}}}{}
 
 Além dessa grande exposição, e de possuir uma boa documentação\footnote{\url{http://nginx.org/en/docs/}}, outra vantagem é que ele consegue cumprir a função de webserver, proxy reverso e também possui recursos de \textit{load balance}, tornado-o uma ótima alternativa em termos de escalabilidade.
 
 O \gls{nginx} por si só não consegue "fornecer" diretamente a aplicação django, para tanto é preciso ainda mais um elemento, que é o servidor de aplicações. Para tanto, um dos que apresenta melhor desempenho nos dias de hoje para servir projetos que utilizam a linguagem de programação Python é o \gls{uwsgi}\footnote{\url{https://ivan-site.com/2012/09/benchmark-uwsgi-vs-gunicorn-for-async-workers/}}$^,$\footnote{\url{http://blog.kgriffs.com/2012/12/18/uwsgi-vs-gunicorn-vs-node-benchmarks.html}}$^,$\footnote{\url{http://www.peterbe.com/plog/fcgi-vs-gunicorn-vs-uwsgi}}. Dessa maneira, optamos pelo \gls{uwsgi} como servidor de aplicação trabalhando em conjunto com o \gls{nginx} como servidor web.
 
-Fica como sugestão para o futuro do projeto a utilização do servidor de cache \textit{varnish}\footnote{\url{https://www.varnish-cache.org/}}, conforme recomendado pela equipe do hosting DigitalOcean\footnote{\url{https://www.digitalocean.com/community/tutorials/how-to-scale-django-beyond-the-basics}}.
+Fica como sugestão para o futuro do projeto a utilização do servidor de cache \textit{varnish}\footnote{\url{https://www.varnish-cache.org/}}, conforme recomendado pela equipe do hosting DigitalOcean\footnote{\url{https://www.digitalocean.com/community/tutorials/how-to-scale-django-beyond-the-basics}}, para conseguir escalar o projeto sem precisar necessariamente de mais recursos de máquina.
 
+\section{Estrutura implementada da Aplicação}\label{sec:estrutura-app}
+Nesta seção iremos descrever a implementação realizada de cada um dos \textit{apps}, assim como do projeto \gls{django} que integra os \textit{apps}. Por motivos organizacionais optou-se por descrever cada uma das camadas do \textit{design pattern} para todos os aplicativos simultâneamente ao invés de descrever cada aplicativo individualmente.
+
+\subsection{Camada de Acesso a Dados (\textit{model})}\label{subsec:camada-model}
+Inicialmente foi planejada uma camada de modelo de dados conforme o Diagrama Entidade-Relacionamento exposto na Figura \ref{fig:DiagER}.
 \section{Diagrama Entidade Relacionamento}
-    \diagramaRetrato{modelo_er.png}{0.6}{Diagrama Entidade Relacionamento}{DiagER}{Autoria Própria}{}
+    \diagramaRetrato{diagramas_er_bds.eps}{1.2}{Diagrama Entidade Relacionamento}{DiagER}{Autoria Própria}{}
 
 \input{./texto/especificacoes/diagrama-de-classes}
 
