@@ -1,7 +1,7 @@
-\section{Requisitos Funcionais}\label{sec: RF}
+\section{Requisitos Funcionais}\label{sec:RF}
 Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que devem ser satisfeitos. Estes requisitos devem ainda ser indicados no pr\'oprio código fonte do projeto, assim como nos testes que verifiquem o requisito.
-
 \StartReqFunc
+
 \vfill
 \begin{Requisito}
     \ReqNome{Cadastrar usu\noexpand\'ario}%Nome
@@ -76,29 +76,15 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
 
 \vfill
 \begin{Requisito}
-    \ReqNome{Selecionar linha de \noexpand\^onibus}%Nome
-    \ReqLabel{sel-linha}%Label
-    \ReqTipo{funcional}%Tipo
-    \ReqDescr{O usu\'ario seleciona a linha de \^onibus que deseja avaliar.}%Desc.
-    \ReqPrioridade{alta}%Prioridade
-    \ReqStatus{aprovado}%Status
-    \ReqEstabilidade{alta}%Estabilidade
-    \ReqOrigem{interna}%Origem
-    \ReqRationale{O usu\'ario precisa conseguir selecionar a linha de \^onibus para poder avali\'a-la.}%Rationale
-    \ReqAssoc{}%Assoc
-\end{Requisito}
-
-\vfill
-\begin{Requisito}
     \ReqNome{Coletar posicionamento do usu\noexpand\'ario}%Nome
     \ReqLabel{posic-usu}%Label
     \ReqTipo{funcional}%Tipo
-    \ReqDescr{O ``sistema'' deve coletar a informa\c{c}\~ao de geolocaliza\c{c}\~ao do usu\'ario, usando GPS e outros m\'etodos como Triangula\c{c}\~ao via 3G [usar API de geolocaliza\c{c}\~ao do HTML5].}%Desc.
+    \ReqDescr{O ``sistema'' deve coletar a informa\c{c}\~ao de geolocaliza\c{c}\~ao do usu\'ario, usando GPS e outros m\'etodos como Triangula\c{c}\~ao via 3G [usar API de geolocaliza\c{c}\~ao do HTML5] e salvar essa informação a cada 2 minutos nas duas tabelas do módulo \textbf{GPS Social}.}%Desc.
     \ReqPrioridade{alta}%Prioridade
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
     \ReqOrigem{interna}%Origem
-    \ReqRationale{Para ter o registro de localização dos usuários, tanto para mostrar o mapa em tempo real de demanda nos pontos quanto para ter um histórico da demanda em cada ponto, por dia e horário, para futuras análises e relatórios do sistema.}%Rationale
+    \ReqRationale{Para ter o registro de localização dos usuários, tanto para mostrar o mapa em tempo real de demanda nos pontos quanto para ter um histórico da demanda em cada ponto, por dia e horário, para futuras análises e relatórios do sistema e também para registro da localização no momento da avaliação do ônibus.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
 
@@ -115,6 +101,21 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Permite que o usuário tenha uma noção da demanda instantânea do sistema e possa tomar uma decisão mais consciente de quando ir para o ponto de ônibus.}%Rationale
     \ReqAssoc{Coletar posicionamento do usu\noexpand\'ario}%Assoc
 \end{Requisito}
+
+\vfill
+\begin{Requisito}
+    \ReqNome{Identificar o \noexpand\^{o}nibus}%Nome
+    \ReqLabel{ident-linha}%Label
+    \ReqTipo{funcional}%Tipo
+    \ReqDescr{O usu\'{a}rio seleciona a linha de \^{o}nibus que deseja avaliar tirando uma foto do \gls{qrcode} presente no \^{o}nibus.}%Desc.
+    \ReqPrioridade{alta}%Prioridade
+    \ReqStatus{aprovado}%Status
+    \ReqEstabilidade{alta}%Estabilidade
+    \ReqOrigem{interna}%Origem
+    \ReqRationale{O usu\'{a}rio precisa conseguir selecionar o \^{o}nibus para poder avali\'{a}-lo.}%Rationale
+    \ReqAssoc{}%Assoc
+\end{Requisito}
+
 \vfill
 \begin{Requisito}
     \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~ao global}%Nome
