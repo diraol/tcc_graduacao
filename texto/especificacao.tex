@@ -1,7 +1,7 @@
 \chapter{Especificação}\label{chp:Especificação}
 O projeto foi desenvolvido para dispositivos móveis utilizando \textit{tecnologia de desenvolvimento híbrida}, visando facilitar o desenvolvimento e o deploy em diversas plataformas móveis. Neste capítulo descreveremos a especificação técnica do \textit{backend} e do aplicativo mobile do projeto.
 
-\section{Aplicações do \textit{Backend}}\label{sec:spec-backend}
+\section{Tecnologias do \textit{Backend}}\label{sec:spec-backend}
 Como solução de \textit{backend} foi utilizado o \textit{framework} \gls{django}, que utiliza a linguagem de programação \textbf{Python} e é organizado segundo a \textit{design pattern} \gls{mvt}, conforme pode ser visto nas Figuras \ref{fig:arqMVT} e \ref{fig:arqDjango}.%
 %
 \diagramaRetrato{arquitetura-app-django.png}{0.8}{Arquitetura MVT de um APP do framework Django}{arqMVT}{Jeff Croft em {\footnotesize\url{http://www.flickr.com/photos/jcroft/432038560/sizes/o/in/photostream/}}}{}%
@@ -30,15 +30,304 @@ O \gls{nginx} por si só não consegue "fornecer" diretamente a aplicação djan
 
 Fica como sugestão para o futuro do projeto a utilização do servidor de cache \textit{varnish}\footnote{\url{https://www.varnish-cache.org/}}, conforme recomendado pela equipe do hosting DigitalOcean\footnote{\url{https://www.digitalocean.com/community/tutorials/how-to-scale-django-beyond-the-basics}}, para conseguir escalar o projeto sem precisar necessariamente de mais recursos de máquina.
 
-\section{Estrutura implementada da Aplicação}\label{sec:estrutura-app}
-Nesta seção iremos descrever a implementação realizada de cada um dos \textit{apps}, assim como do projeto \gls{django} que integra os \textit{apps}. Por motivos organizacionais optou-se por descrever cada uma das camadas do \textit{design pattern} para todos os aplicativos simultâneamente ao invés de descrever cada aplicativo individualmente.
-
-\subsection{Camada de Acesso a Dados (\textit{model})}\label{subsec:camada-model}
-Inicialmente foi planejada uma camada de modelo de dados conforme o Diagrama Entidade-Relacionamento exposto na Figura \ref{fig:DiagER}.
-\section{Diagrama Entidade Relacionamento}
+\section{Modelagem de Dados}\label{sec:diagrama-er}
+Na figura \ref{fig:DiagER} encontra-se a modelagem de dados realizada inicialmenten no projeto. Esta modelagem não leva em consideração as especificidades do \textit{framework} utilizado, e eventuais diferenças serão expostas na descrição dos \textit{apps}.
     \diagramaRetrato{diagramas_er_bds.eps}{1.2}{Diagrama Entidade Relacionamento}{DiagER}{Autoria Própria}{}
 
-\input{./texto/especificacoes/diagrama-de-classes}
+\section{Implementação}\label{sec:estrutura-app}
+Nesta seção iremos descrever a rotina de implementação da infraestrutura de backend como um todo e a implementação de cada um dos \textit{apps}, assim como do projeto \gls{django} que integra os \textit{apps}. Cada \textit{app} será descrito considerando o \textit{design pattern} \gls{mvt}.
+
+A implementação completa dos \textit{models}, das \textit{views}, \textit{serializers} e \textit{urls} pode ser encontrada no Anexo \ref{anexo:sources} ou no repositório oficial do projeto\footnote{Repositório Oficial do Projeto: \url{http://github.com/diraol/trilhasp}}
+
+\subsection{Setup Inicial}
+Para o \textit{setup} inicial do servidor foi criado um \textit{shell script} que realiza toda a instalação. Ele foi desenvolvido e testado para o sistema operacional \textbf{Debian Jessie (8.0)}.
+
+Este setup inicial contempla a instalação do \gls{django}, do \gls{sgbd} \textbf{PostgreSQL} (v9.4), com sua extensão de dados espaciais \textbf{PostGis} (v2.1), além dos pacotes necessários para a utilização do recurso de ambientes virtuais (\textit{Virtualenv}) do \textbf{Python}, o que facilita o encapsulamento e a manutenabilidade da aplicação num servidor.
+
+Requisitos para a utilização de ambientes virtuais: %
+\begin{enumerate*}[label=\itshape\alph*\upshape)] 
+    \item \mbox{\textit{python-setuptools}};
+    \item \mbox{\textit{python-pip}};
+    \item \mbox{\textit{python-dev}}
+\end{enumerate*}.
+
+Requisitos para a base de dados espaciais e sua integração com o Python: %
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item\mbox{\textit{postgresql-9.4}};
+    \item\mbox{\textit{postgresql-contrib-9.4}};
+    \item\mbox{\textit{postgresql-9.4-postgis}};
+    \item\mbox{\textit{postgresql-server-dev-9.4}};
+    \item\mbox{\textit{libpq-dev}};
+    \item\mbox{\textit{binutils}};
+    \item\mbox{\textit{libproj-dev}};
+    \item\mbox{\textit{gdal-bin}};
+    \item\mbox{\textit{python-gdal}};
+    \item\mbox{\textit{python-psycopg2}}
+\end{enumerate*}.
+
+Após instalados os pacotes, o script irá realizar a criação de um usuário \textit{trilhasp} no PostgreSQL, será requisitado ao usuário para inserir um \textit{password}, será criada a base de dados dentro do \gls{sgbd}, com encoding UTF-8, serão instaladas as extensões de georreferenciamento nesta base.
+
+Em seguida é instalado o pacote \textit{virtualenv} do \textbf{Python}, com o uso da ferramenta de gerenciamento de pacotes \textit{pip}, é criado um novo ambiente virtual (numa pasta chamada \textbf{venv}), que é ativado e no qual são instalados os demais \textit{requirements} de python, que ficam definidos no arquivo \textit{requirements.txt}.
+
+Finalizando o setup inicial do \gls{django}, o script irá executar os comandos para criação das bases de dados, tomando como referência os modelos (\textit{models}) de todas as aplicações listadas nas configurações do django.
+
+\subsection{Configuração do Django}
+A configuração do django se dá basicamente no arquivo \textit{settings.py} do projeto....
+%TODO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                              APP AVALIAÇÃO                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{APP Avaliação}
+Começaremos pelo  \textit{app} responsável pela avaliação do sistema de transporte.
+
+\subsubsection{Camada de Acesso a Dados (\textit{model})}\label{subsubsec:eval-camada-model}
+Foram definidos os seguintes modelos, que representam classes, e que possuem os respectivos atributos:
+\begin{description}
+    \item[BusCompanies] - Empresa de ônibus
+        \begin{itemize}
+            \item \textbf{company\_name} Tipo: CharField - Nome da empresa
+            \item \textbf{logo} Tipo: ImageField - Logo da empresa
+        \end{itemize}
+    \item[BusLine] - Linha de ônibus
+        \begin{itemize}
+            \item \textbf{bus\_line\_code} Tipo: CharField - Código da linha de ônibus
+            \item \textbf{going\_bus\_name} Tipo: CharField - Nome do trajeto de ida
+            \item \textbf{return\_bus\_name} Tipo: CharField - Nome do trajeto de volta
+            \item \textbf{active} Tipo: BooleanField - Estado da linha (ativa ou desativa)
+            \item \textbf{company\_name} Tipo: ForeignKey - Empresa responsável pela linha
+        \end{itemize}
+        Chave primária composta: \textit{bus\_line\_code} e \textit{active}
+    \item[Buses] - Ônibus único
+        \begin{itemize}
+            \item \textbf{bus\_unique\_number} Tipo: IntegerField - Número único de cada ``carro'' (ônibus), pintado na lateral do mesmo.
+            \item \textbf{bus\_line\_code} Tipo: ForeignKey - Código da linha que este ônibus percorre
+            \item \textbf{active} Tipo: BooleanField - Estado da linha (ativa ou desativa)
+        \end{itemize}
+        Chave primária composta: \textit{bus\_unique\_number} e \textit{active}
+    \item[EVALAnswerModel] - Modelos de respostas
+        \begin{itemize}
+            \item \textbf{answer} Tipo: CharField - Texto explicativo deste tipo de resposta
+            \item \textbf{lower\_limit\_text} Tipo: CharField - Label do valor superior
+            \item \textbf{upper\_limit\_text} Tipo: CharField - Label do valor inferior
+            \item \textbf{middle\_text} Tipo: CharField - Label do valor central
+            \item \textbf{lower\_limit\_value} Tipo: IntegerField - Valor do limite inferior
+            \item \textbf{upper\_limit\_value} Tipo: IntegerField - Valor do limite superior
+            \item \textbf{middle\_value} Tipo: IntegerField - Valor central
+        \end{itemize}
+    \item[EVALQuestion] - Perguntas
+        \begin{itemize}
+            \item \textbf{question} Tipo: CharField - Texto da questão, que será mostrado ao usuário
+            \item \textbf{answer} Tipo: ForeignKey - Tipo da resposta para esta pergunta
+            \item \textbf{enabled} Tipo: Estado da pergunta (ativa ou desativa)
+        \end{itemize}
+    \item[EVALAnswer] - Respostas dos usuários
+        \begin{itemize}
+            \item \textbf{question} Tipo: ForeignKey - Questão
+            \item \textbf{user} Tipo: ForeignKey - Usuário respondente
+            \item \textbf{timestamp} Tipo: DateTimeField - Data e Horário da resposta
+            \item \textbf{answer\_value} Tipo: IntegerField - Valor numérico da resposta
+            \item \textbf{answer\_text} Tipo: CharField - Texto inserido pelo usuário (em caso de resposta abaixo do valor central)
+            \item \textbf{bus\_unique\_number} Tipo: ForeignKey - Número único do ônibus
+            \item \textbf{geolocation} Tipo: PointField - Geolocalização do usuário no momento da resposta
+        \end{itemize}
+\end{description}
+
+\subsubsection{Serializadores}
+Para a criação da \gls{api} o \gls{drf} requer que o desenvolvedor crie um (ou mais) serializador(es) para cada classe que deseja expor e, em seguida, crie as views que utilizam esses serializadores no lugar dos ``\textit{models}''.
+
+Assim, para este \textit{app} foram criados os seguintes serializadores: %
+\begin{itemize}
+    \item \textit{BusCompaniesSerializer};
+    \item \textit{BusLineSerializer};
+    \item \textit{BusesSerializer};
+    \item \textit{EVALAnswerModelSerializer};
+    \item \textit{EVALQuestionSerializer};
+    \item \textit{EVALAnswerSerializer}
+\end{itemize}
+Todos eles foram criados como extensões da classe \textit{serializers.HyperlinkedModelSerializer}, o que faz com que a \gls{api} exposta faça o link entre objetos que são chave-estrangeira e o objeto que está sendo mostrado.
+
+\subsubsection{Camada de lógica de negócio (\textit{views})}\label{subsubsec:eval-camada-view}
+Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
+\begin{itemize}
+    \item \textit{BusCompanyViewSet};
+    \item \textit{BusLineViewSet};
+    \item \textit{BusesViewSet};
+    \item \textit{EVALAnswerModelViewSet};
+    \item \textit{EVALQuestionViewSet};
+    \item \textit{EVALAnswerViewSet}
+\end{itemize}
+Estas classes foram definidas como extensões da classe ViewSet do \gls{drf}, o que já contempla automaticamente a criação de \textit{views} para lista de resultados e também para um resultado único em cada visão. Além disso, é na definição destas classes que podemos especificar as permissões de acesso, caso desejamos uma diferente da default configurada.
+
+\subsubsection{Camada de Template e URLs}
+Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
+
+\subsubsection{Camada de Adminsitração}
+O \gls{django} oferece por padrão um módulo de administração da aplicação, bastando ativá-lo no arquivo de configurações. Em seguida, para cada \textit{app} é necessário registrar quais são as classes (do modelo) que estadão disponíveis para administração, e, eventualmente, fazer alguma personalização na forma como a mesma é exposta.
+
+No caso deste \textit{app} todas as classes foram expostas e ainda adicionou-se uma configuração para que a informação georreferenciada fosse apresentada num widget de mapa, ao invés de se apresentar uma coordenada apenas. Esta configuração encontra-se no arquivo \textit{admin.py} do \textit{app} e também está disponível no Anexo \ref{anexo:sources}.
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                              APP GPSSocial                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{APP GPSSocial}
+Agora veremos o \textit{app} responsável pelo mapa de GPS Social.
+
+\subsubsection{Camada de Acesso a Dados (\textit{model})}\label{subsubsec:gps-camada-model}
+Foram definidos os seguintes modelos, que representam classes, e que possuem os respectivos atributos:
+\begin{description}
+    \item[GEOLastPosition] - Tabela com a última posição de cada usuário
+        \begin{itemize}
+            \item \textbf{user} Tipo: ForeignKey - Usuário;
+            \item \textbf{geolocation} Tipo: PointField - Localização do usuário;
+            \item \textbf{timestamp} Tipo: DateTimeField - Horário do registro da localização.
+        \end{itemize}
+    \item[GEOHistoryPosition] - Histórico de localização de todos os usuários
+        \begin{itemize}
+            \item \textbf{user} Tipo: ForeignKey - Usuário;
+            \item \textbf{geolocation} Tipo: PointField - Localização do usuário;
+            \item \textbf{timestamp} Tipo: DateTimeField - Horário do registro da localização.
+        \end{itemize}
+\end{description}
+Optou-se por criar uma tabela com a última localização dos usuários para melhorar o desempenho nas consultas para o GPS social, reduzindo o número de registros a serem consultados para esta funcionalidade.
+
+\subsubsection{Serializadores}
+Para este \textit{app} foram criados os seguintes serializadores: %
+\begin{itemize}
+    \item \textit{GEOLastPositionSerializer};
+    \item \textit{GEOLastAnonPositionSerializer};
+    \item \textit{GEOHistoryPositionSerializer}.
+\end{itemize}
+Os serializadores \textit{GEOLastPositionSerializer} e \textit{GEOLastAnonPositionSerializer} são extensões da classe \mbox{\textit{GeoFeatureModelSerializer}} (do módulo \gls{drf}-geo), e o serializador \mbox{\textit{GEOHistoryPositionSerializer}} é uma extensão da classe \mbox{\textit{HyperlinkedModelSerializer}}.
+
+Aqui nota-se que há mais serializadores que classes no modelo. Isto ocorreu pois foi criado um serializador para oferecer as informações dos usuários de forma anonimizada, garantindo a privacidade dos usuários.
+
+\subsubsection{Camada de lógica de negócio (\textit{views})}
+Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
+\begin{itemize}
+    \item \textit{GEOLastPositionViewSet};
+    \item \textit{LastUserPosition};
+    \item \textit{LastUsersAtPosition};
+    \item \textit{GEOHistoryPositionViewSet}
+\end{itemize}
+Aqui percebemos quatro classes. Duas classes padrões (\mbox{\textit{GEOLastPositionViewSet}} e \mbox{\textit{GEOHistoryPositionViewSet}}), que basicamente expõe os dados dos respectivos modelos, e duas classes mais específicas. Em ambos os casos, se o usuário não é administrador ele não tem como saber a qual usuário cada registro está vinculado (a informação é anonimizada).
+
+A classe \textit{LastUserPosition}, que estará vinculada a uma URL que permitirá obter a última posição de um determinado usuário, por seu username. 
+
+E a classe \textit{LastUsersAtPosition}, que retorna os registros (anonimizados) que estão a uma distância pré-determinada de um determinado ponto (latitude e longitue) e que tenha sido atualizado há menos de uma hora.
+
+\subsubsection{Camada de Template e URLs}
+Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
+
+\subsubsection{Camada de Adminsitração}
+Neste \textit{app} foram expostas as duas classes do ``modelo''.
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                 APP Game                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{APP Game}
+Agora veremos o \textit{app} responsável pelo game.
+%TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO
+\subsubsection{Camada de Acesso a Dados (\textit{model})}
+Foram definidos os seguintes modelos, que representam classes, e que possuem os respectivos atributos:
+\begin{description}
+    \item[GameCoinModel] - 
+        \begin{itemize}
+            \item \textbf{name} Tipo: CharField - ;
+            \item \textbf{value} Tipo: PositiveIntegerField - ;
+            \item \textbf{enabled} Tipo: BooleanField - .
+        \end{itemize}
+    \item[GameFinance] - 
+        \begin{itemize}
+            \item \textbf{user} Tipo: ForeignKey - ;
+            \item \textbf{coin\_model} Tipo: ForeignKey - ;
+            \item \textbf{amount} Tipo: PositiveIntegerField - .
+        \end{itemize}
+    \item[BusBrand] - 
+        \begin{itemize}
+            \item \textbf{label} Tipo: CharField - ;
+            \item \textbf{name} Tipo: CharField - ;
+            \item \textbf{logo} Tipo: ImageField - ;
+            \item \textbf{enabled} Tipo: BooleanField - .
+        \end{itemize}
+    \item[GameBusModel] - 
+        \begin{itemize}
+            \item \textbf{name} Tipo: CharField - ;
+            \item \textbf{bus\_brand} Tipo: ManyToManyField - ;
+            \item \textbf{efficiency} Tipo: PositiveIntegerField - ;
+            \item \textbf{price} Tipo: PositiveIntegerField - .
+        \end{itemize}
+    \item[GameBusAvailability] - 
+        \begin{itemize}
+            \item \textbf{bus\_model} Tipo: ForeignKey - ;
+            \item \textbf{available\_buses} Tipo: PositiveIntegerField - .
+        \end{itemize}
+    \item[GamePersonalBusFleet] - 
+        \begin{itemize}
+            \item \textbf{user} Tipo: ForeignKey - ;
+            \item \textbf{bus\_model} Tipo: ForeignKey - ;
+            \item \textbf{amount} Tipo: PositiveIntegerField - ;
+            \item \textbf{last\_payment} Tipo: DateTimeField - .
+        \end{itemize}
+\end{description}
+Optou-se por criar uma tabela com a última localização dos usuários para melhorar o desempenho nas consultas para o GPS social, reduzindo o número de registros a serem consultados para esta funcionalidade.
+
+\subsubsection{Serializadores}
+Para este \textit{app} foram criados os seguintes serializadores: %
+\begin{itemize}
+    \item \textit{};
+    \item \textit{};
+    \item \textit{}.
+\end{itemize}
+Os serializadores \textit{GEOLastPositionSerializer} e \textit{GEOLastAnonPositionSerializer} são extensões da classe \mbox{\textit{GeoFeatureModelSerializer}} (do módulo \gls{drf}-geo), e o serializador \mbox{\textit{GEOHistoryPositionSerializer}} é uma extensão da classe \mbox{\textit{HyperlinkedModelSerializer}}.
+
+Aqui nota-se que há mais serializadores que classes no modelo. Isto ocorreu pois foi criado um serializador para oferecer as informações dos usuários de forma anonimizada, garantindo a privacidade dos usuários.
+
+\subsubsection{Camada de lógica de negócio (\textit{views})}
+Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
+\begin{itemize}
+    \item \textit{};
+    \item \textit{};
+    \item \textit{};
+    \item \textit{}
+\end{itemize}
+Aqui percebemos quatro classes. Duas classes padrões (\mbox{\textit{GEOLastPositionViewSet}} e \mbox{\textit{GEOHistoryPositionViewSet}}), que basicamente expõe os dados dos respectivos modelos, e duas classes mais específicas. Em ambos os casos, se o usuário não é administrador ele não tem como saber a qual usuário cada registro está vinculado (a informação é anonimizada).
+
+A classe \textit{LastUserPosition}, que estará vinculada a uma URL que permitirá obter a última posição de um determinado usuário, por seu username. 
+
+E a classe \textit{LastUsersAtPosition}, que retorna os registros (anonimizados) que estão a uma distância pré-determinada de um determinado ponto (latitude e longitue) e que tenha sido atualizado há menos de uma hora.
+
+\subsubsection{Camada de Template e URLs}
+Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
+
+\subsubsection{Camada de Adminsitração}
+Neste \textit{app} foram expostas as duas classes do ``modelo''.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Aplicativo Mobile}\label{sec:spec-appmobile}
