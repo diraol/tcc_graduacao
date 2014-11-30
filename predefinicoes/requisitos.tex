@@ -128,12 +128,12 @@
     \ifstrequal{#1}{funcional}{%
         \stepcounter{indiceFuncional}%
         %\ReqLabel{RF\theindiceFuncional}%
-        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RF\theindiceFuncional~ (\hypertarget{rf-\CmdReqLabel}{rf-\CmdReqLabel})} & (X) Funcional & ( ) Não Funcional \\}
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} \hypertarget{rf-\CmdReqLabel}{RF\theindiceFuncional}} & (X) Funcional & ( ) Não Funcional \\}
         \AppendRequisitoFunc{RF\theindiceFuncional}{\CmdReqLabel}{\CmdReqNome}
     }{%
         \stepcounter{indiceNaoFuncional}%
         \ReqLabel{RNF\theindiceNaoFuncional}%
-        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} RNF\theindiceNaoFuncional~ (\hypertarget{rnf-\CmdReqLabel}{rnf-\CmdReqLabel})} & ( ) Funcional & (X) Não Funcional \\}
+        \renewcommand{\CmdReqTipo}{\multicolumn{3}{|l|}{\textbf{No:} \hypertarget{rnf-\CmdReqLabel}{RNF\theindiceNaoFuncional}} & ( ) Funcional & (X) Não Funcional \\}
         \AppendRequisitoNFunc{RNF\theindiceNaoFuncional}{\CmdReqLabel}{\CmdReqNome}
     }
 }
@@ -214,14 +214,14 @@
                         \espacoVert%
                     \end{minipage}%
                 } \\%
-            \hline%
-                \textbf{Prioridade:} & \CmdReqPrioridade%
-            \hline%
-                \textbf{Status:} & \CmdReqStatus%
-            \hline%
-                \textbf{Estabilidade:} & \CmdReqEstabilidade%
-            \hline%
-                \textbf{Origem:} & \CmdReqOrigem%
+%            \hline%
+%                \textbf{Prioridade:} & \CmdReqPrioridade%
+%            \hline%
+%                \textbf{Status:} & \CmdReqStatus%
+%            \hline%
+%                \textbf{Estabilidade:} & \CmdReqEstabilidade%
+%            \hline%
+%                \textbf{Origem:} & \CmdReqOrigem%
             \hline%
                 \multicolumn{5}{|l|}{%
                     \begin{minipage}{1\textwidth}%
@@ -230,20 +230,20 @@
                         \espacoVert%
                     \end{minipage}%
                 } \\%
-            \hline%
-                \multicolumn{5}{|l|}{%
-                    \begin{minipage}{1\textwidth}%
-                        \espacoVert%
-                        \textbf{Requisitos Associados:} \CmdReqAssoc%#9%
-                        \espacoVert%
-                     \end{minipage}%
-                 } \\%
+%            \hline%
+%                \multicolumn{5}{|l|}{%
+%                    \begin{minipage}{1\textwidth}%
+%                        \espacoVert%
+%                        \textbf{Requisitos Associados:} \CmdReqAssoc%#9%
+%                        \espacoVert%
+%                     \end{minipage}%
+%                 } \\%
              \hline%
         \end{tabular}
-     \end{table}     
+     \end{table}%
     \stepcounter{clearPageCounter}
-    \ifnum\value{clearPageCounter} = 3%
-        \clearpage%
+    \ifnum\value{clearPageCounter} = 9%
+        %\clearpage%
         \setcounter{clearPageCounter}{0}%
     \fi
 }% FIM DO COMMAND CriaRequisito
