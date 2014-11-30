@@ -1,10 +1,11 @@
 \section{Requisitos Funcionais}\label{sec:RF}
 Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que devem ser satisfeitos. Estes requisitos devem ainda ser indicados no pr\'oprio código fonte do projeto, assim como nos testes que verifiquem o requisito.
 \StartReqFunc
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Cadastrar usu\noexpand\'ario}%Nome
+    \ReqNome{Cadastrar usu\unexpanded{\'a}rio}%Nome
     \ReqLabel{cad-usu}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{O usu\'ario realiza seu cadastro na plataforma.}%Desc.
@@ -15,8 +16,9 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
     \ReqRationale{Permite realizar um ``tracking'' do hist\'orico dos usu\'arios para oferecer informa\c{c}\~oes mais precisas, al\'em de permitir que o usu\'ario utilize o ``game'', que demanda um ac\'umulo de participa\c{c}\~ao na plataforma.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Realizar login}%Nome
     \ReqLabel{login}%Label
@@ -29,8 +31,9 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
     \ReqRationale{M\'etodo que previne que pessoas n\~ao autorizadas tenham acesso \'as funcionalidades do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqAssoc{Realizar login social}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Realizar login social}%Nome
     \ReqLabel{login-social}%Label
@@ -40,11 +43,12 @@ Nesta se\c{c}\~ao s\~ao apresentados os Requisitos Funcionais do \trilhasp~que d
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
     \ReqOrigem{usuario}%Origem
-    \ReqRationale{Para aumentar a facilidade de acesso \`a plataforma \'e fundamental permitir que os usu\'arios acessem o sistema utilizando sistemas de autentica\c{c}\~ao cruzada com redes sociais, principalmente \textit{Facebook}, \textit{Twitter} e \textit{Google}.}%Rationale
+    \ReqRationale{Para aumentar a facilidade de acesso \`a plataforma \'e fundamental permitir que os usu\'arios acessem o sistema utilizando sistemas de autentica\c{c}\~ao cruzada com redes sociais, principalmente \textit{Facebook}, \textit{Twitter} e \textit{Google}. Ao realizar o login social a aplicação deve verificar o email do usuário e, caso já esteja cadastrado no sistema, deve integrar os usuários.}%Rationale
     \ReqAssoc{Realizar Login}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Realizar logout}%Nome
     \ReqLabel{logout}%Label
@@ -59,8 +63,9 @@ n\~ao autorizadas tenham acesso a certas fun\c{c}\~oes do sistema.}%Desc.
 do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqAssoc{Realizar Login}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Recuperar senha}%Nome
     \ReqLabel{rec-senha}%Label
@@ -70,13 +75,14 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
     \ReqOrigem{usuario}%Origem
-    \ReqRationale{Apesar de o padrão previsto ser que os usuários acessem o sistema utilizando login de redes sociais, ao menos os administradores possuirão logins "locais". Dessa forma, é importante haver a possibilidade de redefinir a senha caso a mesma seja esquecida.}%Rationale
+    \ReqRationale{Apesar de o padrão previsto ser que os usuários acessem o sistema utilizando login de redes sociais, ao menos os administradores possuirão logins ``locais''. Dessa forma, é importante haver a possibilidade de redefinir a senha caso a mesma seja esquecida.}%Rationale
     \ReqAssoc{Realizar Login}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Coletar posicionamento do usu\noexpand\'ario}%Nome
+    \ReqNome{Coletar posicionamento do usu\unexpanded{\'a}rio}%Nome
     \ReqLabel{posic-usu}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{O ``sistema'' deve coletar a informa\c{c}\~ao de geolocaliza\c{c}\~ao do usu\'ario, usando GPS e outros m\'etodos como Triangula\c{c}\~ao via 3G [usar API de geolocaliza\c{c}\~ao do HTML5] e salvar essa informação a cada 2 minutos nas duas tabelas do módulo \textbf{GPS Social}.}%Desc.
@@ -87,10 +93,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Para ter o registro de localização dos usuários, tanto para mostrar o mapa em tempo real de demanda nos pontos quanto para ter um histórico da demanda em cada ponto, por dia e horário, para futuras análises e relatórios do sistema e também para registro da localização no momento da avaliação do ônibus.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Mostrar usu\noexpand\'arios conectados no mapa}%Nome
+    \ReqNome{Mostrar usu\unexpanded{\'a}rios conectados no mapa}%Nome
     \ReqLabel{mapa-demanda}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Apresentar um mapa, centralizado na localidade do usuário, mostrando os pontos de ônibus da região e a quantidade de usuários aguardando em cada ponto.}%Desc.
@@ -101,10 +108,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Permite que o usuário tenha uma noção da demanda instantânea do sistema e possa tomar uma decisão mais consciente de quando ir para o ponto de ônibus.}%Rationale
     \ReqAssoc{Coletar posicionamento do usu\noexpand\'ario}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Identificar o \noexpand\^{o}nibus}%Nome
+    \ReqNome{Identificar o \unexpanded{\^o}nibus}%Nome
     \ReqLabel{ident-linha}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{O usu\'{a}rio seleciona a linha de \^{o}nibus que deseja avaliar tirando uma foto do \gls{qrcode} presente no \^{o}nibus.}%Desc.
@@ -115,10 +123,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{O usu\'{a}rio precisa conseguir selecionar o \^{o}nibus para poder avali\'{a}-lo.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~ao global}%Nome
+    \ReqNome{Realizar avalia\unexpanded{\c{c}}\unexpanded{\~a}o global}%Nome
     \ReqLabel{avalia-glob}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{O usu\'ario avalia globalmente o servi\c{c}o de transporte p\'ublico com uma nota numa escala cont\'{\i}nua, utilizando um \textit{slider}.}%Desc.
@@ -129,10 +138,13 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{É importante uma avalia\c{c}\~ao global, simples e direta, para o caso do usu\'ario n\~ao querer preencher todas as avalia\c{c}\~oes espec\'{\i}ficas. Al\'em disso, o uso da escala cont\'{\i}nua \'e importante pois far\'a com que a avalia\c{c}\~ao seja uma vari\'avel quantitativa, o que permitir\'a exprimir estat\'{\i}sticas simples como m\'edia e desvio padr\~ao.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+\clearpage
+\vfill
+%
 \begin{Requisito}
-    \ReqNome{Realizar avalia\noexpand\c\noexpand{c}\noexpand\~oes espec\noexpand\'\noexpand{\noexpand\i}ficas}%Nome
+    \ReqNome{Realizar avalia\unexpanded{\c{c}}\unexpanded{\~o}es espec\unexpanded{\'i}ficas}%Nome
     \ReqLabel{avalia-espec}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{O usu\'ario avalia cada um dos crit\'erios espec\'{\i}ficos definidos como uma nota numa escala cont\'{\i}nua para cada um, utilizando um \textit{slider}.}%Desc.
@@ -143,13 +155,14 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Os crit\'erios escolhidos ser\~ao de car\'ater subjetivo, crit\'erios estes que n\~ao seriam mensur\'aveis utilizando-se tecnologias de automa\c{c}\~ao. Al\'em disso, o uso da escala cont\'{\i}nua \'e importante pois far\'a com que a avalia\c{c}\~ao seja uma vari\'avel quantitativa, o que permitir\'a exprimir estat\'{\i}sticas simples como m\'edia e desvio padr\~ao.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Adicionar reclama\noexpand\c{c}\noexpand\~ao}%Nome
+    \ReqNome{Adicionar reclama\unexpanded{\c{c}}\unexpanded{\~a}o}%Nome
     \ReqLabel{adic-recl}%Label
     \ReqTipo{funcional}%Tipo
-    \ReqDescr{Para cada "nota" negativa que o usu\'ario d\'a ser\'a mostrado a ele uma caixa de texto para preenchimento de uma reclama\c{c}\~ao [opcional].}%Desc.
+    \ReqDescr{Para cada ``nota'' negativa que o usu\'ario d\'a ser\'a mostrado a ele uma caixa de texto para preenchimento de uma reclama\c{c}\~ao [opcional].}%Desc.
     \ReqPrioridade{alta}%Prioridade
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
@@ -157,10 +170,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Ser\'a permitido ao usu\'ario adicionar uma descri\c{c}\~ao do motivo pelo qual ele deu uma nota negativa para aquele determinado crit\'erio, permitindo assim identificar motivos de avalia\c{c}\~oes negativas para cada crit\'erio, o que ajuda na melhoria do servi\c{c}o prestado.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Enviar reclama\noexpand\c{c}\noexpand\~ao}%Nome
+    \ReqNome{Enviar reclama\unexpanded{\c{c}}\unexpanded{\~a}o}%Nome
     \ReqLabel{envia-recl}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Cada reclama\c{c}\~ao escrita dever\'a estar associada a um endere\c{c}o \'unico a ser enviado, via twitter, \`a \sptrans.}%Desc.
@@ -171,10 +185,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{É fundamental que o processo de avalia\c{c}\~ao e \textit{accountability} seja o mais p\'ublicos e transparentes poss\'{\i}veis. Dessa forma, conforme apresentado anteriormente \`a \sptrans, as reclama\c{c}\~oes ser\~ao postadas publicamente, com a utiliza\c{c}\~ao de algumas \textit{hashtags} espec\'{\i}ficas pr\'e-definidas para serem respondidas pelo \'org\~ao p\'ublicamente.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Configurar recompensas por avalia\noexpand\c{c}\noexpand\~ao realizada}%Nome
+    \ReqNome{Configurar recompensas por avalia\unexpanded{\c{c}}\unexpanded{\~a}o realizada}%Nome
     \ReqLabel{config-recomp}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Os administradores do sistema devem poder configurar quantas moedas ser\~ao dadas aos usu\'arios ap\'os estes realizarem avalia\c{c}\~oes do Servi\c{c}o de \^onibus. O administrador deve poder definir a recomepnsa ``por pergunta'' ou ``por conjunto de perguntas''.}%Desc.
@@ -185,8 +200,9 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{A modifica\c{c}\~ao do valor da recompensa por avali\c{c}\~ao deve estar dispon\'{\i}vel apenas para administradores do sistema, e deve ser de f\'acil realiza\c{c}\~ao.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Verificar saldo de ``moedas''}%Nome
     \ReqLabel{ver-saldo}%Label
@@ -199,8 +215,9 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{O usuário precisa conseguir avaliar seu saldo de moedas.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
     \ReqNome{Verificar sua frota pessoal}%Nome
     \ReqLabel{ver-frota}%Label
@@ -213,13 +230,14 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{O usuário precisa conhecer sua frota pessoal.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Verificar o rendimento de cada \noexpand\^onibus}%Nome
+    \ReqNome{Verificar o rendimento de cada tipo de \unexpanded{\^o}nibus}%Nome
     \ReqLabel{ver-rend}%Label
     \ReqTipo{funcional}%Tipo
-    \ReqDescr{O usuário deve conseguir verificar o rendimento (em moedas) de cada ônibus de sua frota, por período de tempo.}%Desc.
+    \ReqDescr{O usuário deve conseguir verificar o rendimento (em moedas) de cada tipo ônibus de sua frota, por período de tempo.}%Desc.
     \ReqPrioridade{alta}%Prioridade
     \ReqStatus{aprovado}%Status
     \ReqEstabilidade{alta}%Estabilidade
@@ -227,10 +245,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{É importante o usuário avaliar cada carro de sua frota, considerando idade e rendimento, para saber se ele irá se desfazer (vender), fazer algum tipo de manutenção/melhoria ou comprar novos veículos.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Verificar o custo de cada tipo de \noexpand\^onibus}%Nome
+    \ReqNome{Verificar o custo de cada tipo de \unexpanded{\^o}nibus}%Nome
     \ReqLabel{ver-custo}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Os administradores do sistema devem poder configurar quantas moedas ser\~ao dadas aos usu\'arios ap\'os estes realizarem avalia\c{c}\~oes do Servi\c{c}o de \^onibus. O administrador deve poder definir a recomepnsa ``por pergunta'' ou ``por conjunto de perguntas''.}%Desc.
@@ -241,10 +260,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{A modifica\c{c}\~ao do valor da recompensa por avali\c{c}\~ao deve estar dispon\'{\i}vel apenas para administradores do sistema, e deve ser de f\'acil realiza\c{c}\~ao.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Comprar \noexpand\^onibus}%Nome
+    \ReqNome{Comprar \unexpanded{\^o}nibus}%Nome
     \ReqLabel{compra-onibus}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Permitir que o usuário compre novos ônibus para sua frota com suas moedas acumuladas.}%Desc.
@@ -255,10 +275,11 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{O usuário deve ter controle de sua frota.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
-
+%
 \vfill
+%
 \begin{Requisito}
-    \ReqNome{Definir custo dos \noexpand\^onibus}%Nome
+    \ReqNome{Definir custo dos \unexpanded{\^o}nibus}%Nome
     \ReqLabel{def-custo}%Label
     \ReqTipo{funcional}%Tipo
     \ReqDescr{Permitir aos administradores do site definir o preço de cada ônibus.}%Desc.
@@ -269,3 +290,5 @@ do sistema, em especial as que alteram o banco de dados.}%Rationale
     \ReqRationale{Os custos podem ser ajustados para permitir maior ou menor facilidade aos usuáiros adquirirem determinados tipos de ônibus.}%Rationale
     \ReqAssoc{}%Assoc
 \end{Requisito}
+\vfill
+\clearpage
