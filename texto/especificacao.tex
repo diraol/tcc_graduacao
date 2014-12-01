@@ -229,7 +229,6 @@ Neste \textit{app} foram expostas as duas classes do ``modelo'', sem nenhuma con
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{APP Game}
 Agora veremos o \textit{app} responsável pelo game.
-%TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO %TODO
 \subsubsection{Camada de Acesso a Dados (\textit{model})}
 Foram definidos os seguintes modelos, que representam classes, e seus respectivos atributos:
 \begin{description}
@@ -383,7 +382,7 @@ O passo seguinte é modificar o arquivo de configurações do \gls{django} (\tex
 \lstinputlisting[language=Python,firstline=23,lastline=27,caption={Configuração do Django para Produção}]{./codes/trilhasp/prod.settings.py.template}
 
 Em seguida foram criados os arquivos de configuração do servidor \gls{uwsgi}, sendo eles \textit{uwsgi\_params} e \textit{trilhasp\_uwsgi.ini}.
-O primeiro contém apenas algumas configurações padronizadas que não precisam ser alteradas (Anexo \ref{anexo:uwsgi-params}). Já o segundo, que serve para permitir a inicialização do servidor \gls{uwsgi} de forma automática com o boot do sistema operacional, contém configurações necessárias de serem personalizadas.
+O primeiro contém apenas algumas configurações padronizadas que não precisam ser alteradas (Anexo \ref{anexo:nginx-uwsgi}, Código \ref{anexo:uwsgi-params}). Já o segundo, que serve para permitir a inicialização do servidor \gls{uwsgi} de forma automática com o boot do sistema operacional, contém configurações necessárias de serem personalizadas.
 \lstinputlisting[firstline=1,lastline=22,caption={Configuração de inicialização do uwsgi}]{./codes/trilhasp_uwsgi.ini}
 
 Este arquivo ``\textit{trilhasp\_uwsgi.ini}''  precisa ainda ser linkado ``\textit{/etc/uwsgi/vassals}'' (talvez seja necessário criá-lo com e configurar o \textit{ownership} do diretório para o usuário e grupo \textit{www-data} do servidor web \gls{nginx}). Após é preciso adicionar a linha:
