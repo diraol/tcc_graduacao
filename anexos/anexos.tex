@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---
+\chapter{Tabela Resumo de Requisitos Funcionais}
+%% ---
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos funcionais}
+        \label{tab:reqFunc}
+        \PrintRequisitosFunc
+    \end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---
+\chapter{Tabela Resumo de Requisitos Não Funcionais}
+%% ---
+   \begin{table}[H]
+        \centering
+        \caption{Requisitos não funcionais}
+        \label{tab:reqNFunc}
+        \PrintRequisitosNFunc
+    \end{table}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---
+\chapter{Tabelas Resumo de Casos de Uso}
+%% ---
+\input{./anexos/tab-casos-de-uso}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---
+\chapter{Código fonte do backend}\label{anexos:sources}
+%% ---
+% Evitando que as listagens de código a seguir entrem para a "lista de códigos"
+\let\svaddcontentsline\addcontentsline
+\renewcommand\addcontentsline[3]{%
+  \ifthenelse{\equal{#1}{lol}}{}%
+  {\svaddcontentsline{#1}{#2}{#3}}}
+%
+\section{Arquivos de Setup}
+\subsection{Virtualenv, Django e PostgreSQL}
+\lstinputlisting[language={bash},caption={Setup do Virtulenv, Django e PostgreSQL}]{./codes/setup/debian_backend_venv.sh}
+\clearpage
+\subsection{Nginx e uWSGI}
+\lstinputlisting[language={bash},caption={Instalação do nginx e uWSGI}]{./codes/setup/setup_systemwide_startup.sh}
+\lstinputlisting[language={bash},caption={Arquivo de configuração do domínio no nginx}]{./codes/trilhasp_nginx.conf}
+\lstinputlisting[language={bash},caption={Arquivo de configuração do uWSGI}]{./codes/trilhasp_uwsgi.ini}
+\lstinputlisting[language={bash},caption={Arquivo de parâmetros do uWSGI}]{./codes/uwsgi_params}
+\clearpage
+\section{Arquivos do Projeto (Django)}
+\lstinputlisting[language={Python},caption={\textit{Settings} de produção do Django}]{./codes/trilhasp/prod.settings.py.template}
+\lstinputlisting[language={Python},caption={Configuração das URLs principais}]{./codes/trilhasp/urls.py}
+\clearpage
+\section{Arquivos do pacote ``utils''}
+\lstinputlisting[language={Python},caption={Funções de utilidades gerais}]{./codes/utils/util.py}
+\lstinputlisting[language={Python},caption={Serializadores do pacote ``utils''}]{./codes/utils/serializers.py}
+\lstinputlisting[language={Python},caption={\textit{Views} do pacote ``utils''}]{./codes/utils/views.py}
+\lstinputlisting[language={Python},caption={URLs da API Rest}]{./codes/utils/urls.py}
+
+\section{Arquivos do pacote ``GPS social''}
+\lstinputlisting[language={Python},caption={\textit{Models} do pacote ``GPS social''}]{./codes/demandmap/models.py}
+\lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``GPS social''}]{./codes/demandmap/admin.py}
+\lstinputlisting[language={Python},caption={Serializadores do pacote ``GPS social''}]{./codes/demandmap/serializers.py}
+\lstinputlisting[language={Python},caption={\textit{Views} do pacote ``GPS social''}]{./codes/demandmap/views.py}
+\clearpage
+\section{Arquivos do pacote ``Avaliação''}
+\lstinputlisting[language={Python},caption={\textit{Models} do pacote ``Avaliação''}]{./codes/evaluation/models.py}
+\lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``Avaliação''}]{./codes/evaluation/admin.py}
+\lstinputlisting[language={Python},caption={Serializadores do pacote ``Avaliação''}]{./codes/evaluation/serializers.py}
+\lstinputlisting[language={Python},caption={\textit{Views} do pacote ``Avaliação''}]{./codes/evaluation/views.py}
+\clearpage
+\section{Arquivos do pacote ``Game''}
+\lstinputlisting[language={Python},caption={\textit{Models} do pacote ``Game''}]{./codes/game/models.py}
+\lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``Game''}]{./codes/game/admin.py}
+\lstinputlisting[language={Python},caption={Serializadores do pacote ``Game''}]{./codes/game/serializers.py}
+\lstinputlisting[language={Python},caption={\textit{Views} do pacote ``Game''}]{./codes/game/views.py}
