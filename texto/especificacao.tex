@@ -403,38 +403,44 @@ Conforme exposto anteriormente, optou-se por utilizar um modelo de desenvolvimen
 O \textit{app mobile} foi definido em torno de 9 telas, sendo elas:
 
 \subsubsection{Login}
-    Uma tela de login na qual o usuário pode se cadastrar na plataforma ou realizar o login, com seu login da plataforma ou seus logins sociais (\textit{Facebook} e \textit{Google} até o presente momento.
+Uma tela de login na qual o usuário pode se cadastrar na plataforma ou realizar o login, com seu login da plataforma ou seus logins sociais (\textit{Facebook} e \textit{Google} até o presente momento.
     
 \subsubsection{Principal}
-    Uma tela principal, com informações sobre os recursos do aplicativo e o respectivo acesso aos mesmos.
+Uma tela principal, com informações sobre os recursos do aplicativo e o respectivo acesso aos mesmos.
     
 \subsubsection{QRCode}
-    A primeira tela do módulo de avaliação foi desenvolvida para que o usuário possa fotografar o \gls{qrcode} do ônibus e iniciar a avaliação do mesmo, conforme pode ser visto na Figura \ref{fig:print-qrcode}.
+A primeira tela do módulo de avaliação foi desenvolvida para que o usuário possa fotografar o \gls{qrcode} do ônibus e iniciar a avaliação do mesmo, conforme pode ser visto na Figura \ref{fig:print-qrcode}.
     
-    A leitura do \gls{qrcode} será realizada localmente no celular do usuário por meio de uma biblioteca javascript chamada jsqrcode\footnote{\url{https://github.com/LazarSoft/jsqrcode}}.
-    \diagramaRetrato{print-qrcode.png}{0.24}{Tela do leitor de QRCode}{print-qrcode}{Autoria Própria}{}    
+A leitura do \gls{qrcode} será realizada localmente no celular do usuário por meio de uma biblioteca javascript chamada jsqrcode\footnote{\url{https://github.com/LazarSoft/jsqrcode}}.
+\diagramaRetrato{print-qrcode.png}{0.24}{Tela do leitor de QRCode}{print-qrcode}{Autoria Própria}{}    
 
 \subsubsection{Avaliação Geral}
-    Após a escolher o ônibus a ser avaliado o usuário vai para a tela de avaliação geral, na qual dá a sua nota e, se ela for negativa, pode optar por descrever o motivo da nota negativa.
+Após a escolher o ônibus a ser avaliado o usuário vai para a tela de avaliação geral, na qual dá a sua nota e, se ela for negativa, pode optar por descrever o motivo da nota negativa, conforme pode ser observado na Figura \ref{fig:print-avgeral}.
+\diagramaRetrato{print-avgeral.png}{0.24}{Tela de Avaliação Geral}{print-avgeral}{Autoria Própria}{}
     
 \subsubsection{Avaliações Específicas}
-    Em seguida ele é direcionado para a página de avaliações específicas, que contém as 5 avaliações qualitativas definidas no sistema. Todas elas possuem apenas o ``\textit{slider}'' de avaliação. Caso o usuário insira alguma nota negativa, irá ser aberta uma caixa de texto. Apenas uma caixa de texto será apresentada por vez, respectiva à avaliação que o usuário está fazendo no momento. Isso para evitar um \textit{scroll} muito grande na tela. Além disso, também foi definido que todas as avaliações específicas ficariam na mesma página para dar ao usuário uma sensação de que ele terminará mais rapidamente as avaliações, incentivando-o a avalaiar. Após finalizar estas avaliações ele será direcionado à página principal.
+Em seguida ele é direcionado para a página de avaliações específicas, que contém as 5 avaliações qualitativas definidas no sistema. Todas elas possuem apenas o ``\textit{slider}'' de avaliação. Caso o usuário insira alguma nota negativa, irá ser aberta uma caixa de texto. Apenas uma caixa de texto será apresentada por vez, respectiva à avaliação que o usuário está fazendo no momento. Isso para evitar um \textit{scroll} muito grande na tela. Além disso, também foi definido que todas as avaliações específicas ficariam na mesma página para dar ao usuário uma sensação de que ele terminará mais rapidamente as avaliações, incentivando-o a avalaiar. Após finalizar estas avaliações ele será direcionado à página principal, conforme pode ser observado na Figura \ref{fig:print-avespec}.
+\diagramaRetrato{print-avespec.png}{0.24}{Tela de Avaliações Específicas}{print-avespec}{Autoria Própria}{}
     
 \subsubsection{Mapa}
-    Nesta tela será apresentado o mapa com todos os usuários conectados no momento.
+Nesta tela será apresentado o mapa com todos os usuários conectados no momento.
     
-    Para uma primeira implementação de rápida prototipagem foi utilizada a biblioteca de mapa oferecida pelo Google (Google Maps). Mas esta será trocada pela biblioteca leaflet.js\footnote{\url{http://leafletjs.com/}}, uma biblioteca javascript livre para produção de mapas, e também os tiles que serão utilizados não serão os oferecidos pelo Google, mas sim os produzidos pela Comunidade OpenStreetMap\footnote{\url{http://www.openstreetmap.org/about}}, que fornece o serviço gratuitamente e é construída por um esforço coletivo de milhares de pessoas.
-    
+Para uma primeira implementação de rápida prototipagem foi utilizada a biblioteca de mapa oferecida pelo Google (Google Maps). Mas esta será trocada pela biblioteca leaflet.js\footnote{\url{http://leafletjs.com/}}, uma biblioteca javascript livre para produção de mapas, e também os tiles que serão utilizados não serão os oferecidos pelo Google, mas sim os produzidos pela Comunidade OpenStreetMap\footnote{\url{http://www.openstreetmap.org/about}}, que fornece o serviço gratuitamente e é construída por um esforço coletivo de milhares de pessoas.
 \diagramaRetrato{print-mapa.png}{0.25}{Tela do Mapa GPS Social}{print-gps-social}{Autoria Própria}{}
     
 \subsubsection{Comprar ônibus}
-    Nesta tela será apresentado ao usuários os ônibus que ele pode comprar para montar sua frota, assim como seu saldo financeiro. Ele poderá optar pelo veículo que deseja adquirir e confirmar a compra. Em seguida ele será direcionado à tela para compartilhar a compra.
+Nesta tela será apresentado ao usuários os ônibus que ele pode comprar para montar sua frota, assim como seu saldo financeiro. Ele poderá optar pelo veículo que deseja adquirir e confirmar a compra. Em seguida ele será direcionado à tela para compartilhar a compra.
     
 \subsubsection{Compartilhar nas redes sociais}
-    Nesta página o usuário será convidado a compartilhar em suas redes sociais a compra que acabou de realizar.
+Nesta página o usuário será convidado a compartilhar em suas redes sociais a compra que acabou de realizar.
     
 \subsubsection{Perfil/Frota Atual}
-    Nesta página será apresentada ao usuário sua frota atual, quantos ônibus ele possui, de quais modelos, e quanto tempo falta para eles ``renderem'' e retornarem financeiramente ao usuário.
+Nesta página será apresentada ao usuário sua frota atual, quantos ônibus ele possui, de quais modelos, e quanto tempo falta para eles ``renderem'' e retornarem financeiramente ao usuário.
+
+\section{Background}
+É fundamental ainda que o aplicativo mobile esteja rodando em background no celular do usuário, para poder manter a informação de geolocalização atualizada e, no futuro, poder enviar notificações ao mesmo. Nas Figuras \ref{fig:print-bkg1} e \ref{fig:print-bkg2} é possível observar o \textit{app} rodando em background no celular.
+\diagramaRetrato{print-bkg1.png}{0.25}{Aplicativo Rodando em Background 1}{print-bkg1}{Autoria Própria}{}
+\diagramaRetrato{print-bkg2.png}{0.25}{Aplicativo Rodando em Background 2}{print-bkg2}{Autoria Própria}{}
 
 \include{./texto/especificacoes/requisitos-funcionais}
 \input{./texto/especificacoes/requisitos-nao-funcionais}
