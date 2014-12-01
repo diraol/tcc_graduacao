@@ -28,7 +28,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ---
-\chapter{Código fonte do backend}\label{anexos:sources}
+\chapter{Código fonte do backend}\label{anexo:sources}
 %% ---
 % Evitando que as listagens de código a seguir entrem para a "lista de códigos"
 \let\svaddcontentsline\addcontentsline
@@ -40,11 +40,11 @@
 \subsection{Virtualenv, Django e PostgreSQL}
 \lstinputlisting[language={bash},caption={Setup do Virtulenv, Django e PostgreSQL}]{./codes/setup/debian_backend_venv.sh}
 \clearpage
-\subsection{Nginx e uWSGI}
+\subsection{Nginx e uWSGI}\label{anexo:nginx-uwsgi}
 \lstinputlisting[language={bash},caption={Instalação do nginx e uWSGI}]{./codes/setup/setup_systemwide_startup.sh}
 \lstinputlisting[language={bash},caption={Arquivo de configuração do domínio no nginx}]{./codes/trilhasp_nginx.conf}
 \lstinputlisting[language={bash},caption={Arquivo de configuração do uWSGI}]{./codes/trilhasp_uwsgi.ini}
-\lstinputlisting[language={bash},caption={Arquivo de parâmetros do uWSGI}]{./codes/uwsgi_params}
+\lstinputlisting[language={bash},caption={Arquivo de parâmetros do uWSGI},label={anexo:uwsgi-params}]{./codes/uwsgi_params}
 \clearpage
 \section{Arquivos do Projeto \gls{django}}
 \lstinputlisting[language={Python},caption={\textit{Settings} de produção do Django}]{./codes/trilhasp/prod.settings.py.template}
