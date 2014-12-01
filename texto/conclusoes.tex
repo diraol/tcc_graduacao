@@ -1,13 +1,51 @@
-\section{Possíveis futuras funcionalidades}\label{sec:futuro}
+\section{Produtos Resultantes}
+Em termos de produtos, este projeto resultou num \textit{backend} de 3 aplicações independentes (\textbf{Avaliação}, \textbf{GPS social} e \textbf{Game}), todas encapsuladas num projeto do \textit{framework} \gls{django} e expostas numa \gls{api} \gls{rest}\footnote{confira a API em: \url{http://api.trilhasp.datapublika.com}}. Teve também como produto um aplicativo móvel híbrido, desenvolvido com o suporte dos \textit{frameworks} \gls{cordova}, \gls{ionic} e \gls{angular}, e que foi encapsulado, até o momento, para dispositivos Android. Este se comunica com o \textit{backend} por meio de chamadas AJAX diretamente na \gls{api} exposta.
+
+Além disso, todo o processo de deploy está documentado e foram criados scripts de instalação e configuração dos ambientes, permitindo a fácil reprodutibilidade do projeto, principalmente se for considerado o fato de que a aplicação está licenciada sob a licença Affero GPLv3 e esta monografia está sob a licença Creative Commons - Atribuição 4.0 Internacional, o que permite a reprodutibilidade e a expansão do projeto.
+
+\section{Aprendizados}
+Em termos de aprendizado este trabalho proporcionou a aplicação de diversos conceitos aprendidos durante o curso de graduação. Vale listar os conhecimentos de Engenharia de Software para modelagem de Bancos de Dados; o conceito de encapsulamento e segmentação de aplicações, advindos de teorias como SOAP visto em Engenharia de Informação; conceitos aprendidos nos laboratórios de Engenharia de Software, como a documentação do projeto e do código fonte e o reuso de código; o conceito de prototipagem, advindo também do Laboratório de Processadores II; dentre outros.
+
+Este trabalho também contribuiu sobremaneira para o aprimoramento de técnicas e tecnologias para seu autor. Destaco aqui os conhecimentos aprendidos com maior profundidade de \gls{api}'s, o conceito \gls{rest}, como integrar aplicações independentes (\textit{app mobile} e \textit{backend}) por meio da API, como realizar o \textit{setup} de um servidor web integrado a um servidor de aplicação.
+
+Cabe também colocar que este trabalho não foi desenvolvido em grupo, mas sim de forma individual. Isto permite uma maior flexibilidade de planejamento e de decisões a serem seguidas, mas também impõe um desafio de saber gerenciar o projeto todo e não oferecer tantas possibilidades de troca, ao se comparar com um trabalho em grupo. Porém este não é um ponto que considero ter sido falho na formação geral, visto que durante o curso de graduação muitos trabalhos foram executados em grupo.
+
+\section{Futuro do Projeto}\label{sec:futuro}
+Este projeto surgiu da participação deste autor, junto a outros integrantes do PoliGNU\footnote{PoliGNU, Grupo de Estudos de Software Livre da Poli-USP, \url{http://polignu.org}}, na I Hackathona do Ônibus promovida pela SPTrans em 2013\footnote{\url{http://www.prefeitura.sp.gov.br/cidade/secretarias/comunicacao/noticias/?p=160029}}. Há completo interesse em continuar seu desenvolvimento para além deste projeto de formatura, e a opoção por desenvolvê-lo enquanto um Software Livre faz parte desta previsão, permitindo que mais pessoas colaborem com ele no futuro.
+
+De sua participação na Hackathona do Ônibus surgiu o interesse da SPTrans, em nome de seu diretor Ciro Biderman, de incorporar e apoiar o projeto, o que será fundamental para, por exemplo, implementar o \gls{qrcode} nos ônibus da cidade, indo além dos \gls{qrcode}s já implantados em alguns pontos de ônibus, além, é claro, da fundamental participação na divulgação do projeto junto aos usuários da rede.
+
+Dessa forma, a seguir são listadas possibilidades de melhorias no aplicativo como um todo, com a incorporação de novos recursos.
 \subsection{Novos Módulos}\label{subsec:futuro-novos-mod}
- - API da SPTRANS
-  -- localizar ônibus
-  -- tempo de espera pelo ônibus
-  -- tempo previsto de trajeto
-  -- ônibus que passam pela localização atual
-  -- linhas que fazem um determinado trajeto, dado início e fim
-  -- Oferecimento de vantagens tarifárias a usuários que contribuem com avaliações e/ou vinculadas ao desempenho no game
+Uma possibildiade de incremento do aplicativo seria adicionar as funcionalidades já presentes em outros aplicativos de ônibus, consumindo diretamente a \gls{api} da SPTrans (``OlhoVivo'') e expondo as informações aos usuários como, por exemplo:
+\begin{itemize}
+    \item localizar ônibus;
+    \item tempo de espera pelo ônibus;
+    \item tempo previsto de trajeto;
+    \item ônibus que passam pela localização atual;
+    \item linhas que fazem um determinado trajeto, dado início e fim.
+\end{itemize}
 
-\subsection{Amplianção dos módulos atuais}\label{subsec:futuro-expansao-mod}
+Outra opção seria utilizar o processo de avaliação e de gamificação do aplicativo para permitir o oferecimento, pela SPTrans de vantagens tarifárias aos usuários que mais contribuem ou que possuem melhor desempenho no Game, incentivando uma maior participação.
 
-Não está no escopo de implementação deste projeto um ou mais módulos que permitam a integração do sistema com prestadores de serviço não ligados ao sistema de transporte. Um exemplo seria a integração com comércios próximos aos pontos de ônibus que poderiam oferecer descontos e ``promoções relâmpago'' para usuários de acordo com suas ``pontuações'' no game do aplicativo, enviando notificações das promoções aos celulares dos usuários próximos ao comércio.
+Quanto ao Game, existem diversas possibilidades de expansão para o mesmo, sendo que duas das mais relevantes pensadas são:
+\begin{itemize}
+    \item \textbf{\textit{Badges}} \hfill \\
+    Pode-se oferecer \textit{badges} (``medalhas'') aos usuários de acordo com suas avaliações. Como exemplo, o usuário que mais contribuir com a avaliação da linha de ônibus ``8012-10'' ganharia a medalha ``Amigão do ônibus ``8012-10''. Existem diversas outras possibilidades, e é um modelo já conhecido utilizado principalmente pelo aplicativo \textit{FourSquare}.
+    \item \textbf{Competição entre os usuários} \hfill \\
+    Neste caso os usuários poderiam competir entre si, cada um com sua frota, com seus contatos das redes sociais, numa espécie de ``simulador''.
+\end{itemize}
+
+O módulo de \textbf{GPS Social} também permite grandes melhorias, como, por exemplo, integrar informações dos comércios ao redor dos pontos de ônibus. Dessa forma, um comerciante poderia avaliar se a espera no ponto está muito grande enviar uma mensagem diretamente aos usuários do aplicativo que se encontram nas proximidades oferecendo alguma promoção. Esta integração com comércios da região pode fortalecer a economia local, auxiliar no controle de fluxo de demanda da rede de ônibus (melhor distribuir passageiros no tempo), além de ter grande potencial de auferir lucros para o aplicativo.
+Este módulo ainda se beneficiaria da adição dos recursos advindos da \gls{api} da SPTrans conforme exposto no início deste item.
+
+\subsection{Melhorias}
+Do ponto de vista do desenvolvimento da aplicação, seria fundamental a implementação de certificado de segurança para permitir comunicação criptografada entre o dispositivo móvel e a \gls{api}, aumentando a segurança da troca de informações.
+
+Também deve-se destacar que a base de dados conterá uma série de dados pessoais sensíveis dos usuários, como por exemplo seu histórico de localização, por isso é de fundamental importância para distribuí-lo ao grande público definir os termos de uso e de privacidade, além da implantação de recursos de segurança mais sofisticados e realizar testes de segurança, tanto na base de dados quanto no aplicativo móvel.
+
+Com relação ao financiamento, o próprio módulo de \textbf{Game} pode trazer recursos, com a venda de ``moedas'' que permitam aos usuários melhorar seus desempenhos no mesmo. Este é o principal modelo de remuneração de games nos dias de hoje, e exemplos com a mesma mecânica podem ser encontrados em aplicativos como ``Candy Crush'' (e os demais da mesma empresa) e ``Andry Birds''.
+
+\section{Considerações Finais}
+Por fim, a solução final produzida conseguiu atingir aos objetivos expostos incialmente, mesmo com as dificuldades de se desenvolver em apenas uma pessoa. Ela possui limitações, mas que podem ser facilmente superadas, e é um aplicativo com futuro promissor, tanto por seus recursos e possibilidades, quanto pelo fato de já ter despertado interesse da empresa de transporte público da Cidade de São Paulo, um dos maiores mercados do mundo, e com uma enorme base de usuários de telefonia móvel.
+
