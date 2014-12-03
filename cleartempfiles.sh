@@ -1,33 +1,26 @@
-rm default/pacotes-configuracoes.aux
-rm default/aparencia-pdf-final.aux
-rm default/pacotes.aux
-rm informacoes-gerais.aux
-rm monografia.acn
-rm monografia.acr
-rm monografia.alg
-rm monografia.aux
-rm monografia.bbl
-rm monografia.blg
-rm monografia.brf
-rm monografia.glg
-rm monografia.glo
-rm monografia.gls
-rm monografia.glsdefs
-rm monografia.idx
-rm monografia.ist
-rm monografia.lof
-rm monografia.log
-rm monografia.lot
-rm monografia.synctex.gz
-rm monografia.toc
-rm monografia.xdy
-rm predefinicoes/diagramas.aux
-rm predefinicoes/requisitos.aux
-rm predefinicoes/casos-de-uso.aux
-rm predefinicoes/gerais.aux
-rm predefinicoes/cores.aux
-rm tabRequisitos.aux
-rm tabRequisitos2.aux
-rm texto/especificacoes/avaliacoes.aux
-rm texto/especificacoes/casos-de-uso.aux
-rm texto/especificacoes/requisitos-nao-funcionais.aux
+#!/bin/bash
+find -name "*-eps-converted-to.pdf" -exec rm {} \;
+find -name "*.acn" -exec rm {} \;
+find -name "*.acr" -exec rm {} \;
+find -name "*.alg" -exec rm {} \;
+find -name "*.aux" -exec rm {} \;
+find -name "*.bak" -exec rm {} \;
+find -name "*.bbl" -exec rm {} \;
+find -name "*.blg" -exec rm {} \;
+find -name "*.brf" -exec rm {} \;
+find -name "*.glg" -exec rm {} \;
+find -name "*.glo" -exec rm {} \;
+find -name "*.gls" -exec rm {} \;
+find -name "*.glsdefs" -exec rm {} \;
+find -name "*.idx" -exec rm {} \;
+find -name "*.ilg" -exec rm {} \;
+find -name "*.ind" -exec rm {} \;
+find -name "*.ist" -exec rm {} \;
+find -name "*.lof" -exec rm {} \;
+find -name "*.log" -exec rm {} \;
+find -name "*.lol" -exec rm {} \;
+find -name "*.lot" -exec rm {} \;
+find -name "*.mw" -exec rm {} \;
+find -name "*.synctex.gz" -exec rm {} \;
+find -name "*.toc" -exec rm {} \;
+find -name "*.xdy" -exec rm {} \;
