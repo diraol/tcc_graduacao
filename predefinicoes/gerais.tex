@@ -31,10 +31,11 @@
 \newcommand{\trilhasp}{\textbf{\href{http://trilhasp.datapublika.com}{\#TrilhaSP}}}
 \hyphenation{TrilhaSP}
 
+
 %Needs xparse package
 \DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
   \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
-    description={#6},#1
+    description={#6},sort={#1},#1
   }
-  \newacronym[see={[Glossary: ]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+  \newacronym[see={[Glossário: ]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
 }
