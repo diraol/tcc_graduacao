@@ -1,5 +1,5 @@
 \chapter{Especificação}\label{chp:Especificação}
-O projeto foi desenvolvido para dispositivos móveis utilizando \textit{tecnologia de desenvolvimento híbrida}, visando facilitar o desenvolvimento e o deploy em diversas plataformas móveis. Neste capítulo descreveremos a especificação técnica do \textit{backend} e do aplicativo mobile do projeto.
+O projeto foi desenvolvido para dispositivos móveis utilizando \textit{tecnologia de desenvolvimento híbrida}, visando facilitar o desenvolvimento e o \textit{deploy} em diversas plataformas móveis. Neste capítulo descreveremos a especificação técnica do \textit{backend} e do aplicativo mobile do projeto.
 
 \section{Tecnologias do \textit{Backend}}\label{sec:spec-backend}
 Como solução de \textit{backend} foi utilizado o \textit{framework} \gls{django}, que utiliza a linguagem de programação \textbf{Python} e é organizado segundo a \textit{design pattern} \gls{mvt}, conforme pode ser visto nas Figuras \ref{fig:arqMVT} e \ref{fig:arqDjango}.%
@@ -16,22 +16,22 @@ Considerando tal arquitetura, foram desenvolvidos os 3 módulos principais já d
 
 A \gls{api} \gls{rest} foi implementada utilizando-se o pacote \gls{drf}\footnote{\url{http://www.django-rest-framework.org}}. Com o uso do \gls{drf} foi necessário desenvolver algumas classes serializadoras vinculadas aos modelos de dados que seriam expostos (\textit{models}), em seguida criar as respectivas \textit{views} e criar um \textit{Router} com as urls que seriam expostas. Sequer foi necessária a criação de templates, visto que o pacote já fornece um template padrão. O módulo expõe os dados no formato \gls{json}, para além da apresentação na interface web, sem que seja necessário qualquer desenvolvimento ou configuração.
 
-Foi utilizado também o pacote \gls{psa} para permitir a autenticação dos usuários com seus logins de redes sociais. Neste primeiro momento foram disponibilizados os logins via \textit{Facebook}\footnote{\url{https://developers.facebook.com/docs/facebook-login/v2.2}} e via \textit{Google Social Login}\footnote{\url{https://developers.google.com/+/web/signin/}}, ambos utilizando o protocolo de autenticação OAuth 2.0\footnote{\url{http://oauth.net/2/}}. Neste primeiro momento não foi utilizada a rede social \textit{Twitter} pois a mesma não disponibiliza o email do usuário ao realizar o login, o que impede que possamos vincular a conta da rede social com usuários já cadastrados.
+Foi utilizado também o pacote \gls{psa} para permitir a autenticação dos usuários com seus logins de redes sociais. Neste primeiro momento foram disponibilizados os logins via \textit{Facebook}\footnote{\url{https://developers.facebook.com/docs/facebook-login/v2.2}} e via \textit{Google Social Login}\footnote{\url{https://developers.google.com/+/web/signin/}}, ambos utilizando o protocolo de autenticação OAuth 2.0\footnote{\url{http://oauth.net/2/}}. Neste primeiro momento não foi utilizada a rede social \textit{Twitter} pois a mesma não disponibiliza o e-mail do usuário ao realizar o login, o que impede que possamos vincular a conta da rede social com usuários já cadastrados.
 
 Como o aplicativo lida com dados georreferenciados, para \gls{sgbd} foi escolhido o \textbf{PostgreSQL} com a extensão \textbf{PostGis}, visto que esta é a solução mais amplamente utilizada no mercado e com melhor suporte, além de ser a recomendada pelos desenvolvedores do \gls{django}, de sua extensão ``geo'' e da biblioteca python (\textit{gdal (Geospatial Data Abstraction Library)}). A solução escolhida permite inclusive realizar consultas utilizando critérios de geolocalização como, por exemplo, ``Selecionar todos os registros cuja localização se encontra num raio de X metros do ponto Y'', o que é fundamental para a criação do módulo \textbf{mapa}.
 
-O framework \gls{django} por si só não é um webserver - ele apenas possui um microserver para fins de teste e desenvolvimento; então faz-se necessário utilizar um webserver. No presente projeto optou-se pelo \gls{nginx}, o servidor web que tem crescido no ritmo mais acelerado dos que possuem pelo menos 1\% do mercado. Seu ritmo anual médio de crescimento de 2010 a 2014 43\%, e hoje ele já ocupa a segunda colocação como servidor mais utilizado na internet com 22,6\% do mercado, atrás apenas do Apache, que tem 59\% do mercado mas que tem perdido, em média, 3,71\% de \textit{market share} ao ano, conforme pode ser observado na Figura \ref{fig:nginxmarkershare}.
+O framework \gls{django} por si só não é um servidor web - ele apenas possui um micro-servidor para fins de teste e desenvolvimento; então faz-se necessário utilizar um servidor web. No presente projeto optou-se pelo \gls{nginx}, o servidor web que tem crescido no ritmo mais acelerado dos que possuem pelo menos 1\% do mercado. Seu ritmo anual médio de crescimento de 2010 a 2014 43\%, e hoje ele já ocupa a segunda colocação como servidor mais utilizado na internet com 22,6\% do mercado, atrás apenas do Apache, que tem 59\% do mercado mas que tem perdido, em média, 3,71\% de \textit{market share} ao ano, conforme pode ser observado na Figura \ref{fig:nginxmarkershare}.
 
 \diagramaRetrato{market_share_webservers.png}{0.55}{\textit{Market Share} de servidores web}{nginxmarkershare}{W3Techs - Web Technology Surveys {\footnotesize\url{http://w3techs.com/technologies/history_overview/web_server/ms/y}}}{}
 
-Além dessa grande exposição, e de possuir uma boa documentação\footnote{\url{http://nginx.org/en/docs/}}, outra vantagem é que ele consegue cumprir a função de webserver, proxy reverso e também possui recursos de \textit{load balance}, tornado-o uma ótima alternativa em termos de escalabilidade.
+Além dessa grande exposição, e de possuir uma boa documentação\footnote{\url{http://nginx.org/en/docs/}}, outra vantagem é que ele consegue cumprir a função de servidor web, proxy reverso e também possui recursos de \textit{load balance}, tornado-o uma ótima alternativa em termos de escalabilidade.
 
 O \gls{nginx} por si só não consegue "fornecer" diretamente a aplicação django, para tanto é preciso ainda mais um elemento, que é o servidor de aplicações. Para tanto, um dos que apresenta melhor desempenho nos dias de hoje para servir projetos que utilizam a linguagem de programação Python é o \gls{uwsgi}\footnote{\url{https://ivan-site.com/2012/09/benchmark-uwsgi-vs-gunicorn-for-async-workers/}}$^,$\footnote{\url{http://blog.kgriffs.com/2012/12/18/uwsgi-vs-gunicorn-vs-node-benchmarks.html}}$^,$\footnote{\url{http://www.peterbe.com/plog/fcgi-vs-gunicorn-vs-uwsgi}}. Dessa maneira, optamos pelo \gls{uwsgi} como servidor de aplicação trabalhando em conjunto com o \gls{nginx} como servidor web.
 
 Fica como sugestão para o futuro do projeto a utilização do servidor de cache \textit{varnish}\footnote{\url{https://www.varnish-cache.org/}}, conforme recomendado pela equipe do hosting DigitalOcean\footnote{\url{https://www.digitalocean.com/community/tutorials/how-to-scale-django-beyond-the-basics}}, para conseguir escalar o projeto sem precisar necessariamente de mais recursos de máquina.
 
 \section{Modelagem de Dados}\label{sec:diagrama-er}
-Na figura \ref{fig:DiagER} encontra-se a modelagem de dados realizada inicialmenten no projeto. Esta modelagem não leva em consideração as especificidades do \textit{framework} utilizado, e eventuais diferenças serão expostas na descrição dos \textit{apps}.
+Na figura \ref{fig:DiagER} encontra-se a modelagem de dados realizada inicialmente no projeto. Esta modelagem não leva em consideração as especificidades do \textit{framework} utilizado, e eventuais diferenças serão expostas na descrição dos \textit{apps}.
 \diagramaRetrato{diagramas_er_bds.eps}{1.2}{Diagrama Entidade Relacionamento}{DiagER}{Autoria Própria}{}
 
 \section{Implementação}\label{sec:estrutura-app}
@@ -65,7 +65,7 @@ Requisitos para a base de dados espaciais e sua integração com o Python: %
     \item\mbox{\textit{python-psycopg2}}
 \end{enumerate*}.
 
-Após instalados os pacotes, o script irá realizar a criação de um usuário \textit{trilhasp} no PostgreSQL, será requisitado ao usuário para inserir um \textit{password}, será criada a base de dados dentro do \gls{sgbd}, com encoding UTF-8, serão instaladas as extensões de georreferenciamento nesta base.
+Após instalados os pacotes, o script irá realizar a criação de um usuário \textit{trilhasp} no PostgreSQL, será requisitado ao usuário para inserir um \textit{password}, será criada a base de dados dentro do \gls{sgbd}, com codificação (\textit{encoding}) UTF-8, serão instaladas as extensões de georreferenciamento nesta base.
 
 Em seguida é instalado o pacote \textit{virtualenv} do \textbf{Python}, com o uso da ferramenta de gerenciamento de pacotes \textit{pip}, é criado um novo ambiente virtual (numa pasta chamada \textbf{venv}), que é ativado e no qual são instalados os demais \textit{requirements} de python, que ficam definidos no arquivo \textit{requirements.txt}.
 
@@ -163,7 +163,7 @@ Estas classes foram definidas como extensões da classe ViewSet do \gls{drf}, o 
 Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
 
 \subsubsection{Camada de Adminsitração}
-O \gls{django} oferece por padrão um módulo de administração da aplicação, bastando ativá-lo no arquivo de configurações. Em seguida, para cada \textit{app} é necessário registrar quais são as classes (do modelo) que estadão disponíveis para administração, e, eventualmente, fazer alguma personalização na forma como a mesma é exposta.
+O \gls{django} oferece por padrão um módulo de administração da aplicação, bastando ativá-lo no arquivo de configurações. Em seguida, para cada \textit{app} é necessário registrar quais são as classes (do modelo) que estarão disponíveis para administração, e, eventualmente, fazer alguma personalização na forma como a mesma é exposta.
 
 No caso deste \textit{app} todas as classes foram expostas e ainda adicionou-se uma configuração para que a informação georreferenciada fosse apresentada num widget de mapa, ao invés de se apresentar uma coordenada apenas. Esta configuração encontra-se no arquivo \textit{admin.py} do \textit{app} e também está disponível no Anexo \ref{anexo:sources}.
 
@@ -308,7 +308,7 @@ Neste \textit{app} foram expostas todas as classes padrão do \textit{app}.
 \subsection{Projeto Django}
 Aqui serão descritas as principais configurações do projeto do \gls{django} e também as produções necessárias para integrar os diversos apps.
 
-\subsubsection{Configurações do \gls{django}}
+\subsubsection{Configurações do Django}
 O projeto django possui um arquivo de configurações (\textit{settings.py}) que concentra as principais informações do framework, incluindo quais \textit{apps}/\textit{plugins}/\textit{módulos} serão utilizados e configurações dos mesmos.
 A seguir apresentamos tais configurações:
 \lstinputlisting[language=Python,firstline=32,lastline=46,caption={\textit{APPs} configuradas no projeto}]{./codes/trilhasp/dev.settings.py.template}
@@ -419,7 +419,7 @@ Após a escolher o ônibus a ser avaliado o usuário vai para a tela de avaliaç
 \diagramaRetrato{print-avgeral.png}{0.24}{Tela de Avaliação Geral}{print-avgeral}{Autoria Própria}{}
     
 \subsubsection{Avaliações Específicas}
-Em seguida ele é direcionado para a página de avaliações específicas, que contém as 5 avaliações qualitativas definidas no sistema. Todas elas possuem apenas o ``\textit{slider}'' de avaliação. Caso o usuário insira alguma nota negativa, irá ser aberta uma caixa de texto. Apenas uma caixa de texto será apresentada por vez, respectiva à avaliação que o usuário está fazendo no momento. Isso para evitar um \textit{scroll} muito grande na tela. Além disso, também foi definido que todas as avaliações específicas ficariam na mesma página para dar ao usuário uma sensação de que ele terminará mais rapidamente as avaliações, incentivando-o a avalaiar. Após finalizar estas avaliações ele será direcionado à página principal, conforme pode ser observado na Figura \ref{fig:print-avespec}.
+Em seguida ele é direcionado para a página de avaliações específicas, que contém as 5 avaliações qualitativas definidas no sistema. Todas elas possuem apenas o ``\textit{slider}'' de avaliação. Caso o usuário insira alguma nota negativa, irá ser aberta uma caixa de texto. Apenas uma caixa de texto será apresentada por vez, respectiva à avaliação que o usuário está fazendo no momento. Isso para evitar um \textit{scroll} muito grande na tela. Além disso, também foi definido que todas as avaliações específicas ficariam na mesma página para dar ao usuário uma sensação de que ele terminará mais rapidamente as avaliações, incentivando-o a avaliar. Após finalizar estas avaliações ele será direcionado à página principal, conforme pode ser observado na Figura \ref{fig:print-avespec}.
 \diagramaRetrato{print-avespec.png}{0.24}{Tela de Avaliações Específicas}{print-avespec}{Autoria Própria}{}
     
 \subsubsection{Mapa}
