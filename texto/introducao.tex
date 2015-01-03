@@ -1,21 +1,22 @@
 \chapter{Introdução}
 \label{chp:Introdução}
 
-\lettrine{A}{mobilidade urbana} é hoje um dos mais latentes problemas das grandes cidades de todo o mundo. Em 2010, considerando 439 áreas urbanas nos Estados Unidos, os congestionamentos fizeram com que os motoristas gastassem 4,8 bilhões de horas e comprassem 7.2 bilhões de litros de combustível além do necessário, a um custo de \$101 bilhões de dólares~\cite{Eisele2011}. Já em 2011, esses valores subiram para 5,5 bilhões de horas, 11 bilhões de litros de combustível e \$121 bilhões de dólares~\cite{Schrank2012}. 
+\lettrine{A}{mobilidade urbana} é hoje um dos mais latentes problemas das grandes cidades de todo o mundo. Em 2010, considerando 439 áreas urbanas nos Estados Unidos, os congestionamentos fizeram com que os motoristas gastassem 4,8 bilhões de horas e comprassem 7.2 bilhões de litros de combustível além do necessário, a um custo de \$101 bilhões de dólares \cite{Eisele2011}. Já em 2011, esses valores subiram para 5,5 bilhões de horas, 11 bilhões de litros de combustível e \$121 bilhões de dólares \cite{Schrank2012}. 
 Assim, percebe-se que não apenas são altos os custos sociais, ambientais e econômicos, como também estes são crescentes.
 
-A realidade brasileira não é muito diferente. De 2004 a 2007 o tempo de congestionamento de 4 das maiores cidades brasileiras (São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre) cresceu a uma taxa anual média de 16\%~\cite{resende2009}. Se considerarmos ainda as políticas públicas de incentivo ao mercado automobilístico, mais especificamente a redução do \gls{ipi} para automóveis implementadas em maio de 2012~\cite{brasil2011} e ainda vigentes~\cite{brasil2012}, pode-se esperar que o crescimento do índice de congestionamentos no período tenha sido até maior.
+A realidade brasileira não é muito diferente. De 2004 a 2007 o tempo de congestionamento de 4 das maiores cidades brasileiras (São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre) cresceu a uma taxa anual média de 16\% \cite{resende2009}. Se considerarmos ainda as políticas públicas de incentivo ao mercado automobilístico, mais especificamente a redução do \gls{ipi} para automóveis, implementadas em maio de 2012 \cite{brasil2011}, e ainda vigentes~\cite{brasil2012}, pode-se esperar que o crescimento dos congestionamentos no período tenha sido até maior.
 
-Para além dos congestionamentos, existem ainda outras externalidades comuns na área do transporte, como a poluição e os acidentes de trânsito~\cite{vasconcellos1998}. A poluição, por exemplo, implica graves problemas de saúde pública, como o aumento da incidência de problemas cardiopulmonares, como bronquite e asma~\cite{kunzli2000}, e o aumento dos índices de mortalidade~\cite{finkelstein2004}.
+Para além dos congestionamentos, existem ainda outras externalidades comuns na área do transporte, como a poluição e os acidentes de trânsito \cite{vasconcellos1998}. A poluição, por exemplo, implica graves problemas de saúde pública, como o aumento da incidência de problemas cardiopulmonares, como bronquite e asma \cite{kunzli2000}, e o aumento dos índices de mortalidade \cite{finkelstein2004}.
 Se essas externalidades possuem suas medidas de desempenhos já consagradas e já se estuda sobre as deseconomias que as causam, a externalidade relativa à insatisfação do usuário do transporte público é terreno ainda pouco explorado na área de desenvolvimento de software.
-Sobram evidências de que há questionamentos quanto à qualidade do serviço prestado~\cite{UrbanaPE2010,Rodrigues,Rodrigues2006,Cellos2012}. Segundo~\citeonline{cardoso2013}, o reajuste das tarifas de ônibus foi o estopim das manifestações de junho de 2013, porém as insatisfações não se limitavam a elas, mas permeavam também a qualidade do serviço prestado como um todo. Bastante polêmicas e controversas, mesmo assim ainda podendo ser entendidas sob esse prisma, estão diversas queimas de ônibus como forma de protesto contra a má-qualidade do sistema. \citeonline{fora1999} apontam como uma das recomendações para se combater as deseconomias do transporte público haver financiamentos de estudos e projetos para melhor caracterizar ``condições atuais de transporte e trânsito para subsidiar projetos de melhoria''.
+Sobram evidências de que há questionamentos quanto à qualidade do serviço prestado \cite{UrbanaPE2010,Rodrigues,Rodrigues2006,Cellos2012}. Segundo \citeonline{cardoso2013}, o reajuste das tarifas de ônibus foi o estopim das manifestações de junho de 2013, porém as insatisfações não se limitavam a isso, mas permeavam também a qualidade do serviço prestado como um todo. Bastante polêmicas e controversas, mesmo assim ainda podendo ser entendidas sob esse prisma, estão diversas queimas de ônibus como forma de protesto contra a má-qualidade do sistema. \citeonline{fora1999} apontam como uma das recomendações para se combater as deseconomias do transporte público haver financiamentos cujos produtos visem uma melhor caracterização das ``condições atuais de transporte e trânsito para subsidiar projetos de melhoria (dos mesmos)''.
+
 Aqui este projeto encontra sua motivação e respaldo. Hoje, graças à emergência de recursos tecnológicos de comunicações que utilizam conceitos como redes, geolocalização, comunicação multidirecional e outros, pode-se definir processos que unam com facilidade os extremos das cadeias de transporte e, assim, permitir um melhor planejamento e correções de rumo mesmo durante a execução do planejamento do sistema de transporte, melhorando a sua eficiência tanto para o poder público, quanto para usuários e prestadores de serviço.
 
 \section{Justificativa do projeto}\label{sec:justificativa}
-Atualmente existem diversos aplicativos que trabalham, majoritariamente, disponibilizando informações fornecidas pela SPTrans, por meio de sua \gls{api} para desenvolvedores\footnote{\url{http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx}}, aos usuários. 
-Isso se traduz em serviços de escolha de linha de ônibus, determinação de rotas e verificação de localização de ônibus e respectivo tempo estimado de chegada, e em alguns casos tempo estimado para se chegar ao destino escolhido.
+Atualmente existem diversos aplicativos que trabalham, majoritariamente, disponibilizando informações fornecidas pela \sptrans, por meio de sua \gls{api} para desenvolvedores\footnote{API da \sptrans para desenvolvedores: \url{http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx} Acesso em 01/04/2014}, aos usuários. 
+Isso se traduz em serviços de escolha de linha de ônibus, determinação de rotas e verificação de localização de ônibus com respectivo tempo estimado de chegada, e em alguns casos tempo estimado para se chegar ao destino escolhido.
 
-Entretanto, não foram encontrados aplicativo que permitissem a coleta de avaliação dos usuários sobre elementos-chaves do sistema que não são automaticamente mensuráveis. Assim, o \trilhasp~se propõe a suprir essa demanda captando a opinião do usuário no momento do uso do transporte, permitindo a geração de informações de \textit{feedback} úteis tanto para usuários quanto para a SPTrans, enquanto fiscalizadora do sistema, e para as concessionárias do sistema de transporte, permitindo um melhor controle da qualidade da operação.
+Entretanto, não foram encontrados aplicativos que permitissem a coleta de avaliação dos usuários sobre elementos-chaves do sistema que não são automaticamente mensuráveis. Assim, o \trilhasp~se propõe a suprir essa demanda captando a opinião do usuário no momento do uso do transporte, permitindo a geração de informações de \textit{feedback} úteis tanto para usuários quanto para a \sptrans, enquanto fiscalizadora do sistema, e para as concessionárias do sistema de transporte, permitindo um melhor controle da qualidade da operação.
 
 \section{Objetivos}\label{sec:objetivos}
 \subsection{Geral}\label{subsec:objGerais}
@@ -29,7 +30,7 @@ São objetivos específicos do projeto:
 \item melhorar a qualidade do serviço prestado;
 \item impactar na remuneração das empresas concessionárias do serviço de ônibus.
 \end{itemize}
-\item gerar informações que possam auxiliar os usuários a tomar melhores decisões sobre quando utilizar o sistema de ônibus;
+\item gerar informações que possam auxiliar os usuários a tomar melhores decisões sobre a utilização do sistema de ônibus;
 \item coletar dados que permitam uma análise mais acurada de demanda com localização e horário;
 \item estimular a educação e a conscientização dos usuários acerca do funcionamento do sistema público de transporte por ônibus.
 \end{itemize}
@@ -37,67 +38,17 @@ São objetivos específicos do projeto:
 \section{Escopo e critério de sucesso}\label{sec:Escopo}
 	Ao final deste projeto o software contará com três módulos, a saber:
 	\begin{itemize}%[\itshape a\upshape)]
-		\item \textbf{módulo avaliação}, para avaliar o sistema de transporte;
-		\item \textbf{módulo ``game''}, que terá as funções de oferecer um jogo que atraia e incentive a participação dos usuários e também sirva para um propósito pedagógico de conscientizar os usuários sobre a gestão de um sistema de transporte; e
-		\item \textbf{módulo ``gps social''}, que levantará informações de demanda do sistema de transporte e as fornecerá aos usuários em tempo real por meio de um mapa;
+		\item \textbf{módulo ``avaliação''}: para avaliar o sistema de transporte;
+		\item \textbf{módulo ``gps social''}: para levantar informações de demanda do sistema de transporte e as fornecer aos usuários, em tempo real\footnote{A expressão ``tempo real'' aqui é utilizada em termos de noção de tempo de um usuário que se desloca a pé, e não no conceito formal de ``tempo real'' da área de conhecimento da computação.}, por meio de um mapa; e
+		\item \textbf{módulo ``game''}: que terá as funções de atrair e incentivar a adesão dos usuários e também sirva a um propósito pedagógico de conscientizar os usuários sobre a gestão de um sistema de transporte;
 	\end{itemize}
-Será montada uma infraestrutura de \textit{backend}, com uma \gls{api} \gls{rest}, e um \textit{app mobile}, desenvolvido com tecnologia híbrida e que será empacotado para a plataforma Android.
 
-Espera-se que tanto \textit{backend} quanto \textit{frontend} estejam implementados e integrados e que os três módulos estejam funcionais. Para o módulo de game não são esperadas animações, simulações elaboradas ou mesmo interação entre diversos usuários no nível da mecânica do jogo.
+Para seu desenvolvimento será desenvolvido um servidor de aplicação e um aplicativo móvel, e estes se comunicarão por meio de uma \gls{api} \gls{rest}. Além disso, o aplicativo móvel será desenvolvido focado na plataforma \gls{android}.
+
+Espera-se que tanto o servidor de aplicação quanto aplicativo móvel estejam implementados e integrados e que os três módulos estejam funcionais. Para o módulo de game não são esperadas animações, simulações elaboradas ou mesmo interação entre diversos usuários no que tange à mecânica do jogo.
 
 \section{Não-escopo}\label{sec:NãoEscopo}
 Foi uma opção do projeto, neste primeiro momento, não inserir as funcionalidades já encontradas em praticamente todos os outros aplicativos e descritas no primeiro parágrafo deste item. Essas funcionalidades podem vir a ser adicionadas futuramente tornando o aplicativo mais completo, assim como são possíveis diversas evoluções, que serão exploradas na seção \ref{sec:futuro}.
-
-%\section{Stakeholders}\label{sec:stakeholders}
-%	Na matriz abaixo encontram-se os \emph{stakeholders} do projeto e seus respectivos poder e influência no projeto:
-%
-%	\bigskip
-%	\begin{table}[H]
-%	\centering
-%	\caption{Stakeholders, relacionamento, interesse e poder}
-%    \begin{tabular}{lccc}
-%      \toprule
-%      \headerCell{Parte interessada} &
-%      \begin{minipage}{0.2\textwidth}
-%        \espacoVert
-%        \headerCell{Relacionamento com o Projeto}
-%        \espacoVert
-%      \end{minipage} &
-%      \headerCell{Interesse (A/B)} &
-%      \headerCell{Poder (A/B)}\\
-%        
-%      \midrule
-%         
-%			\textbf{Diego Rabatone Oliveira} &
-%			Respons\'avel &
-%			A &
-%			A\\
-%			
-%			\textbf{Reginaldo Arakaki} &
-%			Orientador &
-%			A &
-%			A\\
-%
-%			\textbf{Haydée Svab} &
-%			Co-orientadora &
-%			A &
-%			A\\
-%
-%			\textbf{Prefeitura de São Paulo} &
-%			Interessada &
-%			B &
-%			B\\
-%			
-%			\textbf{SPTrans} &
-%			Interessada &
-%			B &
-%			B\\
-%
-%			\bottomrule
-%	\end{tabular}
-%	\end{table}
-
-%\bigskip
 
 \section{Restrições}\label{sec:restrições}
 Todo desenvolvimento será realizado utilizando licenças e tecnologias livres e possíveis integrações com softwares terceiros devem levar este fato em consideração, ou seja, será preciso que haja compatibilidade de licenças.
