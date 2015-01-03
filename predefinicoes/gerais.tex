@@ -21,8 +21,14 @@
 \newcommand{\headerFontStyle}{\sffamily\bfseries\color{white}}
 \newcommand{\headerCell}[1]{
   %\multicolumn{1}{c|}{\cellcolor{\headerColor}\textcolor{white}{\sffamily\bfseries{#1}}}
-  \cellcolor{\headerColor}\textcolor{white}{\sffamily\bfseries{#1}}
+  %\cellcolor{\headerColor}\textcolor{white}{\sffamily\bfseries{#1}}
+  \multicolumn{1}{c|}{\sffamily\bfseries{#1}}%
 }
+
+% Para centralizar células de tabelas
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
 
 \newcommand{\sptrans}{\textit{SPTrans}}
 \hyphenation{SPTrans}
@@ -32,7 +38,7 @@
 \hyphenation{TrilhaSP}
 
 
-%Needs xparse package
+%Needs xparse package - Dual Entry for glossary (glossary + acronym)
 \DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
   \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
     description={#6},sort={#1},#1

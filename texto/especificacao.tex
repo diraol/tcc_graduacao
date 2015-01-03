@@ -87,6 +87,8 @@ Nesta seção será descrita a rotina de implementação da infraestrutura de \t
 
 A implementação completa dos \textit{models}, das \textit{views}, \textit{serializers} e \textit{urls} pode ser encontrada no Anexo \ref{anexo:sources} ou no repositório oficial do projeto\footnote{Repositório Oficial do Projeto: \url{http://github.com/diraol/trilhasp} - Acessado em 15/12/2014}
 
+Com o objetivo de facilitar colaborações e outros trabalhos futuros, o código fonte do projeto utiliza como idioma padrão o inglês, desta forma, os \textit{apps}, módulos, as classes e os atributos utilizarão termos neste idioma que representam o que nesta monografia estiver descrito em português.
+
 \subsection{Setup Inicial}
 Para o \textit{setup} inicial do servidor foi criado um \textit{shell script} que realiza toda a instalação. Ele foi desenvolvido e testado para o sistema operacional \textbf{Debian Jessie (8.0)}.
 
@@ -122,75 +124,80 @@ Finalizando o \textit{setup} inicial do \gls{django}, o \textit{script} irá exe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                              APP AVALIAÇÃO                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Começaremos pelo \textit{app} responsável pela avaliação do sistema de transporte.
-
 \subsection{APP Avaliação}
+No código fonte do projeto este módulo foi chamado de \textit{evaluation}.
 
 \subsubsection{Camada de Acesso a Dados (\textit{model})}\label{subsubsec:eval-camada-model}
-Foram definidos os seguintes modelos, que representam classes, e que possuem os respectivos atributos:
-\begin{description}
-    \item[BusCompanies] - Empresa de ônibus
-        \begin{itemize}
-            \item \textbf{company\_name} Tipo: CharField - Nome da empresa
-            \item \textbf{logo} Tipo: ImageField - Logo da empresa
-        \end{itemize}
-    \item[BusLine] - Linha de ônibus
-        \begin{itemize}
-            \item \textbf{bus\_line\_code} Tipo: CharField - Código da linha de ônibus
-            \item \textbf{going\_bus\_name} Tipo: CharField - Nome do trajeto de ida
-            \item \textbf{return\_bus\_name} Tipo: CharField - Nome do trajeto de volta
-            \item \textbf{active} Tipo: BooleanField - Estado da linha (ativa ou desativa)
-            \item \textbf{company\_name} Tipo: ForeignKey - Empresa responsável pela linha
-        \end{itemize}
-        Chave primária composta: \textit{bus\_line\_code} e \textit{active}
-    \item[Buses] - Ônibus único
-        \begin{itemize}
-            \item \textbf{bus\_unique\_number} Tipo: IntegerField - Número único de cada ``carro'' (ônibus), pintado na lateral do mesmo.
-            \item \textbf{bus\_line\_code} Tipo: ForeignKey - Código da linha que este ônibus percorre
-            \item \textbf{active} Tipo: BooleanField - Estado da linha (ativa ou desativa)
-        \end{itemize}
-        Chave primária composta: \textit{bus\_unique\_number} e \textit{active}
-    \item[EVALAnswerModel] - Modelos de respostas
-        \begin{itemize}
-            \item \textbf{answer} Tipo: CharField - Texto explicativo deste tipo de resposta
-            \item \textbf{lower\_limit\_text} Tipo: CharField - Label do valor superior
-            \item \textbf{upper\_limit\_text} Tipo: CharField - Label do valor inferior
-            \item \textbf{middle\_text} Tipo: CharField - Label do valor central
-            \item \textbf{lower\_limit\_value} Tipo: IntegerField - Valor do limite inferior
-            \item \textbf{upper\_limit\_value} Tipo: IntegerField - Valor do limite superior
-            \item \textbf{middle\_value} Tipo: IntegerField - Valor central
-        \end{itemize}
-    \item[EVALQuestion] - Perguntas
-        \begin{itemize}
-            \item \textbf{question} Tipo: CharField - Texto da questão, que será mostrado ao usuário
-            \item \textbf{answer} Tipo: ForeignKey - Tipo da resposta para esta pergunta
-            \item \textbf{enabled} Tipo: Estado da pergunta (ativa ou desativa)
-        \end{itemize}
-    \item[EVALAnswer] - Respostas dos usuários
-        \begin{itemize}
-            \item \textbf{question} Tipo: ForeignKey - Questão
-            \item \textbf{user} Tipo: ForeignKey - Usuário respondente
-            \item \textbf{timestamp} Tipo: DateTimeField - Data e Horário da resposta
-            \item \textbf{answer\_value} Tipo: IntegerField - Valor numérico da resposta
-            \item \textbf{answer\_text} Tipo: CharField - Texto inserido pelo usuário (em caso de resposta abaixo do valor central)
-            \item \textbf{bus\_unique\_number} Tipo: ForeignKey - Número único do ônibus
-            \item \textbf{geolocation} Tipo: PointField - Geolocalização do usuário no momento da resposta
-        \end{itemize}
-\end{description}
+Neste \textit{app} foram criadas as classes:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item \textit{BusCompanies};
+    \item \textit{BusLine};
+    \item \textit{Buses};
+    \item \textit{EVALAnswerModel};
+    \item \textit{EVALQuestion}; e
+    \item \textit{EVALAnswer}
+\end{enumerate*}.
+A classe \textit{BusCompanies} contém dados sobre as empresas de ônibus, a classe \textit{BusLine} contém informações sobre as linhas de ônibus, a classe \textit{Buses} possui informações de cadastro dos veículos, a classe \textit{EVALAnswerModel} contém os modelos de respostas possíveis de serem dados e que serão vinculados a uma pergunta da classe \textit{EVALQuestion}, que contém as questões que estarão disponíveis aos usuários e, por fim, a classe \textit{EVALAnswer}, que armazenará as respostas (avaliações) dos usuários.
+
+Na Tabela \ref{tab:model-app-avaliacao} encontram-se os atributos de cada uma das classes, seus tipos e descrições:
+
+\begin{table}[htb]
+  \IBGEtab{%
+    \renewcommand{\arraystretch}{1.3}    
+    \caption{\textit{Model} do APP Avaliação \label{tab:model-app-avaliacao}}    
+  }{
+    \begin{tabular}{|P{2.9cm}|P{3.2cm}|P{2.5cm}|P{5.4cm}|}
+    \toprule
+        \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
+    \hline \hline
+        \multirow{2}{2.9cm}{BusCompanies} & company\_name & CharField & Nome da Empresa \\ \cline{2-4}
+        & logo & ImageField & Logo da empresa \\ \hline
+        \multirow{5}{2.9cm}{BusLine} & bus\_line\_code & CharField & Código da linha do ônibus \\ \cline{2-4}
+        & going\_bus\_name & CharField & Nome do trajeto de ida \\ \cline{2-4}
+        & return\_bus\_name & CharField & Nome do trajeto de volta \\ \cline{2-4}
+        & active & BooleanField & Estado da linha (ativa ou inativa) \\ \cline{2-4}
+        & company\_name & ForeignKey & Empresa responsável pela linha \\ \hline
+        \multirow{3}{2.9cm}{Buses} & bus\_unique\_number & IntegerField & Número único de cada veículo \\ \cline{2-4}
+        & bus\_line\_code & ForeignKey & Código da linha que este ônibus serve \\ \cline{2-4}
+        & active & BooleanField & Estado da linha (Ativa ou inativa) \\ \hline
+        \multirow{7}{2.9cm}{EVALAnswerModel} & answer & CharField & texto explicativo deste tipo de resposta \\ \cline{2-4}
+        & upper\_limit\_text & CharField & Label do valor superior\\ \cline{2-4}
+        & middle\_text & CharField & Label do valor central\\ \cline{2-4}
+        & lower\_limit\_text & CharField & Label do valor inferior\\ \cline{2-4}
+        & uppwer\_limit\_value & IntegerField & Valor do limite superior\\ \cline{2-4}
+        & middle\_value & IntegerField & Valor central\\ \cline{2-4}
+        & lower\_limit\_Value & IntegerField & Valor do limite inferior\\ \hline
+        \multirow{3}{2.9cm}{EVALQuestion} & question & CharField & Texto da questão que será apresentado ao usuário\\ \cline{2-4}
+        & answer & ForeignKey & Tipo da resposta para esta pergunta\\ \cline{2-4}
+        & enabled & BooleanField & Estado da pergunta (ativa ou inativa)\\ \hline
+        \multirow{7}{2.9cm}{EVALAnswer} & question & ForeignKey & Questão \\ \cline{2-4}
+        & user & ForeignKey & Usuário respondente\\ \cline{2-4}
+        & timestamp & DateTimeField & Data e horário da resposta\\ \cline{2-4}
+        & answer\_value & IntegerField & Valor numérico da resposta\\ \cline{2-4}
+        & answer\_text & CharField & Texto inserido pelo usuário\\ \cline{2-4}
+        & bus\_unique\_number & ForeignKey & Número único do ônibus\\ \cline{2-4}
+        & geolocation & PointField & Geolocalização do usuário no momento da resposta (ex.: \textit{POINT( lng lat )})\\
+    \bottomrule
+    \end{tabular}%
+  }{%
+    \fonte{Produzido pelo autor}
+  }
+\end{table}
 
 \subsubsection{Serializadores}
-Para a criação da \gls{api} o \gls{drf} requer que o desenvolvedor crie um (ou mais) serializador(es) para cada classe que deseja expor e, em seguida, crie as views que utilizam esses serializadores no lugar dos ``\textit{models}''.
-
-Assim, para este \textit{app} foram criados os seguintes serializadores: %
+Para a criação da \gls{api} o \gls{drf} requer que o desenvolvedor crie um (ou mais) serializador(es) para cada classe que se deseja expor e, em seguida, que sejam criadas as views que utilizam esses serializadores. Assim, para este \textit{app} foram criados os seguintes serializadores: %
 \begin{itemize}
     \item \textit{BusCompaniesSerializer};
     \item \textit{BusLineSerializer};
     \item \textit{BusesSerializer};
     \item \textit{EVALAnswerModelSerializer};
-    \item \textit{EVALQuestionSerializer};
-    \item \textit{EVALAnswerSerializer}
+    \item \textit{EVALQuestionSerializer}; e
+    \item \textit{EVALAnswerSerializer}.
 \end{itemize}
-Todos eles foram criados como extensões da classe \textit{serializers.HyperlinkedModelSerializer}, o que faz com que a \gls{api} exposta faça o link entre objetos que são chave-estrangeira e o objeto que está sendo mostrado.
+
+Todos eles foram criados como extensões da classe \textit{serializers.HyperlinkedModelSerializer}%
+\footnote{Classe \textit{HyperlinkedModelSerializer} - \url{http://www.django-rest-framework.org/api-guide/serializers/\#hyperlinkedmodelserializer} - Acesso em 15/09/2014}%
+, o que faz com que a \gls{api} exposta faça o link entre objetos que são chave-estrangeira e o objeto que está sendo mostrado. Além disso, no serializador \textit{BusesSerializer}, que serializa a classe \textit{BusLine} foi definido como ``campo de busca'' (\textit{lookup\_field}), ou ``campo de referência'', o atributo ``\textit{bus\_line\_code}'', de forma que a busca pelos ônibus na API possa ser realizada pelo código da linha de ônibus, ao invés de um parâmetro de id arbitrário.
 
 \subsubsection{Camada de lógica de negócio (\textit{views})}\label{subsubsec:eval-camada-view}
 Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
@@ -199,153 +206,218 @@ Esta camada irá expor os serializadores definidos anteriormente. As \textit{vie
     \item \textit{BusLineViewSet};
     \item \textit{BusesViewSet};
     \item \textit{EVALAnswerModelViewSet};
-    \item \textit{EVALQuestionViewSet};
-    \item \textit{EVALAnswerViewSet}
+    \item \textit{EVALQuestionViewSet}; e
+    \item \textit{EVALAnswerViewSet}.
 \end{itemize}
-Estas classes foram definidas como extensões da classe ViewSet do \gls{drf}, o que já contempla automaticamente a criação de \textit{views} para lista de resultados e também para um resultado único em cada visão. Além disso, é na definição destas classes que podemos especificar as permissões de acesso, caso desejamos uma diferente da default configurada.
 
-\subsubsection{Camada de Template e URLs}
-Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
+Estas classes foram definidas como extensões da classe ViewSet do \gls{drf}, o que já contempla automaticamente a criação de \textit{views} para lista de resultados e também para um resultado único em cada visão.
+
+Na definição destas classes podemos especificar quais campos serão expostos na \gls{api}, as permissões de acesso, caso se deseje uma diferente da presente no arquivo de configurações do \gls{django}. Outra opção que pode ser configurada nesta etapa é a definição de qual será o campo (atributo) que será utilizado para buscas, caso deseje-se algum diferente do padrão (chave primária da classe).
+
+Neste app apenas a classe \textit{BusLineViewSet} sofreu uma modificação para além do padrão. Nela foi definido o campo \textit{bus\_line\_code} como sendo o campo de busca dos objetos.
 
 \subsubsection{Camada de Adminsitração}
-O \gls{django} oferece por padrão um módulo de administração da aplicação, bastando ativá-lo no arquivo de configurações. Em seguida, para cada \textit{app} é necessário registrar quais são as classes (do modelo) que estarão disponíveis para administração, e, eventualmente, fazer alguma personalização na forma como a mesma é exposta.
+O \gls{django} oferece por padrão um módulo de administração da aplicação, bastando ativá-lo no arquivo de configurações. Em seguida, para cada \textit{app} é necessário registrar quais são as classes (do modelo) que estarão disponíveis para administração, e, eventualmente, fazer alguma personalização na forma como os campos/atributos da classe são apresentados no navegador.
 
-No caso deste \textit{app} todas as classes foram expostas e ainda adicionou-se uma configuração para que a informação georreferenciada fosse apresentada num widget de mapa, ao invés de se apresentar uma coordenada apenas. Esta configuração encontra-se no arquivo \textit{admin.py} do \textit{app} e também está disponível no Anexo \ref{anexo:sources}.
+No caso deste \textit{app} todas as classes foram expostas e ainda adicionou-se uma configuração para que a informação georreferenciada fosse apresentada num \textit{widget}%
+\footnote{Um \textit{widget} é um componente de interface gráfica de usuário. Um campo de texto é um \textit{widget} que apresenta informações no formato de texto. Podemos ainda ter \textit{widgets} do tipo \textit{range}, no qual o usuário escolhe um valor numérico num determinado intervalo, do tipo \textit{date}, no qual o usuário seleciona uma data, dentre outros.}
+de mapa, ao invés de se apresentar uma coordenada apenas. Esta configuração encontra-se no arquivo \textit{admin.py} do \textit{app} e também está disponível no Anexo \ref{anexo:sources}.
 
-\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                              APP GPSSocial                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{APP GPSSocial}
-Agora veremos o \textit{app} responsável pelo mapa de GPS Social.
+Agora veremos o \textit{app} responsável pelo mapa de GPS Social, chamado \textit{demandmap} na implementação do projeto.
 
 \subsubsection{Camada de Acesso a Dados (\textit{model})}\label{subsubsec:gps-camada-model}
-Foram definidos os seguintes modelos, que representam classes, e que possuem os respectivos atributos:
-\begin{description}
-    \item[GEOLastPosition] - Tabela com a última posição de cada usuário
-        \begin{itemize}
-            \item \textbf{user} Tipo: ForeignKey - Usuário;
-            \item \textbf{geolocation} Tipo: PointField - Localização do usuário;
-            \item \textbf{timestamp} Tipo: DateTimeField - Horário do registro da localização.
-        \end{itemize}
-    \item[GEOHistoryPosition] - Histórico de localização de todos os usuários
-        \begin{itemize}
-            \item \textbf{user} Tipo: ForeignKey - Usuário;
-            \item \textbf{geolocation} Tipo: PointField - Localização do usuário;
-            \item \textbf{timestamp} Tipo: DateTimeField - Horário do registro da localização.
-        \end{itemize}
-\end{description}
-Optou-se por criar uma tabela com a última localização dos usuários para melhorar o desempenho nas consultas para o GPS social, reduzindo o número de registros a serem consultados para esta funcionalidade.
+Neste \textit{app} foram criadas as seguintes classes:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item \textit{GEOHistoryPosition}; e
+    \item \textit{GEOLastPosition}
+\end{enumerate*}.
+Conforme dito anteriormente, a classe \textit{GEOHistoryPosition} armazena o histórico de localizações de todos os usuários, enquanto a classe \textit{GEOLastPosition} armazena apenas a última localização de cada usuário. O motivo desta escolha é para que se possa manter todo registro de localização dos usuários para fins de estudos e pesquisas sobre o comportamento dos mesmos, sem comprometer o desempenho da aplicação, que utilizará apenas a última localização.
+
+A seguir, na Tabela \ref{tab:model-app-gps-social}, são apresentados os atributos, seus tipos e descrições, para cada uma das classes:
+
+\begin{table}[htb]
+  \IBGEtab{%
+    \renewcommand{\arraystretch}{1.3}    
+    \caption{\textit{Model} do APP GPSSocial \label{tab:model-app-gps-social}}    
+  }{
+    \begin{tabular}{|P{3.1cm}|P{3cm}|P{2.5cm}|P{5.4cm}|}
+    \toprule
+        \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
+    \hline \hline
+        \multirow{3}{3.1cm}{GEOPositionHistory} & user & ForeignKey & Usuário \\ \cline{2-4}
+        & geolocation & PointField & Localização do Usuário\\ \cline{2-4}
+        & timestamp & DateTimeFIeld & Horário do registro\\ \hline
+        \multirow{3}{3.1cm}{GEOLastPosition} & user & ForeignKey & Usuário \\ \cline{2-4}
+        & geolocation & PointField & Última localização do Usuário\\ \cline{2-4}
+        & timestamp & DateTimeFIeld & Horário do registro\\
+    \bottomrule
+    \end{tabular}%
+  }{%
+    \fonte{Produzido pelo autor}
+  }
+\end{table}
 
 \subsubsection{Serializadores}
-Para este \textit{app} foram criados os seguintes serializadores: %
+Para este \textit{app} foram criados os seguintes serializadores:
 \begin{itemize}
     \item \textit{GEOLastPositionSerializer};
-    \item \textit{GEOLastAnonPositionSerializer};
+    \item \textit{GEOLastAnonPositionSerializer}; e
     \item \textit{GEOHistoryPositionSerializer}.
 \end{itemize}
-Os serializadores \textit{GEOLastPositionSerializer} e \textit{GEOLastAnonPositionSerializer} são extensões da classe \mbox{\textit{GeoFeatureModelSerializer}} (do módulo \gls{drf}-geo), e o serializador \mbox{\textit{GEOHistoryPositionSerializer}} é uma extensão da classe \mbox{\textit{HyperlinkedModelSerializer}}.
 
-Aqui nota-se que há mais serializadores que classes no modelo. Isto ocorreu pois foi criado um serializador para oferecer as informações dos usuários de forma anonimizada, garantindo a privacidade dos usuários.
+Os serializadores \textit{GEOLastPositionSerializer} e \textit{GEOLastAnonPositionSerializer} são extensões da classe \mbox{\textit{GeoFeatureModelSerializer}}%
+\footnote{Classe \textit{GeoFeatureModelSerializer} do módulo \textit{DjangoRestFramework-gis} - \url{https://pypi.python.org/pypi/djangorestframework-gis/0.2} - Acesso em 15/09/2014},
+e o serializador \mbox{\textit{GEOHistoryPositionSerializer}} é uma extensão da classe \mbox{\textit{HyperlinkedModelSerializer}}.
+
+Aqui nota-se que há mais serializadores que classes no modelo. Isto ocorreu pois foi criado um serializador (\textit{GEOLastAnonPositionSerializer}) para oferecer as informações dos usuários de forma anonimizada, garantindo a privacidade dos usuários. Esta anonimização foi feita escolhendo-se os campos que seriam apresentados pelo serializador, sendo que o campo \textit{user} não foi adicionado à lista. Além disso, nestes serializadores também foi necessário identificar o campo \textit{geolocation} como sendo um campo do tipo \textit{geo}, para que o serializador saiba a melhor forma de serializar estes dados.
+
+Outras duas mudanças realizadas nestes serializadores não anônimos foi a definição de que o campo de busca seria o \textit{username}.
 
 \subsubsection{Camada de lógica de negócio (\textit{views})}
-Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
+Aqui definem-se as \textit{views} criadas que servem para expor as classes serializadoras: %
 \begin{itemize}
     \item \textit{GEOLastPositionViewSet};
     \item \textit{LastUserPosition};
-    \item \textit{LastUsersAtPosition};
-    \item \textit{GEOHistoryPositionViewSet}
+    \item \textit{LastUsersAtPosition}; e
+    \item \textit{GEOHistoryPositionViewSet}.
 \end{itemize}
-Aqui percebemos quatro classes. Duas classes padrões (\mbox{\textit{GEOLastPositionViewSet}} e \mbox{\textit{GEOHistoryPositionViewSet}}), que basicamente expõe os dados dos respectivos modelos, e duas classes mais específicas. Em ambos os casos, se o usuário não é administrador ele não tem como saber a qual usuário cada registro está vinculado (a informação é anonimizada).
 
-A classe \textit{LastUserPosition}, que estará vinculada a uma URL que permitirá obter a última posição de um determinado usuário, por seu username. 
+Aqui novamente percebemos quatro classes. A classe \textit{GEOLastPositionViewSet} retorna todos os resultados da última localização de cada usuário%
+\footnote{Na classe \textit{GEOLastPositionViewSet} ainda é necessário definir o o horário para que se filtre os resultados, para que não se tenha resultados muito desatualizados. Este filtro ocorrerá no próprio \textit{queryset} da classe.}, sendo que se o usuário que requisitou a informação foi um administrador, os objetos retornados conterão o campo com o nome do usuário de cada registro, e se não for administrador não será retornado o campo com a informação de qual usuário é referente a cada registro.
 
-E a classe \textit{LastUsersAtPosition}, que retorna os registros (anonimizados) que estão a uma distância pré-determinada de um determinado ponto (latitude e longitue) e que tenha sido atualizado há menos de uma hora.
+O campo \textit{GEOHistoryPositionViewSet} não apresenta qualquer configuração especial. Já a classe \textit{LastUsersAtPosition} foi criada para retornar os registros (anonimizados sem o campo de usuário) ao redor de uma determinada posição que tenham sido atualizados na última hora%
+\footnote{Optou-se pela última hora apenas como exemplo, este valor pode ser ajustado, mas ainda está \textit{hardcoded}, o ideal é que fosse um dos parâmetros da requisição},
+enquanto a classe \textit{LastUserPosition} retorna a última localização de um determinado usuário, de acordo com seu \textit{username}.
 
-\subsubsection{Camada de Template e URLs}
-Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
-
-\subsubsection{Camada de Adminsitração}
-Neste \textit{app} foram expostas as duas classes do ``modelo'', sem nenhuma configuração adicional.
-
-\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                 APP Game                                %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{APP Game}
-Agora veremos o \textit{app} responsável pelo game.
+
 \subsubsection{Camada de Acesso a Dados (\textit{model})}
-Foram definidos os seguintes modelos, que representam classes, e seus respectivos atributos:
-\begin{description}
-    \item[GameCoinModel] - Modelos de moedas do jogo
-        \begin{itemize}
-            \item \textbf{name} Tipo: CharField - Nome descritivo da moeda;
-            \item \textbf{value} Tipo: PositiveIntegerField - Valor da moeda;
-            \item \textbf{enabled} Tipo: BooleanField - Estado da moeda (ativo ou desativado).
-        \end{itemize}
-    \item[GameFinance] - Classe que gerencia as finanças dos usuários
-        \begin{itemize}
-            \item \textbf{user} Tipo: ForeignKey - Chave estrangeira que identifica o usuário;
-            \item \textbf{coin\_model} Tipo: ForeignKey - Modelo da moeda ao qual o registro se refere;
-            \item \textbf{amount} Tipo: PositiveIntegerField - Quantidade de moedas que o usuário possui.
-        \end{itemize}
-    \item[BusBrand] - Marcas de ônibus existentes
-        \begin{itemize}
-            \item \textbf{label} Tipo: CharField - Nome curto da marca;
-            \item \textbf{name} Tipo: CharField - Nome completo da marca;
-            \item \textbf{logo} Tipo: ImageField - Logotipo da marca;
-            \item \textbf{enabled} Tipo: BooleanField - Estado da marca (ativa ou desativada).
-        \end{itemize}
-    \item[GameBusModel] - Modelos de ônibus existentes
-        \begin{itemize}
-            \item \textbf{name} Tipo: CharField - Nome do modelo;
-            \item \textbf{bus\_brand} Tipo: ManyToManyField - Marca que possui tal modelo;
-            \item \textbf{efficiency} Tipo: PositiveIntegerField - Eficiência do modelo (rendimento por hora);
-            \item \textbf{price} Tipo: PositiveIntegerField - preço do modelo de ônibus.
-        \end{itemize}
-    \item[GameBusAvailability] - Disponibilidade de ônibus para compra
-        \begin{itemize}
-            \item \textbf{bus\_model} Tipo: ForeignKey - Modelo do ônibus;
-            \item \textbf{available\_buses} Tipo: PositiveIntegerField - Quantidades desse modelo disponível para compra.
-        \end{itemize}
-    \item[GamePersonalBusFleet] - Gerenciamento da frota do usuário
-        \begin{itemize}
-            \item \textbf{user} Tipo: ForeignKey - Usuário;
-            \item \textbf{bus\_model} Tipo: ForeignKey - modelo do ônibus;
-            \item \textbf{amount} Tipo: PositiveIntegerField - Quantidade de ônibus que o usuário possui daquele tipo;
-            \item \textbf{last\_payment} Tipo: DateTimeField - Quando foi realizado o último ``pagamento'' (rendimento) ao usuário.
-        \end{itemize}
-\end{description}
+Neste app foram criadas as seguintes classes:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item \textit{GameCoinModel};
+    \item \textit{GameFinance};
+    \item \textit{BusBrand};
+    \item \textit{GameBusModel};
+    \item \textit{GameBusAvailability}; e
+    \item \textit{GamePersonalBusFleet}
+\end{enumerate*}.
+A Classe \textit{GameCoinModel} representa os tipos existentes de moedas no jogo, a classe \textit{GameFinance} representa as finanças dos usuários - quantas moedas de cada tipo o usuário possui; a classe \textit{BusBrand} contém as marcas de ônibus existentes. A classe \textit{GameBusModel} contém os modelos de ônibus disponíveis para serem comprados, enquanto a \textit{GameBusAvailability} contém a quantidade de cada um disponível para compra pelos usuários. Por fim, a classe \textit{GamePersonalBusFleet} contém quantos ônibus de cada tipo cada usuário possui, mantendo a informação da frota de cada usuário.
+
+Na tabela \ref{tab:model-app-game} encontram-se os atributos de cada uma das classes, seus tipos e descrições.
+
+\begin{table}[htb]
+  \IBGEtab{%
+    \renewcommand{\arraystretch}{1.3}    
+    \caption{\textit{Model} do APP Game \label{tab:model-app-game}}    
+  }{
+    \begin{tabular}{|P{3.5cm}|P{2.6cm}|P{2.4cm}|P{5.4cm}|}
+    \toprule
+        \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
+    \hline \hline
+        \multirow{3}{3.5cm}{GameCoindModel} & name & CharField & Nome descritivo da moeda \\ \cline{2-4}
+            & value & IntegerField & Valor (inteiro) da moeda\\ \cline{2-4}
+            & enabled & BooleanField & Se a moeda está ativa ou inativa\\ \hline
+        \multirow{3}{3.5cm}{GameFinance} & user & ForeignKey & Usuário \\ \cline{2-4}
+            & coin\_model & ForeignKey & Modelo da moeda\\ \cline{2-4}
+            & amount & IntegerField & Quantidade de moedas que o usuário possui\\ \hline
+        \multirow{4}{3.5cm}{BusBrand} & label & CharField & Nome curto da empresa\\ \cline{2-4}
+            & name & CharField & Nome completo da empresa\\ \cline{2-4}
+            & logo & ImageField & Logotipo da marca\\ \cline{2-4}
+            & enabled & BooleanField & Se o registro está ativo ou inativo\\ \hline
+        \multirow{4}{3.5cm}{GameBusModel} & name & CharField & Nome do modelo\\ \cline{2-4}
+            & bus\_brand & ForeignKey & Marca da empresa\\ \cline{2-4}
+            & efficiency & IntegerField & Rendimento por hora do modelo\\ \cline{2-4}
+            & price & IntegerField & Preço do modelo de ônibus\\ \hline
+        \multirow{2}{3.5cm}{GameBusAvailability} & bus\_model & ForeignKey & Modelo do ônibus\\ \cline{2-4}
+            & available\_buses & IntegerField & Quantidade do modelo disponível para venda\\ \hline
+        \multirow{4}{3.5cm}{GamePersonalBusFleet} & user & ForeignKey & Usuário\\ \cline{2-4}
+            & bus\_model & ForeignKey & Modelo do ônibus\\ \cline{2-4}
+            & amount & IntegerField & Quantidade de ônibus daquele modelo que o usuário possui\\ \cline{2-4}
+            & last\_payment & DateTimeField & Quando foi realizado o último ``pagamento'' ao usuário, referente a este tipo de ônibus\\
+    \bottomrule
+    \end{tabular}%
+  }{%
+    \fonte{Produzido pelo autor}
+  }
+\end{table}
 
 \subsubsection{Serializadores}
-Para este \textit{app} foram criados os seguintes serializadores: %
+Para este \textit{app} foram criados os seguintes serializadores:%
 \begin{itemize}
     \item \textit{GameCoinModelSerializaer};
     \item \textit{GameBusBrandSerializer};
     \item \textit{GameBusModelSerializer};
     \item \textit{GameBusAvailabilitySerializer};
-    \item \textit{GameFinanceSerializer};
+    \item \textit{GameFinanceSerializer}; e
     \item \textit{GamePersonalBusFleetSerializer}.
 \end{itemize}
-Até o presente momento não foi necessária nenhuma modificação nos serializadores, que não especificar o tipo de hyperlink do campo ``\textit{usuário}'' nos modelos que possuem tal campo.
+
+Até o presente momento a única modificação necessária dos serializadores se deu nas classes \textit{GameFinanceSerializer} e \textit{GamePersonalBusFleetSerializer}, de forma que o atributo \textit{user} fosse utilizado como campo de busca de registros.
 
 \subsubsection{Camada de lógica de negócio (\textit{views})}
-Esta camada irá expor os serializadores definidos anteriormente. As \textit{views} criadas foram: %
+As \textit{views} criadas foram: %
 \begin{itemize}
     \item \textit{GameCoinModelViewSet};
     \item \textit{GameBusBrandViewSet};
     \item \textit{GameBusModelViewSet};
     \item \textit{GameBusAvailabilityViewSet};
-    \item \textit{GamePersonalBusFleetViewSet};
+    \item \textit{GamePersonalBusFleetViewSet}; e
     \item \textit{GameFinanceViewSet}.
 \end{itemize}
-As classes \textit{GamePersonalBusFleetViewSet} e \textit{GameFinanceViewSet} retornam apenas os registros referentes ao usuário que está realizando a busca - portanto deve estar autenticado.
 
-\subsubsection{Camada de Template e URLs}
-Como não foi criada nenhuma ``página'' publicamente acessível, não foi necessária a criação de template - o \gls{drf} utiliza um template default para a \gls{api} no browser. Quanto às URLs, elas serão definidas no arquivo de URLs do projeto \gls{django}.
+Como as classes \textit{GamePersonalBusFleetViewSet} e \textit{GameFinanceViewSet} retornam apenas os registros referentes ao usuário que está realizando a busca - portanto este deve estar autenticado.
 
-\subsubsection{Camada de Adminsitração}
-Neste \textit{app} foram expostas todas as classes padrão do \textit{app}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                APP Utils                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{APP Utils}
+Este é o módulo que foi criado com o objetivo de unir os demais módulos do projeto.
+
+\subsubsection{Funções auxiliares}
+No arquivo \textit{util.py} foi criada uma classe adicional, baseada na classe padrão de permissões do módulo \gls{drf}, para que apenas usuários com permissões administrativas possam acessar informações pessoais, ou o próprio usuário. O nome desta classe é \textit{IsStaffOrTargetUser}, e ela foi utilizada nas \textit{views} anteriormente descritas.
+
+Outras ``funções'' auxiliares que possam vir a ser necessárias e não sejam restritas a um módulo específico devem ser adicionadas neste arquivo.
+
+\subsection{Serializadores}
+Aqui foi criado o serializador para a classe padrão do \gls{django} referente aos usuários do sistema. Esta classe serializadora foi nominada de \textit{UserSerializer}. Ela possui uma configuração para definir o campo de senha (\textit{password}) como somente leitura, de forma que a informação da senha nunca seja enviada ao \textit{frontend} ou via \gls{api}. Outra modificação realizada nesta classe foi a criação de uma função (\textit{restore\_object}) para salvar a senha (no caso de alteração) utilizando a função padrão \textit{set\_password}, evitando assim que a senha seja salva em texto plano.
+
+\subsubsection{Camada de lógica de negócio (\textit{views})}
+Nesta camada foi criada a view (\textit{UserView}) para o serializador \textit{UserSerializer}. Nesta foi definido que o campo de busca para encontrar registros seria o nome de usuário (\textit{username}), além da permissão para administradores e para o próprio usuário dono do registro.
+
+\subsection{Camada de Template}
+Assim como em todos os outros módulos, nenhuma alteração foi realizada em termos de templates, visto que todas as páginas irão utilizar o template default do módulo \gls{drf}.
+
+\subsection{URLs}\label{subsec:util-urls}
+Aqui estão descritas as configurações relativas aos endereços (\textit{endpoints}\footnote{\textit{endpoint} é o termo utilizado para designar um endereço válido de uma \gls{api} que irá retornar algum dado}) aos quais a \gls{api} irá responder.
+A maioria destes endereços foi definida utilizando a classe \textit{router} do próprio \textit{framework}, que se responsabiliza por criar todas as urls necessárias para cada \textit{view} registrada no \textit{router}, segundo um endereço inicial. Como alguns endereços foram criados fora do padrão básico do \textit{framework}, estes foram definidos seguindo o padrão de endereçamento do próprio \gls{django}.
+
+Para se registrar um endereço no \textit{router}, a sintaxe é:
+\begin{lstlisting}[language=Python,caption={Sintaxe padrão para registro de endereço no \textit{router}}]
+router.register(r'user', UserView)
+\end{lstlisting}
+No exemplo acima, a view UserView será acessada ao se realizar uma requisição no \textit{endpoint} \textbf{user}. No caso do projeto, tomando a url base como sendo \textit{http://api.trilhasp.datapublika.com/v1/}, o \textit{endpoint} para acessar a view \textit{UserView} será \textit{http://api.trilhasp.datapublika.com/v1/user}, e este retornará todos os usuários cadastrados no sistema. O \textit{router} irá criar ainda uma série de outros endpoints baseados neste que foi definido, como, por exemplo, 
+\textit{http://api.trilhasp.datapublika.com/v1/user/<username>}, que irá retornar as informação do usuário \textit{username}.
+
+Os \textit{endpoints} que precisaram ser definidas fora do \textit{router}, seguindo o padrão do \gls{django}, foram as seguintes:
+\begin{lstlisting}[language=Python,caption={EndPoints definidos manualmente}]
+    url(r'^evaluation/bus/line/(?P<bus_line_code>[0-9A-Za-z--]+)/', BusLineViewSet.as_view(), name='bus-line'),
+    
+    url(r'^position/last/user/(?P<user>[^/.]+)/$', LastUserPosition.as_view(), name='lastlocation-detail'),
+    
+    url(r'^position/last/users/(?P<lon>(-?\d+\.\d+))_(?P<lat>(-?\d+\.\d+))/$', LastUsersAtPosition.as_view(), name='lastuserslocation-detail'),
+\end{lstlisting}
+
+O primeiro deles é o que permite que seja realizada a busca de linhas de ônibus pelo número da linha, ao invés do ID interno da mesma. O segundo é o que permite que seja buscada a última localização de um usuário por meio de seu \textit{username}.
+
+E, por fim, temos o \textit{endpoint} que permite que sejam buscados todos os usuários ao redor de uma certa localização em termos de longitude e latitude. Um exemplo de url que se adequa a este \textit{endpoint} é:
+``\textit{http://api.trilhasp.datapublika.com/v1/position/last/users/-23.745\_-5.888}''. Neste caso, -23.745 representa a longitude, enquanto -5.888 representa a latitude da localização desejada, e o separador entre latitude e longitude é o símbolo de ``\_'' (\textit{underline}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                  Django                                 %%
@@ -354,57 +426,36 @@ Neste \textit{app} foram expostas todas as classes padrão do \textit{app}.
 Aqui serão descritas as principais configurações do projeto do \gls{django} e também as produções necessárias para integrar os diversos apps.
 
 \subsubsection{Configurações do Django}
-O projeto django possui um arquivo de configurações (\textit{settings.py}) que concentra as principais informações do framework, incluindo quais \textit{apps}/\textit{plugins}/\textit{módulos} serão utilizados e configurações dos mesmos.
-A seguir apresentamos tais configurações:
-\lstinputlisting[language=Python,firstline=32,lastline=46,caption={\textit{APPs} configuradas no projeto}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=48,lastline=51,caption={Configuração específica do \gls{drf}}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=53,lastline=63,caption={\textit{Middlewares} habilitados}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=65,lastline=76,caption={\textit{Template context processors} habilitados}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=78,lastline=83,caption={\textit{Backends} de autenticação},label={cod:back-auth}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=130,lastline=130,caption={Campos de referência no login social},label={cod:social-auth}]{./codes/trilhasp/dev.settings.py.template}
-\clearpage
-\lstinputlisting[language=Python,firstline=85,lastline=128,caption={Configurações do plugin de login social}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=134,lastline=144,caption={Códigos de autenticação para login social},label={cod:social-auth-keys}]{./codes/trilhasp/dev.settings.py.template}
-\lstinputlisting[language=Python,firstline=162,lastline=173,caption={Configurações para base de dados},label={cod:dbinfo}]{./codes/trilhasp/dev.settings.py.template}
+O projeto \gls{django} possui um arquivo de configurações (\textit{settings.py}) que concentra as principais informações do \textit{framework}, incluindo quais \textit{apps}/\textit{plugins}/\textit{módulos} serão utilizados e configurações dos mesmos. A seguir estarão descritas as modificações que foram realizadas com relação ao arquivo padrão do \textit{framework}.
 
-Nos trechos de código \ref{cod:back-auth} e \ref{cod:social-auth} pode-se perceber que as linhas referentes à autenticação via \textit{Twitter} estão comentadas/desabilitadas. Isto pois, conforme expresso anteriormente, o \textit{Twitter} não o email do usuário, o que nos impede, neste primeiro momento, de vincular o usuário do twitter com o de outras redes sociais e/ou com o usuário na plataforma.
+Com relação à configuração de aplicações (\textit{apps}) a serem utilizadas, os seguintes \textit{apps} foram adicionados à lista ``INSTALED\_APPS'':
+    \begin{enumerate*}[label=\itshape\alph*\upshape)]
+        \item \textit{django.contrib.gis};
+        \item \textit{evaluation};
+        \item \textit{game};
+        \item \textit{demandmap};
+        \item \textit{rest\_framework};
+        \item \textit{utils}; e
+        \item \textit{social.apps.django\_app.default}.
+    \end{enumerate*}
 
-Tomou-se também o cuidado de se retirar, aqui neste trabalho, os códigos de autenticação do aplicativo com cada uma das plataformas por motivo de segurança, assim como os códigos de acesso ao banco de dados, conforme pode-se obersvar nos Códigos \ref{cod:social-auth} e \ref{cod:dbinfo}, respectivamente.
+Foi também adicionada uma nova variável ao arquivo para configuração do \gls{drf}, chamada ``REST\_FRAMEWORK'', na qual foram definidas a permissão padrão das classes (serializadores e \textit{views}) e também a paginação dos resultados - quantos resultados serão exibidos por página para cada busca realizada na API.
 
-\lstinputlisting[language=Python,firstline=192,lastline=195,caption={Configurações de arquivos estáticos},label={cod:staticsettings}]{./codes/trilhasp/dev.settings.py.template}
+Outra modificação realizada foi na variável ``MIDDLEWARE\_CLASSES'', na qual foram adicionados diversas classes, principalmente as ligadas a autenticação social e ao módulo \textit{django-cors-headers}%
+\footnote{\textit{Cross-origin resource sharing} (CORS) ou \textbf{compartilhamento de recursos entre-origens} é uma especificação de uma tecnologia de navegadores que define meios para um servidor permitir que seus recursos sejam acessados por uma página web de um domínio diferente do domínio do próprio servidor. Por padrão os navegadores de internet não permitem que uma página acesse recursos de outras páginas (outro endereço web). Com as corretas configurações de ambos os lados (página que está tentando acessar o recurso e servidor que provê o recurso) esta comunicação pode ser corretamente efetivada. \url{http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/} - Acesso em 25/11/2014} do \gls{django}.
 
-Foi também realizada a configuração da pasta de arquivos estáticos (javascript, css, imagens, vídeos, etc), assim como a URL padrão de arquivos estáticos do \gls{django}, conforme pode ser visto no trecho de código \ref{cod:staticsettings}.
+Adicionou-se uma variável para permitir a comunicação entre endereços \gls{cors} com a diretiva \textit{CORS\_ALLOW\_CREDENTIALS}; foram configurados os \textit{backends} de autenticação do django com a diretiva \textit{AUTHENTICATION\_BACKENDS}; foi adicionado o pipeline\footnote{Sequência de ``comandos'' a serem executados} de autenticação do módulo de autenticação social com a diretiva \textit{SOCIAL\_AUTH\_PIPELINE}, assim como os campos a serem utilizados como referência para se criar a relação entre um ``usuário de rede social'' e um usuário já existente no sistema com a diretiva \textit{SOCIAL\_AUTH\_ADMIN\_USER\_SEARCH\_FIELDS}; foram adicionadas informações de autenticação da aplicação com os servidores de autenticação das redes sociais.
 
-As demais configurações presentes neste arquivo (\textit{settings.py}) são as presentes no padrão do \textit{framework} \gls{django}.
+Houve também a configuração de parâmetros de acesso à base de dados na diretiva \textit{DATABASES}, adição da versão do \textit{POSTGIS}, configuração do idioma padrão a ser utilizado, bem como do timezone, e a configuração de endereços de arquivos estáticos (css, javascript, imagens, etc) nas diretivas \textit{STATIC\_ROOT} e \textit{STATIC\_URL}, sendo a primeira o endereço absoluto\footnote{Endereço absoluto é o endereço de uma pasta ou arquivo, a partir da raiz do sistema operacional, no próprio equipamento no qual a aplicação está sendo executada.} da pasta de arquivos estáticos e a segunda o complemento da URL no qual os arquivos serão acessados.
 
-\subsubsection{Definição das rotas (\textit{urls.py})}
-As rotas e endereços do projeto foram definidas tanto no core do projeto quanto no módulo \textit{utils}.
+\subsubsection{Definição das rotas}
+As rotas e endereços do projeto foram definidas tanto no core do projeto quanto no módulo \textit{utils}, conforme exposto na Seção \ref{subsec:util-urls}. Todas as configurações de endereçamento se encontram nos arquivos nominados \textit{urls.py}. No caso deste projeto utilizamos dois arquivos para tais configurações, o primeiro deles é o presente na pasta \textit{trilhasp}, do próprio projeto, e o segundo é o presente no módulo \textit{utils}.
 
-No \textit{core} do projeto temos as urls para a área de administração, autenticação (\textit{default} e social), além da autenticação padrão do módulo \gls{rest} e a chamada para as demais urls que se encontram no módulo \textit{utils}.
-\lstinputlisting[language=Python,firstline=12,lastline=16,caption={URLs definidas no projeto principal}]{./codes/trilhasp/urls.py}
-
-Já no módulo \textit{utils} definimos as URLs relativas aos \textit{endpoints} de nossa API:
-\lstinputlisting[language=Python,firstline=9,lastline=24,caption={Endpoints Padrões da API definidos no módulo \textit{utils}}]{./codes/utils/urls.py}
+No arquivo presente na pasta \textit{trilhasp} temos as urls para a área de administração, autenticação (\textit{default} e social), além da autenticação padrão da \gls{api} via módulo \gls{rest} e a chamada para as demais urls da API, que se encontram no arquivo do módulo \textit{utils}.
 
 Conforme sugerido na documentação oficial do \gls{drf}, utilizamos a classe \textit{routers} do \textit{framework}, o que facilita a criação dos endpoints, visto que a cada rota registrada no arquivo de configuração, diversas outras rotas são automaticamente criadas pela classe. Apenas como exemplo, ao se definir a rota para a classe empresa de ônibus, são automaticamente criadas as rotas para \textit{listar todas as empresas de ônibus} e \textit{verificar uma única empresa de ônibus}.
 
-Além disso, também foram inseridas alguns \textit{endpoints} utilizando o padrão \textit{urlpatterns} do \gls{django}. Estes foram criadas por serem \textit{endpoints} diferentes dos criados por padrão pelo \textit{framework}. Um exemplo é o \textit{endpoint} que busca uma linha de ônibus tomando por chave de busca o código da linha de ônibus, no lugar do identificador (chave primária) interno da base de dados.
-\lstinputlisting[language=Python,firstline=28,lastline=28,caption={Endpoints para buscar uma linha de ônibus por seu código}]{./codes/utils/urls.py}
-Temos ainda o \textit{endpoint} para buscar informações de usuários por seu \textit{username}:
-\lstinputlisting[language=Python,firstline=29,lastline=29,caption={Endpoints para buscar um usuário por seu \textit{username}}]{./codes/utils/urls.py}
-Por fim, temos ainda um endpoint que busca todos os usuários que estão a uma determinada distância de um determinado ponto (latitude e longitude) e que tenham essa informação atualizada na última hora. Este endpoint ainda será melhor elaborado para permitir que sejam passadas as informações de ``raio'' a ser buscado e ``range'' de horário a ser considerado.
-\lstinputlisting[language=Python,firstline=30,lastline=30,caption={Endpoints para buscar usuários ao redor de um ponto}]{./codes/utils/urls.py}
-
-\subsubsection{Serializadores}
-No módulo \textit{utils} foi criado, até o momento, apenas um serializador, que diz respeito aos Usuários, que serializa a classe \textit{default} (User) de usuários do \textit{framework} \gls{django}. O nome deste serializador é \textit{UserSerializer} %
-Este serializador tem como especifidade tratar o campo password para que o mesmo não seja exposto, nem mesmo a administradores.
-
-\subsubsection{Camada de lógica de negócio (\textit{views})}
-No módulo \textit{utils}, até o momento, também foi criada apenas uma view (\textit{UserView}), que expõe a classe criada explicada acima. Esta classe tem como característica permitir apenas o acesso a um determinado registro a usuários que sejam administradores ou ao próprio usuário ao qual o registro se refere.
-
-\subsubsection{Outras funções de utilidade geral}
-No módulo \textit{utils} foi criado também, no arquivo \textit{util.py} uma classe que extende a classe de permissões básicas do \gls{drf}, tendo esta sido criada para facilitar a definição de permissão de acesso para ``Administradores ou ao próprio usuário dono do registro''.
-\lstinputlisting[language=Python,firstline=5,lastline=12,caption={Classe de permissão para Administradores e para o próprio usuário}]{./codes/utils/util.py}
+Todas as regras de endereçamento contantes na variável \textit{urlpatterns} dos arquivos de configuração de endereços (\textit{urls.py}) podem ser definidas em termos absolutos ou utilizando expressões regulares. Quando uma regra é iniciada por ``\textit{r'....}'' ela será entendida como uma expressão regular, que será comparada com a URL das requisições dos usuários da aplicação.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                              Nginx & uWSGI                              %%
