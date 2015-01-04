@@ -183,7 +183,7 @@ Na Tabela \ref{tab:model-app-avaliacao} encontram-se os atributos de cada uma da
     \fonte{Produzido pelo autor}
   }
 \end{table}
-
+\clearpage
 \subsubsection{Serializadores}
 Para a criação da \gls{api} o \gls{drf} requer que o desenvolvedor crie um (ou mais) serializador(es) para cada classe que se deseja expor e, em seguida, que sejam criadas as views que utilizam esses serializadores. Assim, para este \textit{app} foram criados os seguintes serializadores: %
 \begin{itemize}
@@ -418,7 +418,7 @@ O primeiro deles é o que permite que seja realizada a busca de linhas de ônibu
 
 E, por fim, temos o \textit{endpoint} que permite que sejam buscados todos os usuários ao redor de uma certa localização em termos de longitude e latitude. Um exemplo de url que se adequa a este \textit{endpoint} é:
 ``\textit{http://api.trilhasp.datapublika.com/v1/position/last/users/-23.745\_-5.888}''. Neste caso, -23.745 representa a longitude, enquanto -5.888 representa a latitude da localização desejada, e o separador entre latitude e longitude é o símbolo de ``\_'' (\textit{underline}).
-\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                  Django                                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -467,9 +467,10 @@ Para esta implementação inicial foi utilizada como referência o tutorial da p
 
 Vale destacar que os \textit{scripts} e configurações descritos a seguir consideram a implantação em um servidor dedicado - pode ser um \gls{vps}\footnote{\textit{Virtual Private Server} ou Servidor Virtual Privado, é um servidor virtualizado no qual apenas o contratante tem acesso e tem plenos poderes de instalar, desinstalar e configurá-lo como quiser.}; que utiliza como sistema operacional \textit{Debian Jessie (8.0)} e terá um usuário chamado \textit{trilhasp}, em cuja pasta do usuário (\textit{home}) (\textit{/home/trilhasp}) estará a pasta do projeto (\textit{/home/trilhasp/trilhasp}), clonada do repositório git do projeto\footnote{Repositório do projeto \trilhasp: \url{https://github.com/diraol/trilhasp/} - Acesso em 01/12/2014}. Destaca-se ainda que este usuário deve possuir permissão de ``superusuário'' (\textit{sudo}) no sistema operacional. Após realizada a instalação recomenda-se retirar tal permissão do usuário por motivos de segurança do servidor\footnote{``\textit{The Debian Administrator's Handbook}'' - \url{http://debian-handbook.info/browse/stable/} - Acesso em 22/09/2014}.
 
-\diagramaRetrato{django_stack_http.eps}{0.5}{Pilha de serviços do Django}{djangostack}{"\textit{A typical Django HTTP service stack}", por Jeff Buttars em \url{https://code.google.com/p/django-dmq/wiki/Djangocon2011submission\#A\_typical\_Django\_HTTP\_service\_stack} - Acesso em 18/11/2014}{}
-
 Tanto os servidores \gls{nginx} e \gls{uwsgi} quanto a base de dados são instalados diretamente no sistema operacional. Já o framework \gls{django} e suas dependências serão instalados por meio de um ``Ambiente Virtual'', ou \textit{virtualenv}. No caso, será utilizada a aplicação Python chamada \textit{virtualenv}\footnote{Python Virtualenv - \url{https://virtualenv.pypa.io/en/latest/} - Acesso em 25/11/2014} para esta instalação.
+
+\clearpage
+\diagramaRetrato{django_stack_http.eps}{0.5}{Pilha de serviços do Django}{djangostack}{"\textit{A typical Django HTTP service stack}", por Jeff Buttars em \url{https://code.google.com/p/django-dmq/wiki/Djangocon2011submission\#A\_typical\_Django\_HTTP\_service\_stack} - Acesso em 18/11/2014}{}
 
 Considerando o exposto, e conforme pode ser verificado nos arquivos de instalação do projeto que estão na pasta \textit{setup}, o processo de implantação consiste em instalar os servidores \gls{nginx} e \gls{uwsgi} e o software de base de dados (Postgres) e sua extensão espacial (PostGIS). Em seguida é preciso configurá-los todos, utilizando os arquivos distribuídos junto do projeto (\textit{trilhasp\_nginx.conf}, \textit{trilhasp\_uwsgi.ini} e \textit{uwsgi\_params}), criar o usuário na base de dados, o \textit{schema} ou \textit{database}, e instalar neste a extensão geo do PostGIS.
 
@@ -494,8 +495,6 @@ ou Dojo Mobile%
 
 Caso se deseje utilizar recursos nativos do dispositivo móvel, como câmera ou gps, deve-se adicionar também os devidos plugins do \textit{framework} Cordova que fornecerão acesso à API do dispositivo após o empacotamento do projeto. O passo seguinte é executar o empacotamento do projeto para a plataforma que se deseja (Android, iOS, Palm, etc) utilizando o Cordova e, por fim, realizar a instalação do aplicativo gerado no dispositivo.
 
-\diagramaRetrato{cordova-build.png}{0.55}{Etapas da produção híbrida}{cordova-build-stack}{Autoria Própria, baseada em ``PhoneGap Build Structure'' - \url{http://www.thedevline.com/2014/03/beginning-apps-development-you-must.html} - Acesso em 21/08/2014}{}    
-
 Em termos de plugins para acesso à API nativa dos dispositivos móveis, foram necessárias as instalações dos seguintes:
 \begin{description}
     \item[Keyboard] - com.ionic.keyboard 1.0.3;
@@ -506,6 +505,8 @@ Em termos de plugins para acesso à API nativa dos dispositivos móveis, foram n
     \item[Console] - org.apache.cordova.console 0.2.11; e
     \item[Geolocation] - org.apache.cordova.geolocation 0.3.10.
 \end{description}
+
+\diagramaRetrato{cordova-build.png}{0.55}{Etapas da produção híbrida}{cordova-build-stack}{Autoria Própria, baseada em ``PhoneGap Build Structure'' - \url{http://www.thedevline.com/2014/03/beginning-apps-development-you-must.html} - Acesso em 21/08/2014}{}    
 
 O processo de instalação e configuração do ambiente de desenvolvimento do aplicativo está descrito no arquivo ``README.me'' no repositório do projeto\footnote{Repositório do Aplicativo Móvel \trilhasp: \url{https://github.com/diraol/trilhasp-mobile}}.
 
@@ -560,7 +561,7 @@ Até o momento, o aplicativo conta com oito estados. Na Tabela \ref{tab:app-esta
     \end{tabular}%
   }{%
     \fonte{Autoria Própria}
-    \nota{Os templates se encontram dentro da pasta \textit{/templates}.}
+    \nota{Os templates se encontram dentro da pasta \textit{/www/templates}.}
   }
 \end{table}
 
