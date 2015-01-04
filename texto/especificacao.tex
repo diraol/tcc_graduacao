@@ -147,7 +147,7 @@ Na Tabela \ref{tab:model-app-avaliacao} encontram-se os atributos de cada uma da
     \caption{\textit{Model} do APP Avaliação \label{tab:model-app-avaliacao}}    
   }{
     \begin{tabular}{|P{2.9cm}|P{3.2cm}|P{2.5cm}|P{5.4cm}|}
-    \toprule
+    \hline
         \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
     \hline \hline
         \multirow{2}{2.9cm}{BusCompanies} & company\_name & CharField & Nome da Empresa \\ \cline{2-4}
@@ -177,7 +177,7 @@ Na Tabela \ref{tab:model-app-avaliacao} encontram-se os atributos de cada uma da
         & answer\_text & CharField & Texto inserido pelo usuário\\ \cline{2-4}
         & bus\_unique\_number & ForeignKey & Número único do ônibus\\ \cline{2-4}
         & geolocation & PointField & Geolocalização do usuário no momento da resposta (ex.: \textit{POINT( lng lat )})\\
-    \bottomrule
+    \hline
     \end{tabular}%
   }{%
     \fonte{Produzido pelo autor}
@@ -245,7 +245,7 @@ A seguir, na Tabela \ref{tab:model-app-gps-social}, são apresentados os atribut
     \caption{\textit{Model} do APP GPSSocial \label{tab:model-app-gps-social}}    
   }{
     \begin{tabular}{|P{3.1cm}|P{3cm}|P{2.5cm}|P{5.4cm}|}
-    \toprule
+    \hline
         \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
     \hline \hline
         \multirow{3}{3.1cm}{GEOPositionHistory} & user & ForeignKey & Usuário \\ \cline{2-4}
@@ -254,7 +254,7 @@ A seguir, na Tabela \ref{tab:model-app-gps-social}, são apresentados os atribut
         \multirow{3}{3.1cm}{GEOLastPosition} & user & ForeignKey & Usuário \\ \cline{2-4}
         & geolocation & PointField & Última localização do Usuário\\ \cline{2-4}
         & timestamp & DateTimeFIeld & Horário do registro\\
-    \bottomrule
+    \hline
     \end{tabular}%
   }{%
     \fonte{Produzido pelo autor}
@@ -318,7 +318,7 @@ Na tabela \ref{tab:model-app-game} encontram-se os atributos de cada uma das cla
     \caption{\textit{Model} do APP Game \label{tab:model-app-game}}    
   }{
     \begin{tabular}{|P{3.5cm}|P{2.6cm}|P{2.4cm}|P{5.4cm}|}
-    \toprule
+    \hline
         \textbf{Classe} & \textbf{Atributo} & \textbf{Tipo do atributo} & \textbf{Descrição do atributo} \\
     \hline \hline
         \multirow{3}{3.5cm}{GameCoindModel} & name & CharField & Nome descritivo da moeda \\ \cline{2-4}
@@ -341,7 +341,7 @@ Na tabela \ref{tab:model-app-game} encontram-se os atributos de cada uma das cla
             & bus\_model & ForeignKey & Modelo do ônibus\\ \cline{2-4}
             & amount & IntegerField & Quantidade de ônibus daquele modelo que o usuário possui\\ \cline{2-4}
             & last\_payment & DateTimeField & Quando foi realizado o último ``pagamento'' ao usuário, referente a este tipo de ônibus\\
-    \bottomrule
+    \hline
     \end{tabular}%
   }{%
     \fonte{Produzido pelo autor}
@@ -418,7 +418,7 @@ O primeiro deles é o que permite que seja realizada a busca de linhas de ônibu
 
 E, por fim, temos o \textit{endpoint} que permite que sejam buscados todos os usuários ao redor de uma certa localização em termos de longitude e latitude. Um exemplo de url que se adequa a este \textit{endpoint} é:
 ``\textit{http://api.trilhasp.datapublika.com/v1/position/last/users/-23.745\_-5.888}''. Neste caso, -23.745 representa a longitude, enquanto -5.888 representa a latitude da localização desejada, e o separador entre latitude e longitude é o símbolo de ``\_'' (\textit{underline}).
-
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                  Django                                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -441,12 +441,11 @@ Com relação à configuração de aplicações (\textit{apps}) a serem utilizad
 
 Foi também adicionada uma nova variável ao arquivo para configuração do \gls{drf}, chamada ``REST\_FRAMEWORK'', na qual foram definidas a permissão padrão das classes (serializadores e \textit{views}) e também a paginação dos resultados - quantos resultados serão exibidos por página para cada busca realizada na API.
 
-Outra modificação realizada foi na variável ``MIDDLEWARE\_CLASSES'', na qual foram adicionados diversas classes, principalmente as ligadas a autenticação social e ao módulo \textit{django-cors-headers}%
-\footnote{\textit{Cross-origin resource sharing} (CORS) ou \textbf{compartilhamento de recursos entre-origens} é uma especificação de uma tecnologia de navegadores que define meios para um servidor permitir que seus recursos sejam acessados por uma página web de um domínio diferente do domínio do próprio servidor. Por padrão os navegadores de internet não permitem que uma página acesse recursos de outras páginas (outro endereço web). Com as corretas configurações de ambos os lados (página que está tentando acessar o recurso e servidor que provê o recurso) esta comunicação pode ser corretamente efetivada. \url{http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/} - Acesso em 25/11/2014} do \gls{django}.
+Outra modificação realizada foi na variável ``MIDDLEWARE\_CLASSES'', na qual foram adicionados diversas classes, principalmente as ligadas a autenticação social e ao módulo \textit{django-cors-headers} do \gls{django}.
 
 Adicionou-se uma variável para permitir a comunicação entre endereços \gls{cors} com a diretiva \textit{CORS\_ALLOW\_CREDENTIALS}; foram configurados os \textit{backends} de autenticação do django com a diretiva \textit{AUTHENTICATION\_BACKENDS}; foi adicionado o pipeline\footnote{Sequência de ``comandos'' a serem executados} de autenticação do módulo de autenticação social com a diretiva \textit{SOCIAL\_AUTH\_PIPELINE}, assim como os campos a serem utilizados como referência para se criar a relação entre um ``usuário de rede social'' e um usuário já existente no sistema com a diretiva \textit{SOCIAL\_AUTH\_ADMIN\_USER\_SEARCH\_FIELDS}; foram adicionadas informações de autenticação da aplicação com os servidores de autenticação das redes sociais.
 
-Houve também a configuração de parâmetros de acesso à base de dados na diretiva \textit{DATABASES}, adição da versão do \textit{POSTGIS}, configuração do idioma padrão a ser utilizado, bem como do timezone, e a configuração de endereços de arquivos estáticos (css, javascript, imagens, etc) nas diretivas \textit{STATIC\_ROOT} e \textit{STATIC\_URL}, sendo a primeira o endereço absoluto\footnote{Endereço absoluto é o endereço de uma pasta ou arquivo, a partir da raiz do sistema operacional, no próprio equipamento no qual a aplicação está sendo executada.} da pasta de arquivos estáticos e a segunda o complemento da URL no qual os arquivos serão acessados.
+Houve também a configuração de parâmetros de acesso à base de dados na diretiva \textit{DATABASES}, adição da versão do \textit{POSTGIS}, configuração do idioma padrão a ser utilizado, bem como do timezone, e a configuração de endereços de arquivos estáticos (CSS, javascript, imagens, etc) nas diretivas \textit{STATIC\_ROOT} e \textit{STATIC\_URL}, sendo a primeira o endereço absoluto\footnote{Endereço absoluto é o endereço de uma pasta ou arquivo, a partir da raiz do sistema operacional, no próprio equipamento no qual a aplicação está sendo executada.} da pasta de arquivos estáticos e a segunda o complemento da URL no qual os arquivos serão acessados.
 
 \subsubsection{Definição das rotas}
 As rotas e endereços do projeto foram definidas tanto no core do projeto quanto no módulo \textit{utils}, conforme exposto na Seção \ref{subsec:util-urls}. Todas as configurações de endereçamento se encontram nos arquivos nominados \textit{urls.py}. No caso deste projeto utilizamos dois arquivos para tais configurações, o primeiro deles é o presente na pasta \textit{trilhasp}, do próprio projeto, e o segundo é o presente no módulo \textit{utils}.
@@ -460,84 +459,202 @@ Todas as regras de endereçamento contantes na variável \textit{urlpatterns} do
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                              Nginx & uWSGI                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{NGINX \& uWSGI}
-Aqui será brevemente descrita a implementação dos servidores web e de aplicação \gls{nginx} e \gls{uwsgi}.
+\subsection{\textit{Setup} do \textit{backend}}
+Nesta seção serão descritas as implantação dos servidores web e de aplicação \gls{nginx} e \gls{uwsgi}, da base de dados Postgres e PostGIS, assim como as devidas configurações e integração com o \textit{framework} \gls{django}.
 
-A pilha de serviços mais utilizada para deploy de aplicações \gls{django}, e que utilizaremos nesta aplicação, é a apresentada na Figura \ref{fig:djangostack}.
-Para este \textit{deploy} inicial iremos utilizar o tutorial da própria documentação oferecida pela comunidade do \gls{uwsgi}\footnote{\url{http://uwsgi-docs.readthedocs.org/en/latest/tutorials/Django_and_nginx.html}}. Aproveitaremos também para criar um script de deploy padronizado para o projeto.
-\diagramaRetrato{django_stack_http.eps}{0.5}{Pilha de serviços do Django}{djangostack}{django-dmq em \url{https://code.google.com/p/django-dmq/wiki/Djangocon2011submission}}{}
+A pilha de serviços mais utilizada para deploy de aplicações \gls{django}, e que utilizaremos neste projeto, é a apresentada na Figura \ref{fig:djangostack}.
+Para esta implementação inicial foi utilizada como referência o tutorial da própria documentação oferecida pela comunidade do \gls{uwsgi}\footnote{``\textit{Setting up Django and your web server with uWSGI and nginx}'' - \url{http://uwsgi-docs.readthedocs.org/en/latest/tutorials/Django_and_nginx.html} - Acesso em 25/09/2014}. Também foi criado um \textit{script} de implantação padronizado para o projeto, baseado na experiência desta instalação.
 
-Vale destacar que os scripts e configurações descritos a seguir consideram o deploy realizado num servidor dedicado - pode ser um VPS; que utiliza como sistema operacional \textit{debian jessie (8.0)} e terá um usuário chamado \textit{trilhasp}, em cuja home (\textit{/home/trilhasp}) estará a pasta do projeto (\textit{/home/trilhasp/trilhasp}), clonada do repositório git. Destaca-se ainda que este usuário deve possui permissão de ``superusuário'' (sudo) no sistema operacional. Após realizada a instalação e o deploy recomenda-se retirar tal permissão do usuário por motivos de segurança do servidor.
+Vale destacar que os \textit{scripts} e configurações descritos a seguir consideram a implantação em um servidor dedicado - pode ser um \gls{vps}\footnote{\textit{Virtual Private Server} ou Servidor Virtual Privado, é um servidor virtualizado no qual apenas o contratante tem acesso e tem plenos poderes de instalar, desinstalar e configurá-lo como quiser.}; que utiliza como sistema operacional \textit{Debian Jessie (8.0)} e terá um usuário chamado \textit{trilhasp}, em cuja pasta do usuário (\textit{home}) (\textit{/home/trilhasp}) estará a pasta do projeto (\textit{/home/trilhasp/trilhasp}), clonada do repositório git do projeto\footnote{Repositório do projeto \trilhasp: \url{https://github.com/diraol/trilhasp/} - Acesso em 01/12/2014}. Destaca-se ainda que este usuário deve possuir permissão de ``superusuário'' (\textit{sudo}) no sistema operacional. Após realizada a instalação recomenda-se retirar tal permissão do usuário por motivos de segurança do servidor\footnote{``\textit{The Debian Administrator's Handbook}'' - \url{http://debian-handbook.info/browse/stable/} - Acesso em 22/09/2014}.
 
-O primeiro passo é realizar a instalação do \gls{uwsgi} e do \gls{nginx} no sistema como um todo, utilizando o comando:
-\begin{lstlisting}[caption={Instalando NGINX e uWSGI no sistema}]
-sudo apt-get install nginx uwsgi
-\end{lstlisting}
+\diagramaRetrato{django_stack_http.eps}{0.5}{Pilha de serviços do Django}{djangostack}{"\textit{A typical Django HTTP service stack}", por Jeff Buttars em \url{https://code.google.com/p/django-dmq/wiki/Djangocon2011submission\#A\_typical\_Django\_HTTP\_service\_stack} - Acesso em 18/11/2014}{}
 
-O passo seguinte é modificar o arquivo de configurações do \gls{django} (\textit{settings.py}) para um servidor de produção, desativando o padrão de DEBUG habilitado. Além disso, para que se configure a opção de Debug para Falso, também é preciso especificar os ``hosts permitidos''. No caso optou-se por permitir apenas o host ``\textit{api.trilhasp.datapublika.com}''. As possíveis variações de endereço, como ``\textit{www.api.trilhasp.datapublika.com}'' ou as variações com terminação ``\textit{.com.br}'' serão tratadas pelo \gls{nginx} e redirecionadas para a primeira.
-\lstinputlisting[language=Python,firstline=23,lastline=27,caption={Configuração do Django para Produção}]{./codes/trilhasp/prod.settings.py.template}
+Tanto os servidores \gls{nginx} e \gls{uwsgi} quanto a base de dados são instalados diretamente no sistema operacional. Já o framework \gls{django} e suas dependências serão instalados por meio de um ``Ambiente Virtual'', ou \textit{virtualenv}. No caso, será utilizada a aplicação Python chamada \textit{virtualenv}\footnote{Python Virtualenv - \url{https://virtualenv.pypa.io/en/latest/} - Acesso em 25/11/2014} para esta instalação.
 
-Em seguida foram criados os arquivos de configuração do servidor \gls{uwsgi}, sendo eles \textit{uwsgi\_params} e \textit{trilhasp\_uwsgi.ini}.
-O primeiro contém apenas algumas configurações padronizadas que não precisam ser alteradas (Anexo \ref{anexo:nginx-uwsgi}, Código \ref{anexo:uwsgi-params}). Já o segundo, que serve para permitir a inicialização do servidor \gls{uwsgi} de forma automática com o boot do sistema operacional, contém configurações necessárias de serem personalizadas.
-\lstinputlisting[firstline=1,lastline=22,caption={Configuração de inicialização do uwsgi}]{./codes/trilhasp_uwsgi.ini}
+Considerando o exposto, e conforme pode ser verificado nos arquivos de instalação do projeto que estão na pasta \textit{setup}, o processo de implantação consiste em instalar os servidores \gls{nginx} e \gls{uwsgi} e o software de base de dados (Postgres) e sua extensão espacial (PostGIS). Em seguida é preciso configurá-los todos, utilizando os arquivos distribuídos junto do projeto (\textit{trilhasp\_nginx.conf}, \textit{trilhasp\_uwsgi.ini} e \textit{uwsgi\_params}), criar o usuário na base de dados, o \textit{schema} ou \textit{database}, e instalar neste a extensão geo do PostGIS.
 
-Este arquivo ``\textit{trilhasp\_uwsgi.ini}''  precisa ainda ser linkado ``\textit{/etc/uwsgi/vassals}'' (talvez seja necessário criá-lo com e configurar o \textit{ownership} do diretório para o usuário e grupo \textit{www-data} do servidor web \gls{nginx}). Após é preciso adicionar a linha:
-\begin{lstlisting}[language={Python},caption={Inicialização automática do servidor uWSGI}]
-/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
-\end{lstlisting}
-ao arquivo ``\textit{/etc/rc.local}''. Com esta linha, qualquer script wsgi que seja colocado na pasta será executado. Assim, pode-se ter múltiplas aplicações rodando simultâneamente e, além disso, qualquer alteração no script fará com que o servidor \gls{uwsgi} a identifique e refaça o deploy da mesma no servidor automaticamente.
+O passo seguinte é criar o ambiente virtual, instalar nele o \gls{django} e as dependências python do projeto, configuradas no arquivo \textit{requirements.py}, criar o arquivo de configuração (\textit{settings.py}) do \gls{django} baseado nos \textit{templates} disponibilizados que se encontram na pasta ``\textit{trilhasp/trilhasp/}'' e, por fim, referenciar o projeto \gls{django} corretamente no \gls{uwsgi} e vincular o \gls{uwsgi} ao \gls{nginx}.
 
-Agora iremos criar o arquivo de configuração do servidor \gls{nginx}.
-\lstinputlisting[firstline=3,lastline=50,caption={Arquivo de configuração do servidor web NGINX}]{./codes/trilhasp_nginx.conf}
-
-Este arquivo deve ser linkado (link simbólico) à pasta ``\textit{/etc/nginx/sites-enabled/}'' e, em seguida, o servidor \gls{nginx} deve ser reiniciado para que as regras sejam aplicadas.
+Outro passo fundamental é a correta configuração \gls{cors}. No servidor web \gls{nginx} esta configuração é realizada alterando-se os cabeçalhos da requisição, em especial os parâmetros ``\textit{Access-Control-Allow-Origin}'', ``\textit{Access-Control-Allow-Credentials}'', ``\textit{Access-Control-Allow-Methods}'' e ``\textit{Access-Control-Allow-Headers}'' no arquivo ``\textit{trilhasp\_nginx.conf}''. No projeto \gls{django} a configuração é realizada no arquivo ``\textit{settings.py}''. E também é necessário realizar algumas configurações no próprio aplicativo móvel, que serão descritas na Seção \ref{sec:spec-appmobile} deste trabalho.
 
 \section{Aplicativo Mobile}\label{sec:spec-appmobile}
 Conforme exposto anteriormente, optou-se por utilizar um modelo de desenvolvimento móvel híbrido. Para tanto, escolheu-se o \textit{framework} \gls{ionic}, que integra-se à plataforma \gls{cordova}, que encapsula a aplicação desenvolvida com o \gls{ionic} e simula uma aplicação nativa do celular. É extremamente comum, também, utilizar junto ao \gls{ionic} outro framework, o \gls{angular}, para automatizar ainda mais o processo de desenvolvimento, e essa foi uma escolha que foi seguida pela projeto.
 
-\subsection{Estrutura de telas}
-O \textit{app mobile} foi definido em torno de 9 telas, sendo elas:
+\subsection{\textit{Framework} Cordova}
+De acordo com as estatísticas do portal AppBrain%
+\footnote{AppBrain Stats - Android \textit{app frameworks} - \url{http://www.appbrain.com/stats/libraries/tag/app-framework/android-app-frameworks} - Acesso em 17/08/2014},
+o \textit{Framework} Cordova%
+\footnote{Apache Cordova - \url{http://cordova.apache.org/} - Acesso em 17/08/2014},
+e sua versão proprietária PhoneGap, é o terceiro framework de desenvolvimento de aplicativos Android mais utilizado no mercado, em termos de instalações realizadas, e o primeiro em termos de aplicativos desenvolvidos.
+
+Na figura \ref{fig:cordova-build-stack} podemos ver como funciona, de forma geral, a abordagem híbrida. O primeiro passo é construir um projeto Web, utilizando \gls{html}, CSS e JavaScript. Em geral recomenda-se utilizar algum \textit{framework} de Interface de Usuário (\textit{UI Framework}) para desenvolvimento Web com foco em dispositivos móveis, como por exemplo jQuery Mobile%
+\footnote{jQuery Mobile - \url{http://jquerymobile.com/} - Acesso em 21/08/2014}
+ou Dojo Mobile%
+\footnote{Dojo Mobile - \url{http://dojotoolkit.org/features/mobile} - Acesso em 21/08/2014}.
+
+Caso se deseje utilizar recursos nativos do dispositivo móvel, como câmera ou gps, deve-se adicionar também os devidos plugins do \textit{framework} Cordova que fornecerão acesso à API do dispositivo após o empacotamento do projeto. O passo seguinte é executar o empacotamento do projeto para a plataforma que se deseja (Android, iOS, Palm, etc) utilizando o Cordova e, por fim, realizar a instalação do aplicativo gerado no dispositivo.
+
+\diagramaRetrato{cordova-build.png}{0.55}{Etapas da produção híbrida}{cordova-build-stack}{Autoria Própria, baseada em ``PhoneGap Build Structure'' - \url{http://www.thedevline.com/2014/03/beginning-apps-development-you-must.html} - Acesso em 21/08/2014}{}    
+
+Em termos de plugins para acesso à API nativa dos dispositivos móveis, foram necessárias as instalações dos seguintes:
+\begin{description}
+    \item[Keyboard] - com.ionic.keyboard 1.0.3;
+    \item[Camera] - org.apache.cordova.camera 0.3.3;
+    \item[Device] - org.apache.cordova.device 0.2.12;
+    \item[BarcodeScanner] - https://github.com/wildabeast/BarcodeScanner.git;
+    \item[BackgroundMode] - de.appplant.cordova.plugin.background-mode 0.6.0-dev;
+    \item[Console] - org.apache.cordova.console 0.2.11; e
+    \item[Geolocation] - org.apache.cordova.geolocation 0.3.10.
+\end{description}
+
+O processo de instalação e configuração do ambiente de desenvolvimento do aplicativo está descrito no arquivo ``README.me'' no repositório do projeto\footnote{Repositório do Aplicativo Móvel \trilhasp: \url{https://github.com/diraol/trilhasp-mobile}}.
+
+\subsection{Estrutura do projeto do Aplicativo Móvel}
+O desenvolvimento do aplicativo móvel se dá, fundamentalmente, no projeto web do mesmo, ou seja, na pasta ``\textit{www}'' do projeto que se encontra no repositório. Na pasta ``\textit{www/css}'' encontramos os arquivos de folha de estilo do projeto, que definem as características visuais do mesmo, sendo que o único arquivo utilizado para personalização visual do projeto é o ``\textit{style.css}'', enquanto os demais são arquivos padrão das tecnologias utilizadas.
+
+O código \gls{html} serve para definir a estrutura de conteúdo das páginas, ou ``telas''. Os \textit{frameworks} escolhidos para desenvolver esta parte do projeto, \textit{ionic} e \gls{angular}, permitem que se definam algumas heranças entre os arquivos \gls{html}. Assim, o arquivo \textit{index.html} possui toda estrutura básica do projeto, e ele será ``extendido'' pelos demais arquivos. Esta possibilidade permite que existam algumas características comuns entre as páginas e que no código fonte estas características estejam apenas em um lugar, não em diversos, o que melhora a manutenabilidade do projeto. Os demais arquivos \gls{html} se encontram dentro da pasta ``\textit{www/templates}'', e cada um representará um recurso do aplicativo.
+
+\subsubsection{Lógica de Negócio do aplicativo}
+A lógica de negócio que ocorre no próprio aplicativo (\textit{client-side}) é realizada pelos códigos JavaScript que se encontram na pasta ``\textit{www/js}''. Nela encontramos 3 arquivos:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item \textit{app.js};
+    \item \textit{controllers.js}; e
+    \item \textit{services.js}.
+\end{enumerate*}
+
+O principal deles, \textit{app.js}, é o que contém as principais variáveis de ambiente, a instanciação dos módulos - sejam eles módulos dos \textit{frameworks} utilizados, ou módulos que serão desenvolvidos; as regras de roteamento de estados%
+\footnote{No desenvolvimento híbrido cada tela do aplicativo final pode ser considerada como uma página do desenvolvimento web tradicional, assim, cada tela terá seu próprio endereço web, mas que é acessado localmente dentro do aplicativo. Este processo não é visível para os usuários da aplicação. O \gls{angular} trabalha com o conceito de \textit{Estados}, então toda troca de ``endereço'' corresponde a uma troca de ``estado''.},
+regras de controle de contexto e a chamada para execução do aplicativo em si.
+
+No arquivo \textit{controllers.js} encontram-se os controladores que serão chamados pelas regras de roteamento e irão executar as funções específicas de cada estado.
+
+Por fim, no arquivo \textit{services.js} encontram-se alguns \textit{serviços} que foram criados, que podem ser entendidos com funções que são chamadas em determinadas condições. Aqui destacam-se dois até o momento:
+\begin{description}
+    \item[authInterceptor] - função que verifica, a cada mudança de estado, se o usuário está efetivamente logado no sistema e autenticado no \textit{backend} e retorna para a tela de login caso não esteja; e
+    \item[QRScanService] - serviço que realiza a leitura do código de barras e decodifica o mesmo, retornando seu valor para a função que o chamou.
+\end{description}
+
+Uma das características fundamentais do framework \gls{angular} são as ``promessas'' (\textit{promises})\footnote{``AngularJS Promises - O guia definitivo'' - \url{http://nomadev.com.br/angularjs-promises-promessas-o-guia-definitivo/} - Acessado em 25/08/2014}, que podem ser entendidas como operações assíncronas que devolverão algum resultado num instante futuro. Como o processamento se dá de forma assíncrona, o trecho de código que a chamou não esperará pelo resultado para prosseguir. Isso significa que o serviço (ou função) é chamado, o trecho de código continua a ser executado, e quando a promessa retorna um resultado (ou erro), ela executará a função de \textit{callback} que foi passada a ela. O Serviço \textit{QRScanService} atua desta maneira, assim como requisições \gls{http} realizadas no javascript.
+
+\subsection{Estados do Aplicativo}
+Até o momento, o aplicativo conta com oito estados. Na Tabela \ref{tab:app-estados} são listados os estados, e os respectivos endereços, templates e controladores associados a eles.
+
+\begin{table}[htb]
+  \IBGEtab{%
+    \renewcommand{\arraystretch}{1.3}    
+    \caption{Estados do Aplicativo Móvel\label{tab:app-estados}}    
+  }{
+    \begin{tabular}{|P{3.4cm}|P{3.2cm}|P{4cm}|P{2.8cm}|}
+    \hline
+        \textbf{Estado} & \textbf{URL} & \textbf{Template} & \textbf{Controlador} \\
+    \hline \hline
+        login & /login & login.html & UserCtrl\\ \hline
+        app & /app & menu.html & AppCtrl\\ \hline
+        app.home & /home & main.html & HomeCtrl\\ \hline
+        app.avaliacao & /avaliacao & avaliacao.html & AvCtrl\\ \hline
+        app.avaliacaogeral & /avaliacao/geral/ & avaliacao\_geral.html & AvGeralCtrl\\ \hline
+        app.avaliacaoespecifica & /avaliacao/especifica/ & avaliaca\_especifica.html& AvEspecificaCtrl\\ \hline
+        app.map & /map & map.html & MapCtrl\\ \hline
+        app.game & /game & game.html & GameCtrl\\
+    \hline
+    \end{tabular}%
+  }{%
+    \fonte{Autoria Própria}
+    \nota{Os templates se encontram dentro da pasta \textit{/templates}.}
+  }
+\end{table}
 
 \subsubsection{Login}
-Uma tela de login na qual o usuário pode se cadastrar na plataforma ou realizar o login, com seu login da plataforma ou seus logins sociais (\textit{Facebook} e \textit{Google} até o presente momento.
-    
-\subsubsection{Principal}
-Uma tela principal, com informações sobre os recursos do aplicativo e o respectivo acesso aos mesmos.
-    
-\subsubsection{QRCode}
-A primeira tela do módulo de avaliação foi desenvolvida para que o usuário possa fotografar o \gls{qrcode} do ônibus e iniciar a avaliação do mesmo, conforme pode ser visto na Figura \ref{fig:print-qrcode}.
-    
-A leitura do \gls{qrcode} será realizada localmente no celular do usuário por meio de uma biblioteca javascript chamada jsqrcode\footnote{\url{https://github.com/LazarSoft/jsqrcode}}.
-\diagramaRetrato{print-qrcode.png}{0.24}{Tela do leitor de QRCode}{print-qrcode}{Autoria Própria}{}    
+Este é o estado de \textit{fallback} padrão para o caso de o usuário não estar autenticado. Os botões para autenticação via rede social ainda não estão disponíveis pois ainda não foram implementadas regras de segurança nos ambientes, como por exemplo a utilização de certificados de segurança e protocolo \gls{https}%
+\footnote{``HTTPS (Hyper Text Transfer Protocol Secure - protocolo de transferência de hipertexto seguro) é uma implementação do protocolo HTTP sobre uma camada adicional de segurança que utiliza o protocolo SSL/TLS. Essa camada adicional permite que os dados sejam transmitidos por meio de uma conexão criptografada e que se verifique a autenticidade do servidor e do cliente por meio de certificados digitais. A porta TCP usada por norma para o protocolo HTTPS é a 443.'' - \url{http://pt.wikipedia.org/wiki/HTTPS} - Acesso em 23/10/2014},
+fazendo com que as informações transitadas entre o aplicativo e o servidor fiquem expostas a ataques.
 
-\subsubsection{Avaliação Geral}
-Após a escolher o ônibus a ser avaliado o usuário vai para a tela de avaliação geral, na qual dá a sua nota e, se ela for negativa, pode optar por descrever o motivo da nota negativa, conforme pode ser observado na Figura \ref{fig:print-avgeral}.
-\diagramaRetrato{print-avgeral.png}{0.24}{Tela de Avaliação Geral}{print-avgeral}{Autoria Própria}{}
-    
+Este estado se comunica com a \gls{api} por meio do \textit{endpoint} ``\textit{/o/token/}''. Para que esta requisição de autenticação possa acontecer, é necessário passar um parâmetro no cabeçalho (\textit{header}) \gls{http} da requisição chamado ``\textit{Authorization}''. O conteúdo deste é composto pelo texto ``Basic\textvisiblespace'' seguido da string que codifica em base64 o \textit{client\_id} e \textit{client\_secret} da aplicação separados pelo símbolo de dois pontos. O \textit{client\_id} e o \textit{client\_secret} devem ser obtidos no \textit{endpoint} \textit{/o/applications/}\footnote{\textit{Django OAuth Toolkit} - \url{https://github.com/evonove/django-oauth-toolkit/blob/master/docs/rest-framework/getting\_started.rst} - Acesso em 18/11/2014}.
+
+Caso a autenticação ocorra com sucesso, no corpo da resposta \gls{http} virá um parâmetro chamado ``\textit{access\_token}''. Este irá compor o novo código de Autorização (\textit{Authorization}) do cabeçalho de todas as requisições daqui em diante. Porém, ao invés de ele ser composto com a string ``Basic'' ele será composto com a string ``Bearer\textvisiblespace''.
+
+\subsubsection{App}
+Este estado, que serve de base para os demais estados iniciados por \textit{app}, é responsável por salvar a posição do usuário periodicamente, possui a função de \textit{logoff} e também adiciona um menu no aplicativo. Tanto o menu quanto as funções estão disponíveis em todos os estados, exceto o de login.
+
+Como este estado é responsável por armazenar a localização do usuário, ele se comunica com os \textit{endpoints} ``/v1/position/last/'' e ``/v1/position/history''.
+
+\subsubsection{App.home}
+Este é o estado inicial apresentado ao usuário após o login. Nele são mostrados os módulos disponíveis para o usuário em forma de lista.
+
+\subsubsection{App.avaliacao}
+Este é o primeiro estado do processo de avaliação do ônibus. Nele o usuário irá identificar, por meio do \gls{qrcode} a identificação do veículo que ele irá avaliar. Caso o código identificado não esteja cadastrado no \textit{backend} ou esteja inativo, o usuário irá receber uma mensagem informando que o código é inválido e a ele será dada a opção de tentar novamente.
+
+Para escanear o \gls{qrcode}, o usuário deverá pressionar um botão na tela e ``encaixar'' o \gls{qrcode} na área mais clara da tela. Caso haja uma correta identificação o usuário será automaticamente direcionado para o estado seguinte, descrito na Seção \ref{subsubsec:app-aval-geral}.
+
+Esta leitura é será realizada no próprio celular do usuário por meio de um plugin/módulo do \textit{framework} Cordova chamado ``\textit{BarcodeScanner}''\footnote{\textit{BarcodeScanner} - \url{https://github.com/wildabeast/BarcodeScanner} - Acesso em 16/11/2014}.
+
+Este estado se comunica com a \gls{api} por meio do endpoint ``/v1/evaluation/bus/'', para verificar se o ônibus existe na base de dados e se o mesmo está ativo.
+
+\subsubsection{App.avaliacaogeral}\label{subsubsec:app-aval-geral}
+Neste estado é realizada a Avaliação Geral do serviço. Nela é apresentado o número do veículo e a linha associada a ele, além de um \textit{slider} no qual o usuário escolherá a nota, conforme pode ser visto na Figura \ref{fig:print-avgeral}.
+
+\diagramaRetrato{av-geral.png}{0.6}{Tela de Avaliação Geral}{print-avgeral}{Autoria Própria}{}
+
+À esquerda do slider foi colocado um símbolo indicando reprovação, e à direita um símbolo indicando aprovação. Ao se tocar nestes símbolos a avaliação é automaticamente colocada no valor mínimo ou máximo, respectivamente.
+
+Há ainda a possibilidade de se utilizar uma escala adicional de cores para intensificar a noção de avaliação positiva e negativa, assim como pode-se utilizar figuras de rostos alegres e tristes.
+
+O controlador deste estado verifica, por meio da diretiva ``\textit{ng-change}'' do \gls{angular} as mudanças no \textit{slider} e, caso o valor seja menor que a metade do mesmo, ele irá mostrar a caixa de texto para que o usuário possa inserir um comentário sobre a avaliação.
+
+Neste estado o usuário pode optar por prosseguir para as avaliações específicas ou pode finalizar a avaliação apenas com a avaliação geral.
+
+Este estado se comunica com a \gls{api} por meio do \textit{endpoint} ``/v1/evaluation/answer/'' para salvar a resposta do usuário.
+
 \subsubsection{Avaliações Específicas}
-Em seguida ele é direcionado para a página de avaliações específicas, que contém as 5 avaliações qualitativas definidas no sistema. Todas elas possuem apenas o ``\textit{slider}'' de avaliação. Caso o usuário insira alguma nota negativa, irá ser aberta uma caixa de texto. Apenas uma caixa de texto será apresentada por vez, respectiva à avaliação que o usuário está fazendo no momento. Isso para evitar um \textit{scroll} muito grande na tela. Além disso, também foi definido que todas as avaliações específicas ficariam na mesma página para dar ao usuário uma sensação de que ele terminará mais rapidamente as avaliações, incentivando-o a avaliar. Após finalizar estas avaliações ele será direcionado à página principal, conforme pode ser observado na Figura \ref{fig:print-avespec}.
-\diagramaRetrato{print-avespec.png}{0.24}{Tela de Avaliações Específicas}{print-avespec}{Autoria Própria}{}
-    
-\subsubsection{Mapa}
-Nesta tela será apresentado o mapa com todos os usuários conectados no momento.
-    
-Para uma primeira implementação de rápida prototipagem foi utilizada a biblioteca de mapa oferecida pelo Google (Google Maps). Mas esta será trocada pela biblioteca leaflet.js\footnote{\url{http://leafletjs.com/}}, uma biblioteca javascript livre para produção de mapas, e também os tiles que serão utilizados não serão os oferecidos pelo Google, mas sim os produzidos pela Comunidade OpenStreetMap\footnote{\url{http://www.openstreetmap.org/about}}, que fornece o serviço gratuitamente e é construída por um esforço coletivo de milhares de pessoas.
-\diagramaRetrato{print-mapa.png}{0.8}{Tela do Mapa GPS Social}{print-gps-social}{Autoria Própria}{}
-    
-\subsubsection{Comprar ônibus}
-Nesta tela será apresentado ao usuários os ônibus que ele pode comprar para montar sua frota, assim como seu saldo financeiro. Ele poderá optar pelo veículo que deseja adquirir e confirmar a compra. Em seguida ele será direcionado à tela para compartilhar a compra.
-    
-\subsubsection{Compartilhar nas redes sociais}
-Nesta página o usuário será convidado a compartilhar em suas redes sociais a compra que acabou de realizar.
-    
-\subsubsection{Perfil/Frota Atual}
-Nesta página será apresentada ao usuário sua frota atual, quantos ônibus ele possui, de quais modelos, e quanto tempo falta para eles ``renderem'' e retornarem financeiramente ao usuário.
+Este estado, que só pode ser atingido após o estado App.avaliacaogeral, é o estado no qual se realizam as avaliações específicas.
 
-\section{Background}
-É fundamental ainda que o aplicativo mobile esteja rodando em background no celular do usuário, para poder manter a informação de geolocalização atualizada e, no futuro, poder enviar notificações ao mesmo. Nas Figuras \ref{fig:print-bkg1} e \ref{fig:print-bkg2} é possível observar o \textit{app} rodando em background no celular.
-\diagramaRetrato{print-bkg1.png}{0.8}{Aplicativo Rodando em Background 1}{print-bkg1}{Autoria Própria}{}
-\diagramaRetrato{print-bkg2.png}{0.8}{Aplicativo Rodando em Background 2}{print-bkg2}{Autoria Própria}{}
+Por meio da diretiva ``\textit{ng-repeat}'' do \gls{angular}, o controlador \textit{AvEspecificaCtrl} consulta o \textit{backend}, recupera as perguntas que estão ativas no momento e preenche automaticamente, na tela, as perguntas que serão apresentadas ao usuário, uma por aba.
 
+O comportamento de cada pergunta é semelhante ao comportamento descrito na Seção \ref{subsubsec:app-aval-geral}, e ao usuário é apresentado um botão ``Finalizar'' para encerrar a avaliação.
+
+Este estado se comunica com a \gls{api} por meio do \textit{endpoint} ``/v1/evaluation/question/?format=jsonp\&callback=JSON\_CALLBACK'' para recuperar quais são as avaliações específicas cadastradas e ativas no sistema que serão apresentadas ao usuário, e por meio do \textit{endpoint} ``/v1/evaluation/answer/'' para salvar as respostas no final do processo de avaliação.
+
+\subsubsection{App.map}
+Este estado representa o módulo \textbf{GPS Social}, e nele é apresentado ao usuário o mapa com todos os usuários conectados no momento.
+
+O mapa é gerado utilizando a biblioteca leaflet.js\footnote{Leaflet.js - \url{http://leafletjs.com/} - Acesso em 20/11/2014}, uma biblioteca javascript livre para produção de mapas, e os \textit{tiles} disponibilizados pelo projeto OpenStreetMap\footnote{OpenStreetMaps - \url{http://www.openstreetmap.org/about} - Acesso em 20/11/2014}, que fornece o serviço gratuitamente e é construído por um esforço coletivo de milhares de pessoas.
+
+O mapa é populado com os usuários ativos, por meio da consulta à \gls{api} no \textit{endpoint} ``position/last/?format=jsonp\&callback=JSON\_CALLBACK''.
+
+Também foi utilizado o recurso de agrupamento (\textit{clustering}) da biblioteca\footnote{Leaflet Markercluster - \url{https://github.com/Leaflet/Leaflet.markercluster} - Acesso em 27/11/2014}, que faz com que os marcadores (\textit{markers}) que representam usuários sejam agrupados num único marcador que contém o número de marcadores agrupados naquele ponto. Dessa maneira o usuário pode ver numericamente a quantidade de usuários presentes em cada ponto. O agrupamento ocorre por proximidade e depende do zoom que está sendo utilizado. Além disso, também é possível configurar o estilo dos marcadores, de maneira que os marcadores de agrupamento possuam também, além do número, uma tonalidade que represente uma faixa de valores proporcional à quantidade de usuários agrupados.
+
+No controlador deste estado (\textit{MapCtrl}) também há uma configuração para que os pontos sejam atualizados periodicamente. Este parâmetro, por hora, está \textit{hardcoded} no código fonte, mas pode-se alterá-lo para que ele seja consultado na base de dados, de forma que ele possa ser alterado sem a necessidade de mudanças no código fonte do aplicativo.
+
+\diagramaRetrato{leaflet-cluster.png}{0.8}{Mapa com LeafletJS e Agrupamento de marcadores}{print-gps-social}{A. Santiago - \url{http://acuriousanimal.com/blog/2012/08/12/awesome-clustered-markers-in-leaflet/} - Acesso em 10/12/2014}{}
+
+\subsubsection{App.game}
+A implementação do game no aplicativo móvel não foi realizada por falta de tempo para tal. Caso o usuário tente acessar o módulo de game do aplicativo a ele será apresentada uma mensagem de que o jogo ainda não está disponível.
+
+Entretanto, a seguir serão apresentados os principais estados que comporiam o game de acordo com planejamento inicial.
+\begin{description}
+    \item[App.gamecomprar] - Neste estado serão apresentados ao usuário os ônibus que ele pode comprar para montar sua frota, assim como seu saldo financeiro. Ele poderá optar pelo veículo que deseja adquirir, a quantidade e confirmar a compra. Em seguida ele será direcionado ao estado que permite compartilhar a compra realizada;
+    \item[App.gameshare] - Neste estado o usuário será convidado a compartilhar em suas redes sociais a compra que acabou de realizar; e
+    \item[App.gameprofile] - Neste estado será apresentada ao usuário sua frota atual, quantos ônibus ele possui, de quais modelos, e quanto tempo falta para eles ``renderem'' e retornarem financeiramente ao usuário.
+\end{description}
+
+\subsection{Background}
+É fundamental ainda que o aplicativo móvel possa ser executado em \textit{background} no celular do usuário, para poder manter a informação de geolocalização atualizada e, no futuro, poder enviar notificações ao mesmo.
+
+Este recurso foi adicionado ao aplicativo utilizando o plugin do \textit{framework} Cordova chamado ``\textit{Cordova Background Plug-in}''\footnote{Cordova Background Plug-in - \url{https://github.com/katzer/cordova-plugin-background-mode} - Acesso em: 13/12/2014}.
+
+\subsection{Compilando o aplicativo mobile}
+Para compilar o aplicativo e gerar uma versão instalável, basta entrar no diretório do projeto, utilizando o terminal de linha de comando, e executar o comando: 
+\begin{lstlisting}[language=Python,caption={Sintaxe padrão para registro de endereço no \textit{router}}]
+cordova build android
+\end{lstlisting}
+
+O comando anterior resultará num pacote ``\textit{.apk}'' que poderá ser instalado num celular \gls{android}. Para compilá-lo para dispositivos com sistema operacional iOS é necessário rodar o projeto a partir de um sistema operacional OSx, da Apple. Neste caso bastaria trocar o termo ``android'' do comando por ``ios''.
+
+Outra opção é apenas executar o aplicativo num emulador, utilizando o comando:
+\begin{lstlisting}[language=Python,caption={Sintaxe padrão para registro de endereço no \textit{router}}]
+cordova run android
+\end{lstlisting}
+
+\include{./texto/especificacoes/avaliacoes}
 \include{./texto/especificacoes/requisitos-funcionais}
 \input{./texto/especificacoes/requisitos-nao-funcionais}
-\include{./texto/especificacoes/avaliacoes}

@@ -1,85 +1,108 @@
 \chapter{Aspectos Conceituais}\label{chp:aspectosConceituais}
-Os principais aspectos conceituais abordados neste projeto são:
-\begin{description}
-    \item[\gls{api}] \cite{apifoldoc} \hfill \\
-        \gls{api} é um conjunto de rotinas e padrões estabelecidos por um \textit{software} para a utilização das suas funcionalidades por aplicativos que não pretendem considerar os detalhes da implementação do \textit{software}, mas apenas usar seus serviços.\\
-        Este conceito será aplicado no \textit{backend} do projeto como interface de comunicação do \textit{app mobile} com o \textit{backend} e também como forma de disponibilizar os dados coletados pelo projeto para, por exemplo, a produção de relatórios para a \sptrans, ou disponibilizar os dados publicamente para que seja possível produzir relatórios e análises independentes.%
+Neste trabalho alguns temas se sobressaem. Estes serão abordados neste capítulo.
+
+O primeiro conceito a ser tratado é o de \gls{api}, que significa \textit{Application Programming Interface} ou \textit{Interface de Programação de Aplicativos}. \gls{api} pode ser entendida como um conjunto de rotinas e padrões estabelecidos por um \textit{software} para a utilização de suas funcionalidades por aplicativos \cite{apifoldoc} que não pretendem considerar os detalhes da implementação do \textit{software}, mas apenas usar seus serviços.
+
+Ou seja, o software que fornece a \gls{api} não sabe quem a irá utilizar, ou com qual finalidade. Por outro lado, o software que consome a \gls{api} não sabe como aquelas informações estão sendo geradas. Para o ``consumidor'' a \gls{api} funciona como uma caixa preta, sabe-se que ela precisa de uma determinada entrada e como resposta a esta entrada ela retornará uma saída, de acordo com o que foi especificado.
+
+Este conceito será aplicado no \textit{backend} do projeto para prover uma interface de comunicação do aplicativo móvel com o \textit{backend}, e também para disponibilizar os dados coletados para, por exemplo, a produção de relatórios para a \sptrans, ou disponibilizar os dados publicamente para que seja possível produzir relatórios e análises independentes.
+
+Outro conceito fundamental, e diretamente ligado ao de \gls{api}, é o \gls{rest}, que foi definido por \citeonline{Fielding2000} e significa um estilo arquitetural de \textit{software} que consiste numa série planejada de restrições aplicadas a componentes, conectores e elementos de dados em sistemas de hipermídia distribuídos.
+
+Como a aplicação irá lidar com uma quantidade de usuários simultâneos da ordem de centenas de milhares, caso ganhe escala, será necessária uma infraestrutura que possa lidar com essa quantidade de informações, tanto do ponto de vista de armazenamento como dos pontos de vista de transações e processamento.
+
+Sob esta ótica, o maior desafio neste projeto deverá ser na aquisição, registro e disponibilização adequada da localização dos usuários, de forma atualizada aos usuários no \textbf{módulo ``gps social''}.
+
+Segundo \apudonline[p.32]{zichermann2010game}{Mastrocola2012}:
+\begin{citacao}
+    \textit{Gamification} é fundamentalmente reescrever as regras de jogos para \textit{design} de produtos e marketing. Da rede social de geo localização \textit{FourSquare} até o \textit{social game Farmville}, e da Nike até a Marinha americana, elementos de \textit{games} como pontos, troféus, níveis, recompensas e rankings estão sendo usados em número cada vez maior.
+\end{citacao}
+	    
+Este conceito (\textit{gamificação}) será aplicado na criação de um jogo que se integre ao módulo de avaliação para incentivar os usuários a avaliarem o sistema de transporte e também com o objetivo de educar os usuários quanto às necessidades e custos na manutenção de uma frota de ônibus de passageiros.
+
+Fundamental também é o conceito de \textbf{GPS Social} que neste trabalho diz respeito à simultânea coleta e disponibilização de grande volume de dados de geolocalização, advindos de uma grande base de usuários, de forma que os dados sejam utilizados ``em tempo real'' pelas pessoas influenciando seus comportamentos de deslocamento. A primeira, senão a única, aplicação que foi encontrada e que faz uso intensivo desse conceito é o aplicativo \textbf{Waze}\footnote{``Waze é o maior aplicativo de navegação e trânsito do mundo baseado em uma comunidade. Junte-se aos outros motoristas em sua área e compartilhe informações de trânsito das vias em tempo real, fazendo todos economizarem tempo e combustível em seus deslocamentos diários.'' - \url{http://waze.com} - Acesso em: 01/02/2014}, que recentemente começou a adotar o termo ``Aplicativo de navegação e tráfego baseado em comunidade'' (\textit{community-based traffic and navigation app}).
+
+Um ponto importante a ser destacado neste estilo de aplicação é que, diferente do conceito tradicional das redes sociais, nestes aplicativos, os dados de geolocalização disponibilizados não dependem de relacionamentos entre os usuários, mas unicamente da localização dos mesmos.
+
+Uma outra leitura possível para o termo, mas que não se encaixa na aplicação proposta neste trabalho, é mais ligada ao conceito tradicional de rede social e serve para conectar usuários que estão numa mesma localidade. Exemplos de aplicativos que seguem este conceito são:%
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item Tinder\footnote{``O Tinder é um jeito divertido de se conectar com pessoas novas e interessantes próximas de você. Passe as fotos para a direita para curtir ou para a esquerda para passar. Se alguém curtir você de volta, vocês combinam! Converse com sua combinação ou tire uma foto para compartilhar um Momento com todas as suas combinações de uma vez. É uma nova maneira de se expressar e compartilhar com seus amigos.'' {\url{https://play.google.com/store/apps/details?id=com.tinder&hl=pt_BR}} - Acesso em: 01/11/2014};
 %
-	\item[\gls{rest}] \cite{Fielding2000} \hfill \\
-	    \gls{rest} é um estilo arquitetural de \textit{software} que consiste numa série planejada de restrições aplicadas a componentes, conectores e elementos de dados em sistemas de hipermídia distribuídos. \\
-	    Este conceito será aplicado na implementação da \gls{api} do projeto.%
+    \item Swipe\footnote{``Anonimamente encontrara outras pessoas próximas que gostam de você. Se você também gosta delas, fazemos a ligação e então vocês podem conversar gratuitamente! Conheça novas pessoas sem ser propagado por pessoas que você não está interessado em conhecer ou conversar com elas. Este é o maior e mais livre aplicativo para conhecer novas pessoas e fazer novos amigos para paquerar, namorar, bater papo, amizade e diversão!'' {\url{https://play.google.com/store/apps/details?id=com.chirpme.swipe&hl=pt_BR}} - Acesso em: 01/11/2014};
 %
-	\item[BigData] \hfill \\
-	    Como a aplicação irá lidar com uma quantidade de usuários simultâneos da ordem de centenas de milhares, caso ganhe escala, será necessária uma infraestrutura que possa lidar com essa quantidade de informações, tanto do ponto de vista de armazenamento como do ponto de vista de transações.\\
-	    Neste sentido, o maior desafio neste projeto deverá ser na aquisição da localização dos usuários, registro da mesma e, principalmente, na disponibilização dessa informação atualizada aos usuários no \textbf{módulo ``gps social''}.%
+    \item Brenda\footnote{``Brenda é o mais popular aplicativo de encontros para mulheres lésbicas, bissexuais ou curiosas. É rápido, fácil de usar, sem complicações e amigável às usuárias. A maioria dos recursos é totalmente gratuita, incluindo conversas ilimitadas.'' {\url{https://play.google.com/store/apps/details?id=com.benderapp.brenda&hl=pt_BR}} - Acesso em: 01/11/2014}; e
 %
-	\item[Gamificação] \hfill \\
-	    Segundo \apudonline[p.32]{zichermann2010game}{Mastrocola2012}:
-	    \begin{citacao}
-	    \textit{Gamification} é fundamentalmente reescrever as regras de jogos para \textit{design} de produtos e marketing. Da rede social de geo localização \textit{FourSquare} até o \textit{social game Farmville}, e da Nike até a Marinha americana, elementos de \textit{games} como pontos, troféus, níveis, recompensas e rankings estão sendo usados em número cada vez maior.
-	    \end{citacao}
-	    Este conceito será aplicado na criação de um jogo que se integre ao módulo de avaliação para incentivar os usuários a avaliarem o sistema de trânsito e também com o objetivo de educar os usuários quanto às necessidades e custos na manutenção de uma frota de ônibus de passageiros.%
+    \item Grindr\footnote{``O aplicativo de rede social exclusivamente para gays, bissexuais e curiosos mais famoso do mundo - agora mais sexy e mais rápido do que nunca. Com mais de 7 milhões de homens em 192 países, o Grindr encontra rapazes por perto. Você pode conversar e conhecer - em qualquer lugar do mundo. Encontre o rapaz perfeito agora mesmo.'' {\url{https://play.google.com/store/apps/details?id=com.grindrapp.android&hl=pt_BR}} - Acesso em: 01/11/2014}.
 %
-	\item[GPS Social] \hfill \\
-	    O sentido de GPS Social aqui utilizado diz respeito à simultânea coleta e disponibilização de grande volume de dados de geolocalização, advindos de uma grande base de usuários, de forma que os dados sejam utilizados ``em tempo real'' pelas pessoas influenciando seus comportamentos de deslocamento. A primeira, senão a única, aplicação que foi encontrada e que faz uso intensivo desse conceito é o aplicativo \textbf{Waze}\footnote{``Waze é o maior aplicativo de navegação e trânsito do mundo baseado em uma comunidade. Junte-se aos outros motoristas em sua área e compartilhe informações de trânsito das vias em tempo real, fazendo todos economizarem tempo e combustível em seus deslocamentos diários.'' - \url{http://waze.com} - Acesso em: 01/02/2014}, que recentemente começou a adotar o termo ``Aplicativo de navegação e tráfego baseado em comunidade'' (\textit{community-based traffic and navigation app}).\\
-	    Um ponto importante a ser destacado neste estilo de aplicação é que, diferente do conceito tradicional das redes sociais, nestes aplicativos, os dados de geolocalização disponibilizados não dependem de relacionamentos entre os usuários, mas unicamente da localização dos mesmos. \\
-	    Uma outra leitura possível para o termo, mas que não se encaixa na aplicação proposta neste trabalho, é mais ligada ao conceito tradicional de rede social e serve para conectar usuários que estão numa mesma localidade. Exemplos de aplicativos que seguem este conceito são:%
-	    %
-	    \begin{itemize}
-        \item Tinder\footnote{``O Tinder é um jeito divertido de se conectar com pessoas novas e interessantes próximas de você. Passe as fotos para a direita para curtir ou para a esquerda para passar. Se alguém curtir você de volta, vocês combinam! Converse com sua combinação ou tire uma foto para compartilhar um Momento com todas as suas combinações de uma vez. É uma nova maneira de se expressar e compartilhar com seus amigos.'' {\url{https://play.google.com/store/apps/details?id=com.tinder&hl=pt_BR}} - Acesso em: 01/11/2014}
-%
-        \item Swipe\footnote{``Anonimamente encontrara outras pessoas próximas que gostam de você. Se você também gosta delas, fazemos a ligação e então vocês podem conversar gratuitamente! Conheça novas pessoas sem ser propagado por pessoas que você não está interessado em conhecer ou conversar com elas. Este é o maior e mais livre aplicativo para conhecer novas pessoas e fazer novos amigos para paquerar, namorar, bater papo, amizade e diversão!'' {\url{https://play.google.com/store/apps/details?id=com.chirpme.swipe&hl=pt_BR}} - Acesso em: 01/11/2014}
-%
-        \item Brenda\footnote{``Brenda é o mais popular aplicativo de encontros para mulheres lésbicas, bissexuais ou curiosas. É rápido, fácil de usar, sem complicações e amigável às usuárias. A maioria dos recursos é totalmente gratuita, incluindo conversas ilimitadas.'' {\url{https://play.google.com/store/apps/details?id=com.benderapp.brenda&hl=pt_BR}} - Acesso em: 01/11/2014}
-%
-        \item Grindr\footnote{``O aplicativo de rede social exclusivamente para gays, bissexuais e curiosos mais famoso do mundo - agora mais sexy e mais rápido do que nunca. Com mais de 7 milhões de homens em 192 países, o Grindr encontra rapazes por perto. Você pode conversar e conhecer - em qualquer lugar do mundo. Encontre o rapaz perfeito agora mesmo.'' {\url{https://play.google.com/store/apps/details?id=com.grindrapp.android&hl=pt_BR}} - Acesso em: 01/11/2014}
-%
-	    \end{itemize}
-	    Assim, o conceito de ``gps social'' será utilizado para a realização de estimativas de lotação dos pontos de ônibus e também poderá ser utilizado, futuramente, para estimar a quantidade de passageiros dentro do ônibus.%
-%
-	\item[Percepção do usuário/consumidor]\cite{Lai1995,Almeida2011,Almeida2007,andrade2008constructos} \hfill \\
-	    Como um dos pontos fundamentais propostos para a aplicação é permitir ao usuário avaliar o serviço de transporte, em especial baseado em critérios qualitativos que não são facilmente mensuráveis. Definiu-se então que será realizada uma avaliação geral e cinco avaliações específicas, considerados critérios importantes na tomada de decisão de um usuário de ônibus, a saber:
-	    \begin{itemize}
-	    \item Lotação
-	    \item Conforto Térmico
-	    \item Higiene/Limpeza
-	    \item Atendimento do Motorista
-	    \item Atendimento do Cobrador
-	    \end{itemize}
-	    Optou-se por cinco questões específicas por ser um número não muito grande com o objetivo de não desincentivar o usuário a responder. Este número, porém, pode variar, mas recomenda-se que não passe de 15 \cite{teller2013}. As cinco questões serão colocadas numa única página, de maneira que, de início, o usuário já tenha conhecimento da quantidade de respostas que terá que dar.\\
-	    Além disso, as avaliações serão realizadas numa escala contínua. Dessa forma será possível extrair um resultado que permitirá a elaboração de estatísticas descritivas para além de simples frequências. Caso se tivesse optado por utilizar uma escala Likert seria possível apenas realizar análises das frequências das respostas, restringindo as análises possíveis e dificultando a geração de índices e indicadores.\cite{favero2009}%
-%
-    \item[Desenvolvimento Móvel Híbrido] \hfill \\
-        Ou também conhecido como \textit{Mobile Hybrid}, é definido por \citeonline[p.6]{Leadership2012} como:
-        \begin{citacao}
-            \textit{The hybrid approach combines native development with web technology. Using this approach, developers write significant portions of their application in cross-platform web technologies, while maintaining direct access to native APIs when required.}\\
-        \textit{The native portion of the application uses the operating system APIs to create an embedded HTML rendering engine that serves as a bridge between the browser and the device APIs. This bridge enables the hybrid app to take full advantage of all the features that modern devices have to offer.}
-        \end{citacao}
-        Este será o conceito utilizado para o desenvolvimento do aplicativo mobile do projeto. As funcionalidades nativas que serão utilizadas serão:%
-            \begin{enumerate*}[label=\itshape\alph*\upshape)]
-                \item geolocalização (gps);
-                \item câmera; e
-                \item execução da aplicação em segundo plano.
-            \end{enumerate*}%
-%
-    \item[\gls{mvt}] \hfill \\
-        É a \gls{dp} utilizada pelo \textit{framework} \gls{django}. Segundo \citeonline{djangobook}, o \textit{framework} segue boa parte do padrão \gls{mvc}, proposto por \citeonline{gamma95}.\\
-        O padrão \gls{mvc}, no \gls{django}, é implementado da seguinte maneira:
-        \begin{itemize}
-	        \item[M](``\textit{Model}''): camada responsável pelo acesso aos dados. É gerenciada pelo módulo de base de dados do \gls{django};
-	        \item[V](``\textit{View}''): camada responsável pela seleção de quais dados serão apresentados e como eles serão apresentados. É gerenciada pelos módulos \textit{views} e \textit{template}; e
-	        \item[C](``\textit{Controller}''): camada que direciona uma requisição a uma \textit{View}, baseado nas regras definidas no arquivo de configuração de endereços (\textit{urls}), chamando a função apropriada para tratar aquela requisição.
-        \end{itemize}
-        Como a camada ``C'' é gerenciada pelo próprio \textit{framework} e a maior parte das ações ocorrem nos módulos ``\textit{model}'', ``\textit{view}'' e ``\textit{template}'', defini-se que o \gls{django} como um \textit{framework} \gls{mvt}, no qual:
-        \begin{itemize}
-	        \item[M](``\textit{Model}''): camada de acesso aos dados. Esta camada contém tudo sobre os dados do projeto, como:
+\end{enumerate*}
+
+Assim, o conceito de ``gps social'' será utilizado para a realização de estimativas de lotação dos pontos de ônibus e também poderá ser utilizado, futuramente, para estimar a quantidade de passageiros dentro do ônibus.
+
+Um dos pontos fundamentais propostos para a aplicação é permitir ao usuário avaliar o serviço de transporte \cite{Lai1995,Almeida2011,Almeida2007,andrade2008constructos}, em especial baseado em critérios qualitativos que não são facilmente mensuráveis. Assim, conhecer a Percepção do usuário/consumidor se torna algo de extrema importância no projeto. Para tanto, definiu-se que será realizada uma avaliação geral e cinco avaliações específicas, considerados critérios importantes na tomada de decisão de um usuário de ônibus, a saber:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+	    \item Lotação;
+	    \item Conforto Térmico;
+	    \item Higiene/Limpeza;
+	    \item Atendimento do Motorista; e
+	    \item Atendimento do Cobrador.
+\end{enumerate*}
+	    
+Optou-se por cinco questões específicas por ser um número não muito grande com o objetivo de não desincentivar o usuário a responder. Este número, porém, pode variar, mas recomenda-se que não passe de 15 \cite{teller2013}. As cinco questões serão colocadas numa única página, de maneira que, de início, o usuário já tenha conhecimento da quantidade de respostas que terá que dar.
+
+Além disso, as avaliações serão realizadas numa escala contínua. Dessa forma será possível extrair um resultado que permitirá a elaboração de estatísticas descritivas para além de simples frequências, como por exemplo Análise de Conglomerados e Análises de Correlação. Caso se tivesse optado por utilizar uma escala Likert seria possível apenas realizar análises das frequências das respostas, restringindo as análises possíveis e dificultando a geração de índices e indicadores.\cite{favero2009}
+
+O conceito de \textbf{Desenvolvimento Móvel Híbrido} ou também conhecido como \textit{Mobile Hybrid}, é definido por \citeonline[p.6]{Leadership2012} como:
+    \begin{citacao}
+        A abordagem híbrida combina desenvolvimento nativo com tecnologia Web. Utilizando esta abordagem, o desenvolvedor escreve porções significativas da aplicação utilizando tecnologias web multi-plataformas, enquanto mantém acesso direto às APIs nativas quando necessário.\\
+        A porção nativa da aplicação utiliza as APIs do sistema operacional para criar um mecanismo incorporado de renderização HTML que serve como ponte entre o navegador e as APIs do dispositivo. Esta ponte permite que o aplicativo híbrido utilize plenamente todos os recursos que os dispositivos mais modernos tem a oferecer.
+    \end{citacao}
+Este será o conceito utilizado para o desenvolvimento do aplicativo mobile do projeto. As funcionalidades nativas que serão utilizadas serão:%
+    \begin{enumerate*}[label=\itshape\alph*\upshape)]
+        \item geolocalização (gps);
+        \item câmera; e
+        \item execução da aplicação em segundo plano
+    \end{enumerate*}.
+
+O conceito de \gls{mvt}] representa a \gls{dp} utilizada pelo \textit{framework} \gls{django}. Segundo \citeonline{djangobook}, o \textit{framework} segue boa parte do padrão \gls{mvc}, proposto por \citeonline{gamma95}.
+
+O padrão \gls{mvc}, no \gls{django}, é implementado da seguinte maneira:
+    \begin{itemize}
+        \item[M](``\textit{Model}''): camada responsável pelo acesso aos dados. É gerenciada pelo módulo de base de dados do \gls{django};
+	    \item[V](``\textit{View}''): camada responsável pela seleção de quais dados serão apresentados e como eles serão apresentados. É gerenciada pelos módulos \textit{views} e \textit{template}; e
+	    \item[C](``\textit{Controller}''): camada que direciona uma requisição a uma \textit{View}, baseado nas regras definidas no arquivo de configuração de endereços (\textit{urls}), chamando a função apropriada para tratar aquela requisição.
+    \end{itemize}
+
+Como a camada ``C'' é gerenciada pelo próprio \textit{framework} e a maior parte das ações ocorrem nos módulos ``\textit{model}'', ``\textit{view}'' e ``\textit{template}'', defini-se que o \gls{django} como um \textit{framework} \gls{mvt}, no qual:
+    \begin{itemize}
+	    \item[M](``\textit{Model}''): camada de acesso aos dados. Esta camada contém tudo sobre os dados do projeto, como:
             \begin{enumerate*}[label=\itshape\alph*\upshape)]
                 \item Como acessar os dados;
                 \item Como validar os dados;
                 \item Qual o comportamento do dado; e
                 \item O relacionamento entre os dados.
             \end{enumerate*};
-            \item[V](``\textit{View}''): camada de lógica de negócio. Ela contém toda lógica de acesso à camada de dados e direciona para o template adequado. Pode-se pensá-la como a ponte entre a camada de dados e a de templates; e
-            \item[T](``\textit{Template}''): camada de apresentação. Esta camada contém decisões relativas à apresentação como, por exemplo, a maneira pela qual algo deve ser mostrado em uma página web ou outro tipo de documento.
-        \end{itemize}
-\end{description}
+        \item[V](``\textit{View}''): camada de lógica de negócio. Ela contém toda lógica de acesso à camada de dados e direciona para o template adequado. Pode-se pensá-la como a ponte entre a camada de dados e a de templates; e
+        \item[T](``\textit{Template}''): camada de apresentação. Esta camada contém decisões relativas à apresentação como, por exemplo, a maneira pela qual algo deve ser mostrado em uma página web\footnote{É relevante explicitar que Internet e Web não são sinônimos. A Internet é uma infraestrutura não apenas física que conecta milhões de dispositivos globalmente, formando uma rede na qual cada dispositivo pode se comunicar com qualquer outro que também esteja conectado à essa rede. As informações que fluem pela Internet o fazer por uma variedade de Protocolos de Comunicação, como o HTTP (web), FTP (arquivos), SMTP e POP3 (email), dentre outros. A World Wide Web (www ou Web) pode ser entendida como uma parte da Internet, que usa o protocolo HTTP, para construir um modelo de compartilhamento de informações. Normalmente seu acesso se dá por meio de navegadores (browsers) cuja função é permitir aos usuários acessar documentos/páginas da Web. Entenda-se por documentos web: textos, imagens, vídeos, sons e composições desses.} ou outro tipo de documento.
+\end{itemize}
+
+Uma grande dificuldade que se encontra na implantação de ambientes um pouco mais complexos é a dificuldade de se lidar com versões das dependências, em especial se existe mais de uma aplicação rodando simultaneamente no mesmo sistema e utilizando tecnologias parecidas.
+
+Para tentar contornar estes problemas, diversas soluções de ``ambientes virtuais'' foram desenvolvidas ao longo do tempo, geralmente focadas numa tecnologia específica. No contexto das aplicações que utilizam a linguagem de programação Python a solução consolidada existente hoje é chamada \textit{Virtualenv}\footnote{``\textit{Workingenv is dead, long live Virtualenv!}'' por Ian Bicking - \url{http://www.ianbicking.org/blog/2007/10/workingenv-is-dead-long-live-virtualenv.html} - Acesso em 15/10/2014}. O que este tipo de solução faz é fazer a instalação de aplicativas e módulos em um diretório independente e modificar variáveis de ambiente para trabalhar com este diretório de referência quando desejado. Quando não se quer mais trabalhar com estes diretórios independentes as variáveis de ambiente da seção do usuário são modificadas para seu estado anterior. Assim, é possível ter numa mesma máquina diversos ambientes virtuais sem que um interfira no outro.
+
+Um último conceito fundamental a ser tratado neste trabalho é o \gls{cors}, ou compartilhamento de recursos entre origens, é uma especificação criada pelo \gls{w3c}\footnote{\gls{w3c} é uma comunidade internacional que desenvolve padrões com o objetivo de garantir o crescimento da web. - \url{http://www.w3c.br} - Acesso em 15/11/2014} que define mecanismos para habilitar requisições entre diversas origens em \textit{client-side}\footnote{\textit{client-side} é o termo utilizado para designar o ambiente do lado de um cliente (ou usuário), como por exemplo o navegador de usuários de páginas web, mas também pode ser uma aplicação automática que consome recursos de um servidor de fora da própria infraestrutura do servidor.}.\cite{van2014cross}
+
+De forma geral, navegadores aplicam restrições a requisições entre origens, estas restrições previnem aplicações Web \textit{client-side} que são executadas a partir de uma origem (p.ex. http://dominio01.com) de obter dados de outra origem (p.ex. http://dominio02.com), assim como limita requisições \gls{http} que possam ser iniciadas automaticamente entre destinos diferentes daquele originário da aplicação. Apenas a título de exemplo da importância deste procedimento, ele impede que seja criado um site falso de banco que se comunique com o site real e sirva apenas de ``intermediário'', interceptando os dados do usuário para roubá-los, mas efetivamente realizando as operações que o usuário solicitou.
+
+Em geral estas restrições se aplicam por meio de cabeçalhos no protocolo \gls{http}, em especial o cabeçalho \textit{Access-Control-Allow-Origin}. Além disso, os navegadores utilizam uma técnica conhecida como ``\textit{preflight request}''. Nesta técnica, antes de o navegador enviar a requisição para o servidor ele envia uma pré-requisição com objetivo de realizar uma espécie de autenticação. Caso esta pré-requisição receba uma resposta válida do servidor%
+\footnote{O protocolo \gls{http} trabalha com o conceito de ``códigos de \textit{status} \gls{http}''. Este código possui formato numérico com três dígitos e é enviado como um parâmetro do cabeçalho da resposta do servidor. Existem quatro classes de códigos de \textit{status}, a saber:
+\begin{enumerate*}[label=\itshape\alph*\upshape)]
+    \item[1xx], ditos \textit{Informativos} e representam uma ``resposta provisória'';
+    \item[2xx], representam \textit{Sucesso};
+    \item[3xx], representam \textit{Redirecionamento};
+    \item[4xx], representam \textit{Erro do cliente}; e
+    \item[5xx], representam \textit{Outros erros}.
+\end{enumerate*} - \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html} - Acesso em 15/11/2014.
+}
+ai sim a requisição desejada é enviada ao servidor.
+
+Em aplicações que não utilizem navegadores web, esse problema não é tão evidente, mas como optou-se pelo desenvolvimento de uma solução dita híbrida, teremos que realizar as configurações do lado do servidor e do cliente (aplicativo móvel) para que a comunicação possa ser estabelecida.
