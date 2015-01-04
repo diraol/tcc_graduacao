@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import datetime
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -26,6 +27,7 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['api.trilhasp.datapublika.com']
 
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -40,25 +42,56 @@ INSTALLED_APPS = (
     'game',
     'demandmap',
     'rest_framework',
+    #'rest_framework_jwt',
     'utils',
     'social.apps.django_app.default',
+    'corsheaders',
+    'oauth2_provider',
 )
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-    'PAGINATE_BY': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.JSONPRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        ),
+    'PAGINATE_BY': 20
 }
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (
+        'x-requested-with',
+        'content-type',
+        'accept',
+        'origin',
+        'authorization',
+        'x-csrftoken',
+        'Access-Control-Allow-Origin',
+        )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -108,7 +141,6 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Associates the current social details with another user account with
     # a similar email address. Disabled by default.
-    #'utils.util.welcome_new_user',
     'social.pipeline.social_auth.associate_by_email',
 
     # Create a user account if we haven't found one yet.
@@ -141,7 +173,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
 #SOCIAL_AUTH_TWITTER_KEY = ""
 #SOCIAL_AUTH_TWITTER_SECRET = ""
 
-#For login to work, let's first add a LOGIN_REDIRECT_URL parameter to settings
+
+
+#For login to work, let’s first add a LOGIN_REDIRECT_URL parameter to settings
 # (to prevent the default /account/profile from raising a 404
 LOGIN_REDIRECT_URL = '/'
 
@@ -150,6 +184,7 @@ LOGIN_REDIRECT_URL = '/'
 ROOT_URLCONF = 'trilhasp.urls'
 
 WSGI_APPLICATION = 'trilhasp.wsgi.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -183,8 +218,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+#JWT_AUTH = (
+#    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=14)
+#)

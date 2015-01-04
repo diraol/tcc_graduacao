@@ -1,0 +1,19 @@
+<ion-view title="Login">
+  <ion-content class="has-header" ng-controller="UserCtrl">
+    <form ng-submit="submit(user)" role="form">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Usuário</span>
+          <input type="text" ng-model="user.username" placeholder="username" id="inputUsername">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password" placeholder="password" id="inputPassword">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Entrar</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

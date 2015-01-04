@@ -4,9 +4,9 @@ from django.conf import settings
 from django.db import models
 import os
 
-########################################################################
-##                           Game module Classes                      ##
-########################################################################
+###############################################################################
+##                           Game module Classes                             ##
+###############################################################################
 
 
 class GameCoinModel(models.Model):
@@ -111,11 +111,11 @@ class GameBusModel(models.Model):
 
 class GameBusAvailability(models.Model):
     """ Number of available buses to be bought """
-    bus_model = models.ForeignKey(GameBusModel, unique=True)
+    bus_model = models.ForeignKey(GameBusModel, related_name='availability', unique=True)
     available_buses = models.PositiveIntegerField(blank=False)
 
     def __unicode__(self):
-        return self.bus_model
+        return u'%s' % self.bus_model
 
 class GamePersonalBusFleet(models.Model):
     """Class with personal fleet information

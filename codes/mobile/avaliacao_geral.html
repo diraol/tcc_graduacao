@@ -1,0 +1,37 @@
+<ion-view title="Avaliação - Geral">
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+    <div class="bar bar-subheader">
+        <h2 class="title">{{subTitle}}</h2>
+    </div>
+    <form novalidate class="simple-form" ng-controller="AvGeralCtrl">
+        <ion-content data-tap-disabled="true" class="has-header has-subheader">
+            <label class="item">
+                <div class="item-content item-text-wrap">Como você avalia o serviço de ônibus, baseado em sua última viagem?</div>
+                <div class="range custom-blue-range">
+                    <i class="icon ion-thumbsdown custom-blue-icon" ng-click="zeroNote(avaliacao)"></i>
+                    <input type="range" name="avaliacao-geral" id="avaliacao-geral" ng-model='avaliacao.value' class="custom-blue-icon" min="0" max="100" ng-change="change(avaliacao)">
+                    <i class="icon ion-thumbsup custom-blue-icon" ng-click="fullNote(avaliacao)"></i>
+                </div>
+            </label>
+            <div ng-hide="avaliacaoTxtHide" class="card avaliacao">
+                <label class="item item-input">
+                    <textarea id="avaliacao-geral-text" placeholder="Descreva o motivo da nota negativa." ng-model='avaliacao.text' ng-change="change(avaliacao)"></textarea>
+                </label>
+              </div>
+              <div ng-bind-html="message" class="bar-assertive"></div>
+        </ion-content>
+        <ion-footer-bar align-title="center" class="bar-positive">
+            <div class="buttons" ng-click="endEval(avaliacao)">
+                <button class="button">Finalizar</button>
+            </div>
+            <h1 class="title">&nbsp;</h1>
+            <div class="buttons" ng-click="nextEval(avaliacao)">
+                <button class="button">Avaliações Específicas</button>
+            </div>
+        </ion-footer-bar>
+    </form>
+</ion-view>

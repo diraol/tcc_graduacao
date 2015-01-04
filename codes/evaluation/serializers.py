@@ -4,9 +4,9 @@ from rest_framework import serializers
 from models import *
 from django.contrib.auth.models import User
 
-########################################################################
-##                     Classes for the buses                          ##
-########################################################################
+###############################################################################
+##                     Classes for the buses                                 ##
+###############################################################################
 
 
 class BusCompaniesSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,19 +22,20 @@ class BusLineSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BusesSerializer(serializers.HyperlinkedModelSerializer):
-    bus_line_code = serializers.HyperlinkedRelatedField(
-        view_name='bus-line',
-        lookup_field='bus_line_code'
-    )
+    bus_line_code = serializers.Field()
+    #bus_line_code = serializers.HyperlinkedRelatedField(
+    #    view_name='bus-line',
+    #    lookup_field='bus_line_code'
+    #)
 
     class Meta:
         model = Buses
         fields = ('bus_unique_number', 'bus_line_code', 'active')
 
 
-########################################################################
-##                     Classes from Evaluation module                 ##
-########################################################################
+###############################################################################
+##                     Classes from Evaluation module                        ##
+###############################################################################
 
 
 class EVALAnswerModelSerializer(serializers.HyperlinkedModelSerializer):
@@ -54,7 +55,7 @@ class EVALAnswerModelSerializer(serializers.HyperlinkedModelSerializer):
 class EVALQuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = EVALQuestion
-        fields = ('question', 'answer', 'enabled')
+        fields = ('id','question', 'answer', 'enabled')
 
 
 class EVALAnswerSerializer(serializers.HyperlinkedModelSerializer):

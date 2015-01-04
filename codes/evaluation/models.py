@@ -7,9 +7,9 @@ import datetime, os
 
 # Create your models here.
 
-########################################################################
-##                     Classes for the buses                          ##
-########################################################################
+###############################################################################
+##                     Classes for the buses                                 ##
+###############################################################################
 
 def get_company_logo_path(instance, filename):
     return os.path.join('images', 'buscompanies', filename)
@@ -56,9 +56,9 @@ class Buses(models.Model):
     class Meta:
         unique_together = ('bus_unique_number', 'active')
 
-########################################################################
-##                     Classes from Evaluation module                 ##
-########################################################################
+###############################################################################
+##                     Classes from Evaluation module                        ##
+###############################################################################
 
 
 class EVALAnswerModel(models.Model):

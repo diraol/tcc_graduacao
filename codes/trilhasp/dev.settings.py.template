@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import datetime
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -30,37 +31,67 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',  # fornece um painel de administração
-    'django.contrib.auth',  # fornece recursos de login padronizado
+    'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',  # fornece recursos geoespaciais
-    'evaluation',  # app de avaliação dos ônibus
-    'game',  # app de game do projeto
-    'demandmap',  # app de mapa "GPS Social"
-    'rest_framework',  # framework para disponibilização de uma API REST
-    'utils',  # app criado para códigos gerais do projeto
-    'social.apps.django_app.default',  # fornece recurso de login social
+    'django.contrib.gis',
+    'evaluation',
+    'game',
+    'demandmap',
+    'rest_framework',
+    #'rest_framework_jwt',
+    'utils',
+    'social.apps.django_app.default',
+    'corsheaders',
+    'oauth2_provider',
 )
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
-    'PAGINATE_BY': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.JSONPRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        ),
+    'PAGINATE_BY': 20
 }
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #abaixo é um middleware da classe python-social-auth
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (
+        'x-requested-with',
+        'content-type',
+        'accept',
+        'origin',
+        'authorization',
+        'x-csrftoken',
+        'Access-Control-Allow-Origin',
+        )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -70,7 +101,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
-     #abaixo temos processors da classe python-social-auth
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
 )
@@ -83,47 +113,47 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SOCIAL_AUTH_PIPELINE = (
-    # Get the information we can about the user and return it in a
-    # simple format to create the user instance later. On some cases the
-    # details are already part of the auth response from the provider,
-    # but sometimes this could hit a provider API.
+    # Get the information we can about the user and return it in a simple
+    # format to create the user instance later. On some cases the details are
+    # already part of the auth response from the provider, but sometimes this
+    # could hit a provider API.
     'social.pipeline.social_auth.social_details',
 
-    # Get the social uid from whichever service we're authing thru. The
-    # uid is the unique identifier of the given user in the provider.
+    # Get the social uid from whichever service we're authing thru. The uid is
+    # the unique identifier of the given user in the provider.
     'social.pipeline.social_auth.social_uid',
 
     # Verifies that the current auth process is valid within the current
-    # project, this is were emails and domains whitelists are applied
-    # (if defined).
+    # project, this is were emails and domains whitelists are applied (if
+    # defined).
     'social.pipeline.social_auth.auth_allowed',
 
-    # Checks if the social-account is already associated in the site.
+    # Checks if the current social-account is already associated in the site.
     'social.pipeline.social_auth.social_user',
 
-    # Make up a username for this person, appends a random string at the
-    # end if there's any collision.
+    # Make up a username for this person, appends a random string at the end if
+    # there's any collision.
     'social.pipeline.user.get_username',
 
     # Send a validation email to the user to verify its email address.
     # Disabled by default.
     # 'social.pipeline.mail.mail_validation',
 
-    # Associates the current social details with another user account
-    # with a similar email address. Disabled by default.
+    # Associates the current social details with another user account with
+    # a similar email address. Disabled by default.
     'social.pipeline.social_auth.associate_by_email',
 
     # Create a user account if we haven't found one yet.
     'social.pipeline.user.create_user',
 
-    # Create the record that associate the social account with the user.
+    # Create the record that associated the social account with this user.
     'social.pipeline.social_auth.associate_user',
 
     # Populate the extra_data field in the social record with the values
-    # specified by settings (and the default ones like access_token).
+    # specified by settings (and the default ones like access_token, etc).
     'social.pipeline.social_auth.load_extra_data',
 
-    # Update the user record with any changed info from the auth service
+    # Update the user record with any changed info from the auth service.
     'social.pipeline.user.user_details',
 )
 
@@ -191,5 +221,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+#JWT_AUTH = (
+#    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=14)
+#)

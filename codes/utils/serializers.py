@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-########################################################################
-##                     Classes for the Users                          ##
-########################################################################
+###############################################################################
+##                     Classes for the Users                                 ##
+###############################################################################
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        fields = ('id','username', 'password', 'first_name', 'last_name', 'email')
         write_only_fields = ('password',)
         lookup_field = 'username'
 
