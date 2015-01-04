@@ -1,122 +1,122 @@
 trilhasp-mobile/
-├── bower.json
-├── config.xml
-├── gulpfile.js
-├── hooks
-│   ├── after_prepare
-│   │   └── 010_add_platform_class.js
-│   └── README.md
-├── ionic.project
-├── package.json
-├── README.md
-├── referencias
-├── scss
-│   └── ionic.app.scss
-├── special_thanks
-└── www
-    ├── css
-    │   ├── ionicons.min.css
-    │   ├── leaflet.css
-    │   └── style.css
-    ├── img
-    │   └── ionic.png
-    ├── index.html
-    ├── js
-    │   ├── app.js
-    │   ├── controllers.js
-    │   └── services.js
-    ├── lib
-    │   ├── angular-cookies.js
-    │   ├── angular-cookies.min.js
-    │   ├── angular-cookies.min.js.map
-    │   ├── angular-resource.js
-    │   ├── angular-resource.min.js
-    │   ├── angular-resource.min.js.map
-    │   ├── ionic
-    │   │   ├── css
-    │   │   │   ├── ionic.css
-    │   │   │   └── ionic.min.css
-    │   │   ├── fonts
-    │   │   │   ├── ionicons.eot
-    │   │   │   ├── ionicons.svg
-    │   │   │   ├── ionicons.ttf
-    │   │   │   └── ionicons.woff
-    │   │   ├── js
-    │   │   │   ├── angular
-    │   │   │   │   ├── angular-animate.js
-    │   │   │   │   ├── angular-animate.min.js
-    │   │   │   │   ├── angular.js
-    │   │   │   │   ├── angular.min.js
-    │   │   │   │   ├── angular-resource.js
-    │   │   │   │   ├── angular-resource.min.js
-    │   │   │   │   ├── angular-sanitize.js
-    │   │   │   │   └── angular-sanitize.min.js
-    │   │   │   ├── angular-ui
-    │   │   │   │   ├── angular-ui-router.js
-    │   │   │   │   └── angular-ui-router.min.js
-    │   │   │   ├── ionic-angular.js
-    │   │   │   ├── ionic-angular.min.js
-    │   │   │   ├── ionic.bundle.js
-    │   │   │   ├── ionic.bundle.min.js
-    │   │   │   ├── ionic.js
-    │   │   │   └── ionic.min.js
-    │   │   ├── scss
-    │   │   │   ├── _action-sheet.scss
-    │   │   │   ├── _animations.scss
-    │   │   │   ├── _backdrop.scss
-    │   │   │   ├── _badge.scss
-    │   │   │   ├── _bar.scss
-    │   │   │   ├── _button-bar.scss
-    │   │   │   ├── _button.scss
-    │   │   │   ├── _checkbox.scss
-    │   │   │   ├── _form.scss
-    │   │   │   ├── _grid.scss
-    │   │   │   ├── ionicons
-    │   │   │   │   ├── _ionicons-animation.scss
-    │   │   │   │   ├── _ionicons-font.scss
-    │   │   │   │   ├── _ionicons-icons.scss
-    │   │   │   │   ├── ionicons.scss
-    │   │   │   │   └── _ionicons-variables.scss
-    │   │   │   ├── ionic.scss
-    │   │   │   ├── _items.scss
-    │   │   │   ├── _list.scss
-    │   │   │   ├── _loading.scss
-    │   │   │   ├── _menu.scss
-    │   │   │   ├── _mixins.scss
-    │   │   │   ├── _modal.scss
-    │   │   │   ├── _platform.scss
-    │   │   │   ├── _popover.scss
-    │   │   │   ├── _popup.scss
-    │   │   │   ├── _progress.scss
-    │   │   │   ├── _radio.scss
-    │   │   │   ├── _range.scss
-    │   │   │   ├── _reset.scss
-    │   │   │   ├── _scaffolding.scss
-    │   │   │   ├── _select.scss
-    │   │   │   ├── _slide-box.scss
-    │   │   │   ├── _tabs.scss
-    │   │   │   ├── _toggle.scss
-    │   │   │   ├── _type.scss
-    │   │   │   ├── _util.scss
-    │   │   │   └── _variables.scss
-    │   │   └── version.json
-    │   ├── leaflet
-    │   │   ├── angular-leaflet-directive.min.js
-    │   │   ├── leaflet.js
-    │   │   ├── leaflet.label.css
-    │   │   ├── leaflet.label.js
-    │   │   ├── leaflet.markercluster.js
-    │   │   ├── MarkerCluster.css
-    │   │   └── MarkerCluster.Default.css
-    │   └── ng-cordova.min.js
-    └── templates
-        ├── avaliacao_especifica.html
-        ├── avaliacao_geral.html
-        ├── avaliacao.html
-        ├── game.html
-        ├── login.html
-        ├── main.html
-        ├── map.html
-        └── menu.html
+|── bower.json
+|── config.xml
+|── gulpfile.js
+|── hooks
+│   |── after_prepare
+│   │   |── 010_add_platform_class.js
+│   |── README.md
+|── ionic.project
+|── package.json
+|── README.md
+|── referencias
+|── scss
+│   |── ionic.app.scss
+|── special_thanks
+|── www
+    |── css
+    │   |── ionicons.min.css
+    │   |── leaflet.css
+    │   |── style.css
+    |── img
+    │   |── ionic.png
+    |── index.html
+    |── js
+    │   |── app.js
+    │   |── controllers.js
+    │   |── services.js
+    |── lib
+    │   |── angular-cookies.js
+    │   |── angular-cookies.min.js
+    │   |── angular-cookies.min.js.map
+    │   |── angular-resource.js
+    │   |── angular-resource.min.js
+    │   |── angular-resource.min.js.map
+    │   |── ionic
+    │   │   |── css
+    │   │   │   |── ionic.css
+    │   │   │   |── ionic.min.css
+    │   │   |── fonts
+    │   │   │   |── ionicons.eot
+    │   │   │   |── ionicons.svg
+    │   │   │   |── ionicons.ttf
+    │   │   │   |── ionicons.woff
+    │   │   |── js
+    │   │   │   |── angular
+    │   │   │   │   |── angular-animate.js
+    │   │   │   │   |── angular-animate.min.js
+    │   │   │   │   |── angular.js
+    │   │   │   │   |── angular.min.js
+    │   │   │   │   |── angular-resource.js
+    │   │   │   │   |── angular-resource.min.js
+    │   │   │   │   |── angular-sanitize.js
+    │   │   │   │   |── angular-sanitize.min.js
+    │   │   │   |── angular-ui
+    │   │   │   │   |── angular-ui-router.js
+    │   │   │   │   |── angular-ui-router.min.js
+    │   │   │   |── ionic-angular.js
+    │   │   │   |── ionic-angular.min.js
+    │   │   │   |── ionic.bundle.js
+    │   │   │   |── ionic.bundle.min.js
+    │   │   │   |── ionic.js
+    │   │   │   |── ionic.min.js
+    │   │   |── scss
+    │   │   │   |── _action-sheet.scss
+    │   │   │   |── _animations.scss
+    │   │   │   |── _backdrop.scss
+    │   │   │   |── _badge.scss
+    │   │   │   |── _bar.scss
+    │   │   │   |── _button-bar.scss
+    │   │   │   |── _button.scss
+    │   │   │   |── _checkbox.scss
+    │   │   │   |── _form.scss
+    │   │   │   |── _grid.scss
+    │   │   │   |── ionicons
+    │   │   │   │   |── _ionicons-animation.scss
+    │   │   │   │   |── _ionicons-font.scss
+    │   │   │   │   |── _ionicons-icons.scss
+    │   │   │   │   |── ionicons.scss
+    │   │   │   │   |── _ionicons-variables.scss
+    │   │   │   |── ionic.scss
+    │   │   │   |── _items.scss
+    │   │   │   |── _list.scss
+    │   │   │   |── _loading.scss
+    │   │   │   |── _menu.scss
+    │   │   │   |── _mixins.scss
+    │   │   │   |── _modal.scss
+    │   │   │   |── _platform.scss
+    │   │   │   |── _popover.scss
+    │   │   │   |── _popup.scss
+    │   │   │   |── _progress.scss
+    │   │   │   |── _radio.scss
+    │   │   │   |── _range.scss
+    │   │   │   |── _reset.scss
+    │   │   │   |── _scaffolding.scss
+    │   │   │   |── _select.scss
+    │   │   │   |── _slide-box.scss
+    │   │   │   |── _tabs.scss
+    │   │   │   |── _toggle.scss
+    │   │   │   |── _type.scss
+    │   │   │   |── _util.scss
+    │   │   │   |── _variables.scss
+    │   │   |── version.json
+    │   |── leaflet
+    │   │   |── angular-leaflet-directive.min.js
+    │   │   |── leaflet.js
+    │   │   |── leaflet.label.css
+    │   │   |── leaflet.label.js
+    │   │   |── leaflet.markercluster.js
+    │   │   |── MarkerCluster.css
+    │   │   |── MarkerCluster.Default.css
+    │   |── ng-cordova.min.js
+    |── templates
+        |── avaliacao_especifica.html
+        |── avaliacao_geral.html
+        |── avaliacao.html
+        |── game.html
+        |── login.html
+        |── main.html
+        |── map.html
+        |── menu.html
 
 18 directories, 101 files
