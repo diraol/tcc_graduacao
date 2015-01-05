@@ -37,19 +37,18 @@
   {\svaddcontentsline{#1}{#2}{#3}}}
 %
 \section{Arquivos de Setup}
-\subsection{Virtualenv, Django e PostgreSQL}
 \lstinputlisting[language={bash},caption={Setup do Virtulenv, Django e PostgreSQL}]{./codes/setup/debian_backend_venv.sh}
-\clearpage
-\subsection{Nginx e uWSGI}\label{anexo:nginx-uwsgi}
+
 \lstinputlisting[language={bash},caption={Instalação do nginx e uWSGI}]{./codes/setup/setup_systemwide_startup.sh}
+
 \lstinputlisting[language={bash},caption={Arquivo de configuração do domínio no nginx}]{./codes/trilhasp_nginx.conf}
 \lstinputlisting[language={bash},caption={Arquivo de configuração do uWSGI}]{./codes/trilhasp_uwsgi.ini}
 \lstinputlisting[language={bash},caption={Arquivo de parâmetros do uWSGI},label={anexo:uwsgi-params}]{./codes/uwsgi_params}
-\clearpage
+
 \section{Arquivos do Projeto Django}
 \lstinputlisting[language={Python},caption={\textit{Settings} de produção do Django}]{./codes/trilhasp/prod.settings.py.template}
 \lstinputlisting[language={Python},caption={Configuração das URLs principais}]{./codes/trilhasp/urls.py}
-\clearpage
+
 \section{Arquivos do pacote ``utils''}
 \lstinputlisting[language={Python},caption={Funções de utilidades gerais}]{./codes/utils/util.py}
 \lstinputlisting[language={Python},caption={Serializadores do pacote ``utils''}]{./codes/utils/serializers.py}
@@ -61,13 +60,13 @@
 \lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``GPS social''}]{./codes/demandmap/admin.py}
 \lstinputlisting[language={Python},caption={Serializadores do pacote ``GPS social''}]{./codes/demandmap/serializers.py}
 \lstinputlisting[language={Python},caption={\textit{Views} do pacote ``GPS social''}]{./codes/demandmap/views.py}
-\clearpage
+
 \section{Arquivos do pacote ``Avaliação''}
 \lstinputlisting[language={Python},caption={\textit{Models} do pacote ``Avaliação''}]{./codes/evaluation/models.py}
 \lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``Avaliação''}]{./codes/evaluation/admin.py}
 \lstinputlisting[language={Python},caption={Serializadores do pacote ``Avaliação''}]{./codes/evaluation/serializers.py}
 \lstinputlisting[language={Python},caption={\textit{Views} do pacote ``Avaliação''}]{./codes/evaluation/views.py}
-\clearpage
+
 \section{Arquivos do pacote ``Game''}
 \lstinputlisting[language={Python},caption={\textit{Models} do pacote ``Game''}]{./codes/game/models.py}
 \lstinputlisting[language={Python},caption={\textit{Admin} do pacote ``Game''}]{./codes/game/admin.py}
@@ -76,6 +75,30 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ---
-\chapter{Código fonte do APP Mobile}\label{anexo:sources-mobile}
+\chapter{Código fonte do Aplicativo Móvel}\label{anexo:sources-mobile}
 %% ---
-\lstinputlisting[language={JavaScript},caption={Código Fonte do APP Mobile}]{./codes/mobile/app.js}
+\section{Códigos JavaScript}
+\lstinputlisting[language={JavaScript},caption={Arquivo principal do Aplicativo  Móvel}]{./codes/mobile/app.js}
+\lstinputlisting[language={JavaScript},caption={\textit{Controllers} do Aplicativo  Móvel}]{./codes/mobile/controllers.js}
+\lstinputlisting[language={JavaScript},caption={\textit{Services} do Aplicativo Móvel}]{./codes/mobile/services.js}
+
+\section{Códigos HTML}
+\lstinputlisting[language={HTML5},caption={Index do Aplicativo Móvel}]{./codes/mobile/index.html}
+\lstinputlisting[language={HTML5},caption={Login do Aplicativo Móvel}]{./codes/mobile/login.html}
+\lstinputlisting[language={HTML5},caption={Menu do Aplicativo Móvel}]{./codes/mobile/menu.html}
+\lstinputlisting[language={HTML5},caption={Home do Aplicativo Móvel}]{./codes/mobile/main.html}
+\lstinputlisting[language={HTML5},caption={do Aplicativo Móvel}]{./codes/mobile/map.html}
+\lstinputlisting[language={HTML5},caption={do Aplicativo Móvel}]{./codes/mobile/game.html}
+\lstinputlisting[language={HTML5},caption={Página de Seleção do ônibus do Aplicativo Móvel}]{./codes/mobile/avaliacao.html}
+\lstinputlisting[language={HTML5},caption={Página de Avaliação Geral do Aplicativo Móvel}]{./codes/mobile/avaliacao_geral.html}
+\lstinputlisting[language={HTML5},caption={Página de Avaliação Específica do Aplicativo Móvel}]{./codes/mobile/avaliacao_especifica.html}
+
+\section{Código CSS}
+\lstinputlisting[language={CSS},caption={CSS do Aplicativo Móvel}]{./codes/mobile/style.css}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---
+\chapter{Árvore de arquivos}
+\lstinputlisting[language={BASH},caption={Árvore de arquivos do \textit{Backend}}]{./codes/trilhasp_files_tree}
+%\clearpage
+\lstinputlisting[language={BASH},caption={Árvore de arquivos do Aplicativo Móvel}]{./codes/mobile/files_tree}

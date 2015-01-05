@@ -1,122 +1,141 @@
-trilhasp-mobile/
-|── bower.json
-|── config.xml
-|── gulpfile.js
-|── hooks
-│   |── after_prepare
-│   │   |── 010_add_platform_class.js
-│   |── README.md
-|── ionic.project
-|── package.json
-|── README.md
-|── referencias
-|── scss
-│   |── ionic.app.scss
-|── special_thanks
-|── www
-    |── css
-    │   |── ionicons.min.css
-    │   |── leaflet.css
-    │   |── style.css
-    |── img
-    │   |── ionic.png
-    |── index.html
-    |── js
-    │   |── app.js
-    │   |── controllers.js
-    │   |── services.js
-    |── lib
-    │   |── angular-cookies.js
-    │   |── angular-cookies.min.js
-    │   |── angular-cookies.min.js.map
-    │   |── angular-resource.js
-    │   |── angular-resource.min.js
-    │   |── angular-resource.min.js.map
-    │   |── ionic
-    │   │   |── css
-    │   │   │   |── ionic.css
-    │   │   │   |── ionic.min.css
-    │   │   |── fonts
-    │   │   │   |── ionicons.eot
-    │   │   │   |── ionicons.svg
-    │   │   │   |── ionicons.ttf
-    │   │   │   |── ionicons.woff
-    │   │   |── js
-    │   │   │   |── angular
-    │   │   │   │   |── angular-animate.js
-    │   │   │   │   |── angular-animate.min.js
-    │   │   │   │   |── angular.js
-    │   │   │   │   |── angular.min.js
-    │   │   │   │   |── angular-resource.js
-    │   │   │   │   |── angular-resource.min.js
-    │   │   │   │   |── angular-sanitize.js
-    │   │   │   │   |── angular-sanitize.min.js
-    │   │   │   |── angular-ui
-    │   │   │   │   |── angular-ui-router.js
-    │   │   │   │   |── angular-ui-router.min.js
-    │   │   │   |── ionic-angular.js
-    │   │   │   |── ionic-angular.min.js
-    │   │   │   |── ionic.bundle.js
-    │   │   │   |── ionic.bundle.min.js
-    │   │   │   |── ionic.js
-    │   │   │   |── ionic.min.js
-    │   │   |── scss
-    │   │   │   |── _action-sheet.scss
-    │   │   │   |── _animations.scss
-    │   │   │   |── _backdrop.scss
-    │   │   │   |── _badge.scss
-    │   │   │   |── _bar.scss
-    │   │   │   |── _button-bar.scss
-    │   │   │   |── _button.scss
-    │   │   │   |── _checkbox.scss
-    │   │   │   |── _form.scss
-    │   │   │   |── _grid.scss
-    │   │   │   |── ionicons
-    │   │   │   │   |── _ionicons-animation.scss
-    │   │   │   │   |── _ionicons-font.scss
-    │   │   │   │   |── _ionicons-icons.scss
-    │   │   │   │   |── ionicons.scss
-    │   │   │   │   |── _ionicons-variables.scss
-    │   │   │   |── ionic.scss
-    │   │   │   |── _items.scss
-    │   │   │   |── _list.scss
-    │   │   │   |── _loading.scss
-    │   │   │   |── _menu.scss
-    │   │   │   |── _mixins.scss
-    │   │   │   |── _modal.scss
-    │   │   │   |── _platform.scss
-    │   │   │   |── _popover.scss
-    │   │   │   |── _popup.scss
-    │   │   │   |── _progress.scss
-    │   │   │   |── _radio.scss
-    │   │   │   |── _range.scss
-    │   │   │   |── _reset.scss
-    │   │   │   |── _scaffolding.scss
-    │   │   │   |── _select.scss
-    │   │   │   |── _slide-box.scss
-    │   │   │   |── _tabs.scss
-    │   │   │   |── _toggle.scss
-    │   │   │   |── _type.scss
-    │   │   │   |── _util.scss
-    │   │   │   |── _variables.scss
-    │   │   |── version.json
-    │   |── leaflet
-    │   │   |── angular-leaflet-directive.min.js
-    │   │   |── leaflet.js
-    │   │   |── leaflet.label.css
-    │   │   |── leaflet.label.js
-    │   │   |── leaflet.markercluster.js
-    │   │   |── MarkerCluster.css
-    │   │   |── MarkerCluster.Default.css
-    │   |── ng-cordova.min.js
-    |── templates
-        |── avaliacao_especifica.html
-        |── avaliacao_geral.html
-        |── avaliacao.html
-        |── game.html
-        |── login.html
-        |── main.html
-        |── map.html
-        |── menu.html
-
-18 directories, 101 files
+[{"type":"directory","name": ".","contents":[
+    {"type":"file","name":"bower.json"},
+    {"type":"file","name":"config.xml"},
+    {"type":"file","name":"gulpfile.js"},
+    {"type":"directory","name":"hooks","contents":[
+      {"type":"directory","name":"after_prepare","contents":[
+        {"type":"file","name":"010_add_platform_class.js"}
+      ]},
+      {"type":"file","name":"README.md"}
+    ]},
+    {"type":"file","name":"ionic.project"},
+    {"type":"file","name":"package.json"},
+    {"type":"file","name":"README.md"},
+    {"type":"file","name":"referencias"},
+    {"type":"directory","name":"scss","contents":[
+      {"type":"file","name":"ionic.app.scss"}
+    ]},
+    {"type":"file","name":"special_thanks"},
+    {"type":"directory","name":"www","contents":[
+      {"type":"directory","name":"css","contents":[
+        {"type":"file","name":"ionicons.min.css"},
+        {"type":"file","name":"leaflet.css"},
+        {"type":"file","name":"style.css"}
+      ]},
+      {"type":"directory","name":"img","contents":[
+        {"type":"file","name":"ionic.png"}
+      ]},
+      {"type":"file","name":"index.html"},
+      {"type":"directory","name":"js","contents":[
+        {"type":"file","name":"app.js"},
+        {"type":"file","name":"controllers.js"},
+        {"type":"file","name":"services.js"}
+      ]},
+      {"type":"directory","name":"lib","contents":[
+        {"type":"file","name":"angular-cookies.js"},
+        {"type":"file","name":"angular-cookies.min.js"},
+        {"type":"file","name":"angular-cookies.min.js.map"},
+        {"type":"file","name":"angular-resource.js"},
+        {"type":"file","name":"angular-resource.min.js"},
+        {"type":"file","name":"angular-resource.min.js.map"},
+        {"type":"directory","name":"ionic","contents":[
+          {"type":"directory","name":"css","contents":[
+            {"type":"file","name":"ionic.css"},
+            {"type":"file","name":"ionic.min.css"}
+          ]},
+          {"type":"directory","name":"fonts","contents":[
+            {"type":"file","name":"ionicons.eot"},
+            {"type":"file","name":"ionicons.svg"},
+            {"type":"file","name":"ionicons.ttf"},
+            {"type":"file","name":"ionicons.woff"}
+          ]},
+          {"type":"directory","name":"js","contents":[
+            {"type":"directory","name":"angular","contents":[
+              {"type":"file","name":"angular-animate.js"},
+              {"type":"file","name":"angular-animate.min.js"},
+              {"type":"file","name":"angular.js"},
+              {"type":"file","name":"angular.min.js"},
+              {"type":"file","name":"angular-resource.js"},
+              {"type":"file","name":"angular-resource.min.js"},
+              {"type":"file","name":"angular-sanitize.js"},
+              {"type":"file","name":"angular-sanitize.min.js"}
+            ]},
+            {"type":"directory","name":"angular-ui","contents":[
+              {"type":"file","name":"angular-ui-router.js"},
+              {"type":"file","name":"angular-ui-router.min.js"}
+            ]},
+            {"type":"file","name":"ionic-angular.js"},
+            {"type":"file","name":"ionic-angular.min.js"},
+            {"type":"file","name":"ionic.bundle.js"},
+            {"type":"file","name":"ionic.bundle.min.js"},
+            {"type":"file","name":"ionic.js"},
+            {"type":"file","name":"ionic.min.js"}
+          ]},
+          {"type":"directory","name":"scss","contents":[
+            {"type":"file","name":"_action-sheet.scss"},
+            {"type":"file","name":"_animations.scss"},
+            {"type":"file","name":"_backdrop.scss"},
+            {"type":"file","name":"_badge.scss"},
+            {"type":"file","name":"_bar.scss"},
+            {"type":"file","name":"_button-bar.scss"},
+            {"type":"file","name":"_button.scss"},
+            {"type":"file","name":"_checkbox.scss"},
+            {"type":"file","name":"_form.scss"},
+            {"type":"file","name":"_grid.scss"},
+            {"type":"directory","name":"ionicons","contents":[
+              {"type":"file","name":"_ionicons-animation.scss"},
+              {"type":"file","name":"_ionicons-font.scss"},
+              {"type":"file","name":"_ionicons-icons.scss"},
+              {"type":"file","name":"ionicons.scss"},
+              {"type":"file","name":"_ionicons-variables.scss"}
+            ]},
+            {"type":"file","name":"ionic.scss"},
+            {"type":"file","name":"_items.scss"},
+            {"type":"file","name":"_list.scss"},
+            {"type":"file","name":"_loading.scss"},
+            {"type":"file","name":"_menu.scss"},
+            {"type":"file","name":"_mixins.scss"},
+            {"type":"file","name":"_modal.scss"},
+            {"type":"file","name":"_platform.scss"},
+            {"type":"file","name":"_popover.scss"},
+            {"type":"file","name":"_popup.scss"},
+            {"type":"file","name":"_progress.scss"},
+            {"type":"file","name":"_radio.scss"},
+            {"type":"file","name":"_range.scss"},
+            {"type":"file","name":"_reset.scss"},
+            {"type":"file","name":"_scaffolding.scss"},
+            {"type":"file","name":"_select.scss"},
+            {"type":"file","name":"_slide-box.scss"},
+            {"type":"file","name":"_tabs.scss"},
+            {"type":"file","name":"_toggle.scss"},
+            {"type":"file","name":"_type.scss"},
+            {"type":"file","name":"_util.scss"},
+            {"type":"file","name":"_variables.scss"}
+          ]},
+          {"type":"file","name":"version.json"}
+        ]},
+        {"type":"directory","name":"leaflet","contents":[
+          {"type":"file","name":"angular-leaflet-directive.min.js"},
+          {"type":"file","name":"leaflet.js"},
+          {"type":"file","name":"leaflet.label.css"},
+          {"type":"file","name":"leaflet.label.js"},
+          {"type":"file","name":"leaflet.markercluster.js"},
+          {"type":"file","name":"MarkerCluster.css"},
+          {"type":"file","name":"MarkerCluster.Default.css"}
+        ]},
+        {"type":"file","name":"ng-cordova.min.js"}
+      ]},
+      {"type":"directory","name":"templates","contents":[
+        {"type":"file","name":"avaliacao_especifica.html"},
+        {"type":"file","name":"avaliacao_geral.html"},
+        {"type":"file","name":"avaliacao.html"},
+        {"type":"file","name":"game.html"},
+        {"type":"file","name":"login.html"},
+        {"type":"file","name":"main.html"},
+        {"type":"file","name":"map.html"},
+        {"type":"file","name":"menu.html"}
+      ]}
+    ]}
+  ]},
+  {"type":"report","directories":18,"files":101}
+]

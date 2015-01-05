@@ -1,88 +1,107 @@
-trilhasp
-|── LICENSE
-|── mobileapp
-|── README.md
-|── requirements.txt
-|── setup
-│   |── debian_backend_venv.sh
-│   |── setup_systemwide_startup.sh
-|── trilhasp
-│   |── demandmap
-│   │   |── admin.py
-│   │   |── __init__.py
-│   │   |── models.py
-│   │   |── serializers.py
-│   │   |── tests.py
-│   │   |── urls.py
-│   │   |── views.py
-│   |── evaluation
-│   │   |── admin.py
-│   │   |── __init__.py
-│   │   |── models.py
-│   │   |── serializers.py
-│   │   |── templates
-│   │   │   |── base.html
-│   │   │   |── home.html
-│   │   |── tests.py
-│   │   |── urls.py
-│   │   |── views.py
-│   |── game
-│   │   |── admin.py
-│   │   |── __init__.py
-│   │   |── migrations
-│   │   │   |── 0001_initial.py
-│   │   │   |── 0002_auto_20141130_1514.py
-│   │   │   |── __init__.py
-│   │   |── models.py
-│   │   |── serializers.py
-│   │   |── tests.py
-│   │   |── views.py
-│   |── images
-│   │   |── brandlogos
-│   │   │   |── caio_hcOsA2G.png
-│   │   │   |── caio.png
-│   │   │   |── mercedez_BHEnOli.png
-│   │   │   |── mercedez.png
-│   │   |── buscompanies
-│   │   │   |── santabrigida_3sHZbcU.jpg
-│   │   │   |── santabrigida.jpg
-│   │   │   |── sudoeste.jpg
-│   │   |── fabricantes
-│   │       |── caio.png
-│   │       |── mercedez.png
-│   |── manage.py
-│   |── trilhasp
-│   │   |── dev.settings.py.template
-│   │   |── __init__.py
-│   │   |── prod.settings.py.template
-│   │   |── templates
-│   │   │   |── 123.html
-│   │   │   |── 456.html
-│   │   │   |── elements.html
-│   │   │   |── icons.html
-│   │   │   |── img
-│   │   │   │   |── originais
-│   │   │   │       |── big_image2_orig.jpg
-│   │   │   │       |── milestones_2_orig.jpg
-│   │   │   │       |── typewriter_orig.png
-│   │   │   |── video
-│   │   │       |── NycTrafficH264.mp4
-│   │   │       |── NycTrafficH264.ogv
-│   │   │       |── NycTrafficH264.webm
-│   │   │       |── RooftopClouds.mp4
-│   │   │       |── RooftopClouds.ogv
-│   │   │       |── RooftopClouds.webm
-│   │   │       |── traffic.mp4
-│   │   |── urls.py
-│   │   |── wsgi.py
-│   |── utils
-│       |── __init__.py
-│       |── serializers.py
-│       |── urls.py
-│       |── util.py
-│       |── views.py
-|── trilhasp_nginx.conf
-|── trilhasp_uwsgi.ini
-|── uwsgi_params
-
-18 directories, 67 files
+[{"type":"directory","name": ".","contents":[
+    {"type":"file","name":"LICENSE"},
+    {"type":"directory","name":"mobileapp","contents":[
+    ]},
+    {"type":"file","name":"README.md"},
+    {"type":"file","name":"requirements.txt"},
+    {"type":"directory","name":"setup","contents":[
+      {"type":"file","name":"debian_backend_venv.sh"},
+      {"type":"file","name":"setup_systemwide_startup.sh"}
+    ]},
+    {"type":"directory","name":"trilhasp","contents":[
+      {"type":"directory","name":"demandmap","contents":[
+        {"type":"file","name":"admin.py"},
+        {"type":"file","name":"__init__.py"},
+        {"type":"file","name":"models.py"},
+        {"type":"file","name":"serializers.py"},
+        {"type":"file","name":"tests.py"},
+        {"type":"file","name":"urls.py"},
+        {"type":"file","name":"views.py"}
+      ]},
+      {"type":"directory","name":"evaluation","contents":[
+        {"type":"file","name":"admin.py"},
+        {"type":"file","name":"__init__.py"},
+        {"type":"file","name":"models.py"},
+        {"type":"file","name":"serializers.py"},
+        {"type":"directory","name":"templates","contents":[
+          {"type":"file","name":"base.html"},
+          {"type":"file","name":"home.html"}
+        ]},
+        {"type":"file","name":"tests.py"},
+        {"type":"file","name":"urls.py"},
+        {"type":"file","name":"views.py"}
+      ]},
+      {"type":"directory","name":"game","contents":[
+        {"type":"file","name":"admin.py"},
+        {"type":"file","name":"__init__.py"},
+        {"type":"directory","name":"migrations","contents":[
+          {"type":"file","name":"0001_initial.py"},
+          {"type":"file","name":"0002_auto_20141130_1514.py"},
+          {"type":"file","name":"__init__.py"}
+        ]},
+        {"type":"file","name":"models.py"},
+        {"type":"file","name":"serializers.py"},
+        {"type":"file","name":"tests.py"},
+        {"type":"file","name":"views.py"}
+      ]},
+      {"type":"directory","name":"images","contents":[
+        {"type":"directory","name":"brandlogos","contents":[
+          {"type":"file","name":"caio_hcOsA2G.png"},
+          {"type":"file","name":"caio.png"},
+          {"type":"file","name":"mercedez_BHEnOli.png"},
+          {"type":"file","name":"mercedez.png"}
+        ]},
+        {"type":"directory","name":"buscompanies","contents":[
+          {"type":"file","name":"santabrigida_3sHZbcU.jpg"},
+          {"type":"file","name":"santabrigida.jpg"},
+          {"type":"file","name":"sudoeste.jpg"}
+        ]},
+        {"type":"directory","name":"fabricantes","contents":[
+          {"type":"file","name":"caio.png"},
+          {"type":"file","name":"mercedez.png"}
+        ]}
+      ]},
+      {"type":"file","name":"manage.py"},
+      {"type":"directory","name":"trilhasp","contents":[
+        {"type":"file","name":"dev.settings.py.template"},
+        {"type":"file","name":"__init__.py"},
+        {"type":"file","name":"prod.settings.py.template"},
+        {"type":"directory","name":"templates","contents":[
+          {"type":"file","name":"123.html"},
+          {"type":"file","name":"456.html"},
+          {"type":"file","name":"elements.html"},
+          {"type":"file","name":"icons.html"},
+          {"type":"directory","name":"img","contents":[
+            {"type":"directory","name":"originais","contents":[
+              {"type":"file","name":"big_image2_orig.jpg"},
+              {"type":"file","name":"milestones_2_orig.jpg"},
+              {"type":"file","name":"typewriter_orig.png"}
+            ]}
+          ]},
+          {"type":"directory","name":"video","contents":[
+            {"type":"file","name":"NycTrafficH264.mp4"},
+            {"type":"file","name":"NycTrafficH264.ogv"},
+            {"type":"file","name":"NycTrafficH264.webm"},
+            {"type":"file","name":"RooftopClouds.mp4"},
+            {"type":"file","name":"RooftopClouds.ogv"},
+            {"type":"file","name":"RooftopClouds.webm"},
+            {"type":"file","name":"traffic.mp4"}
+          ]}
+        ]},
+        {"type":"file","name":"urls.py"},
+        {"type":"file","name":"wsgi.py"}
+      ]},
+      {"type":"directory","name":"utils","contents":[
+        {"type":"file","name":"__init__.py"},
+        {"type":"file","name":"serializers.py"},
+        {"type":"file","name":"urls.py"},
+        {"type":"file","name":"util.py"},
+        {"type":"file","name":"views.py"}
+      ]}
+    ]},
+    {"type":"file","name":"trilhasp_nginx.conf"},
+    {"type":"file","name":"trilhasp_uwsgi.ini"},
+    {"type":"file","name":"uwsgi_params"}
+  ]},
+  {"type":"report","directories":18,"files":67}
+]

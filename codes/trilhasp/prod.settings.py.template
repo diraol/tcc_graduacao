@@ -175,7 +175,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
 
 
 
-#For login to work, let’s first add a LOGIN_REDIRECT_URL parameter to settings
+#For login to work, let's first add a LOGIN_REDIRECT_URL parameter to settings
 # (to prevent the default /account/profile from raising a 404
 LOGIN_REDIRECT_URL = '/'
 
